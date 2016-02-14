@@ -1,12 +1,17 @@
 Condition icon packs support
-add activity with action "org.omnirom.WeatherIconPack"
-the name is used to defined the prefix for the image names
-default should be .weather.
-
+-----
+Activity
+```xml
+<action android:name="org.omnirom.WeatherIconPack" />
+```
+activity name is used to defined the prefix for the image names
+```xml
+<tag>_<condition id>.png
+```
 ```xml
 		<activity
-			android:name=".weather_vclouds"
-			android:label="LockClock (vclouds)" >
+			android:name=".<tag>"
+			android:label="<label>" >
 			<intent-filter>
 				<action android:name="org.omnirom.WeatherIconPack" />
 
@@ -14,29 +19,35 @@ default should be .weather.
 			</intent-filter>
 		</activity>
 ```
+Label will be the name your pack will appear when selecting
 
-This is a sample for contributing daylight header images
-This consists of two parts
-1) file assets/daylight_header.xml
-e.g.
+Daylight header images
+-----
+Activity
+activity name is used to defined name of the config file
 ```xml
-    <hour_header hour="21" image="notifhead_night" />
-    <day_header day="25" month="12" image="notifhead_christmas" />
+<action android:name="org.omnirom.DaylightHeaderPack1" />
 ```
-2) AndroidManifest,xml
-You must provide an activity with
-<action android:name="org.omnirom.DaylightHeaderPack" />
-e.g.
 ```xml
 		<activity
-			android:name=".DaylightHeaderSample"
-			android:label="Sample" >
+			android:name=".<tag>"
+			android:label="<label>" >
 			<intent-filter>
-				<action android:name="org.omnirom.DaylightHeaderPack" />
+				<action android:name="org.omnirom.DaylightHeaderPack1" />
 
 				<category android:name="android.intent.category.DEFAULT" />
 			</intent-filter>
 		</activity>
 ```
+Config file
+```xml
+assets/<tag>.xml
+```
 
+```xml
+<daylight_headers>
+    <hour_header hour="21" image="notifhead_night" />
+    <day_header day="25" month="12" image="notifhead_christmas" />
+</daylight_headers>
+```
 Label will be the name your pack will appear when selecting
