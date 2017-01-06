@@ -9,7 +9,8 @@
 
 	<application
 		android:allowBackup="false"
-		android:label="OmniStyle" >
+		android:label="OmniStyle"
+        android:icon="@drawable/omnirom_logo" >
 		<activity
 			android:name=".weather_color"
 			android:label="LockClock (color)" >
