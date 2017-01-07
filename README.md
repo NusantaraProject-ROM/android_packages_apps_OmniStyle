@@ -1,26 +1,3 @@
-Condition icon packs support
------
-Activity
-```xml
-<action android:name="org.omnirom.WeatherIconPack" />
-```
-activity name is used to defined the prefix for the image names
-```xml
-<tag>_<condition id>.png
-```
-```xml
-		<activity
-			android:name=".<tag>"
-			android:label="<label>" >
-			<intent-filter>
-				<action android:name="org.omnirom.WeatherIconPack" />
-
-				<category android:name="android.intent.category.DEFAULT" />
-			</intent-filter>
-		</activity>
-```
-Label will be the name your pack will appear when selecting
-
 Daylight header images
 -----
 Activity
@@ -61,3 +38,10 @@ random_header - choose a random image every hour
 </daylight_headers>
 ```
 Label will be the name your pack will appear when selecting
+
+Images size should have a 4:1 ratio. Images will be resized
+to fit and cropped as necessary.
+
+Images are drawn behind quickbar in collapsed state so you 
+should avoid to use too bright colors in that area else
+the quickbar images will become hard to see.
