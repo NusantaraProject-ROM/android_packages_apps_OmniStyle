@@ -1,55 +1,64 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-	package="org.omnirom.omnistyle"
-	android:versionCode="1"
-	android:versionName="1.0" >
+    package="org.omnirom.omnistyle"
+    android:versionCode="1"
+    android:versionName="1.0" >
 
-	<uses-sdk
-		android:minSdkVersion="8"
-		android:targetSdkVersion="21" />
+    <uses-sdk
+        android:minSdkVersion="8"
+        android:targetSdkVersion="21" />
 
-	<application
-		android:allowBackup="false"
-		android:label="OmniStyle"
+    <application
+        android:allowBackup="false"
+        android:label="OmniStyle"
         android:icon="@drawable/omnirom_logo" >
-		<activity
-			android:name=".weather_color"
-			android:label="LockClock (color)" >
-			<intent-filter>
-				<action android:name="org.omnirom.WeatherIconPack" />
+        <activity
+            android:name=".weather_color"
+            android:label="LockClock (color)" >
+            <intent-filter>
+                <action android:name="org.omnirom.WeatherIconPack" />
 
-				<category android:name="android.intent.category.DEFAULT" />
-			</intent-filter>
-		</activity>
+                <category android:name="android.intent.category.DEFAULT" />
+            </intent-filter>
+        </activity>
 
-		<activity
-			android:name=".nature"
-			android:label="Nature" >
-			<intent-filter>
-				<action android:name="org.omnirom.DaylightHeaderPack1" />
+        <activity
+            android:name=".nature"
+            android:label="Nature" >
+            <intent-filter>
+                <action android:name="org.omnirom.DaylightHeaderPack1" />
 
-				<category android:name="android.intent.category.DEFAULT" />
-			</intent-filter>
-		</activity>
+                <category android:name="android.intent.category.DEFAULT" />
+            </intent-filter>
+        </activity>
 
-		<activity
-			android:name=".poly"
-			android:label="Poly" >
-			<intent-filter>
-				<action android:name="org.omnirom.DaylightHeaderPack1" />
+        <activity
+            android:name=".poly"
+            android:label="Poly" >
+            <intent-filter>
+                <action android:name="org.omnirom.DaylightHeaderPack1" />
 
-				<category android:name="android.intent.category.DEFAULT" />
-			</intent-filter>
-		</activity>
+                <category android:name="android.intent.category.DEFAULT" />
+            </intent-filter>
+        </activity>
 
-		<activity
-			android:name=".naturerandom"
-			android:label="Nature (random)" >
-			<intent-filter>
-				<action android:name="org.omnirom.DaylightHeaderPack1" />
+        <activity
+            android:name=".naturerandom"
+            android:label="Nature (random)" >
+            <intent-filter>
+                <action android:name="org.omnirom.DaylightHeaderPack1" />
 
-				<category android:name="android.intent.category.DEFAULT" />
-			</intent-filter>
-		</activity>
-	</application>
+                <category android:name="android.intent.category.DEFAULT" />
+            </intent-filter>
+        </activity>
 
+        <activity
+            android:name=".wavvy"
+            android:label="Wavvy by Travis Hall" >
+            <intent-filter>
+                <action android:name="org.omnirom.DaylightHeaderPack1" />
+
+                <category android:name="android.intent.category.DEFAULT" />
+            </intent-filter>
+        </activity>
+    </application>
 </manifest>
