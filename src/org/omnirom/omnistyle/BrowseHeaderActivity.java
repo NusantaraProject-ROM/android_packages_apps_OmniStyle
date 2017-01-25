@@ -51,6 +51,9 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
+import java.util.HashMap;
+import java.util.Collections;
 
 public class BrowseHeaderActivity extends Activity {
     private static final String TAG = "BrowseHeaderActivity";
@@ -64,8 +67,8 @@ public class BrowseHeaderActivity extends Activity {
     private String mHeaderName;
     private ListView mHeaderListView;
     private Spinner mHeaderSelect;
-    private List<String> mPackageList;
-    private List<String> mNamesList;
+    private Map<String, String> mHeaderMap;
+    private List<String> mLabelList;
     private HeaderListAdapter mHeaderListAdapter;
     private ProgressBar mProgress;
 
@@ -127,19 +130,19 @@ public class BrowseHeaderActivity extends Activity {
 
         mProgress = (ProgressBar) findViewById(R.id.browse_progress);
         mHeaderSelect = (Spinner) findViewById(R.id.package_select);
-        mPackageList = new ArrayList<String>();
-        mNamesList = new ArrayList<String>();
-        getAvailableHeaderPacks(mNamesList, mPackageList);
+        mHeaderMap = new HashMap<String, String>();
+        mLabelList = new ArrayList<String>();
+        getAvailableHeaderPacks(mHeaderMap);
 
         ArrayAdapter<CharSequence> adapter = new ArrayAdapter(this,
-                R.layout.spinner_item, mNamesList);
+                R.layout.spinner_item, mLabelList);
         mHeaderSelect.setAdapter(adapter);
 
         mHeaderSelect.setOnItemSelectedListener(new Spinner.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-                String label = mPackageList.get(position);
-                loadHeaderPackage(label);
+                String label = mLabelList.get(position);
+                loadHeaderPackage(mHeaderMap.get(label));
                 mHeaderListAdapter.notifyDataSetChanged();
             }
 
@@ -162,7 +165,7 @@ public class BrowseHeaderActivity extends Activity {
         });
         mHeaderListAdapter = new HeaderListAdapter(this);
         mHeaderListView.setAdapter(mHeaderListAdapter);
-        loadHeaderPackage(mPackageList.get(0));
+        loadHeaderPackage(mHeaderMap.get(mLabelList.get(0)));
         mHeaderListAdapter.notifyDataSetChanged();
     }
 
@@ -174,37 +177,37 @@ public class BrowseHeaderActivity extends Activity {
         return true;
     }
 
-    private void getAvailableHeaderPacks(List<String> entries, List<String> values) {
+    private void getAvailableHeaderPacks(Map<String, String> headerMap) {
+        String defaultLabel = null;
         Intent i = new Intent();
         PackageManager packageManager = getPackageManager();
         i.setAction("org.omnirom.DaylightHeaderPack");
         for (ResolveInfo r : packageManager.queryIntentActivities(i, 0)) {
             String packageName = r.activityInfo.packageName;
-            if (packageName.equals(DEFAULT_HEADER_PACKAGE)) {
-                values.add(0, packageName);
-            } else {
-                values.add(packageName);
-            }
             String label = r.activityInfo.loadLabel(getPackageManager()).toString();
             if (label == null) {
                 label = r.activityInfo.packageName;
             }
             if (packageName.equals(DEFAULT_HEADER_PACKAGE)) {
-                entries.add(0, label);
+                defaultLabel = label;
             } else {
-                entries.add(label);
+                headerMap.put(label, packageName);
             }
         }
         i.setAction("org.omnirom.DaylightHeaderPack1");
         for (ResolveInfo r : packageManager.queryIntentActivities(i, 0)) {
             String packageName = r.activityInfo.packageName;
-            values.add(packageName  + "/" + r.activityInfo.name);
-
             String label = r.activityInfo.loadLabel(getPackageManager()).toString();
             if (label == null) {
                 label = packageName;
             }
-            entries.add(label);
+            headerMap.put(label, packageName  + "/" + r.activityInfo.name);
+        }
+        mLabelList.addAll(headerMap.keySet());
+        Collections.sort(mLabelList);
+        if (defaultLabel != null) {
+            mLabelList.add(0, defaultLabel);
+            headerMap.put(defaultLabel, DEFAULT_HEADER_PACKAGE);
         }
     }
 
@@ -230,6 +233,7 @@ public class BrowseHeaderActivity extends Activity {
         }
         mProgress.setVisibility(View.GONE);
     }
+
     private void loadHeaders() throws XmlPullParserException, IOException {
         mHeadersList.clear();
         InputStream in = null;
@@ -269,8 +273,8 @@ public class BrowseHeaderActivity extends Activity {
             if (eventType != XmlPullParser.START_TAG) {
                 continue;
             }
-            // TODO support different hours for day headers
-            if (parser.getName().equalsIgnoreCase("day_header")) {
+            String name = parser.getName();
+            if (name.equalsIgnoreCase("day_header")) {
                 DaylightHeaderInfo headerInfo = new DaylightHeaderInfo();
                 headerInfo.mType = 0;
                 String day = parser.getAttributeValue(null, "day");
@@ -288,7 +292,7 @@ public class BrowseHeaderActivity extends Activity {
                 if (headerInfo.mImage != null && headerInfo.mDay != -1 && headerInfo.mMonth != -1) {
                     mHeadersList.add(headerInfo);
                 }
-            } else if (parser.getName().equalsIgnoreCase("hour_header")) {
+            } else if (name.equalsIgnoreCase("hour_header")) {
                 DaylightHeaderInfo headerInfo = new DaylightHeaderInfo();
                 headerInfo.mType = 1;
                 String hour = parser.getAttributeValue(null, "hour");
@@ -302,7 +306,8 @@ public class BrowseHeaderActivity extends Activity {
                 if (headerInfo.mImage != null && headerInfo.mHour != -1) {
                     mHeadersList.add(headerInfo);
                 }
-            } else if (parser.getName().equalsIgnoreCase("random_header")) {
+            } else if (name.equalsIgnoreCase("random_header") ||
+                    name.equalsIgnoreCase("list_header")) {
                 DaylightHeaderInfo headerInfo = new DaylightHeaderInfo();
                 headerInfo.mType = 2;
                 String image = parser.getAttributeValue(null, "image");
