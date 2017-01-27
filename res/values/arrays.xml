@@ -16,11 +16,9 @@ You should have received a copy of the GNU General Public License
 along with this program.  If not, see <http://www.gnu.org/licenses/>.
 -->
 <resources>
-    <string name="browse_header">Headers</string>
-    <string name="custom_header_image_notice">Header image set</string>
-    <string name="browse_walls">OMNI Wallpapers</string>
-    <string name="wallpaper_type_dialog_title">Set wallpaper</string>
-    <string name="wallpaper_type_both">Home screen and lock screen</string>
-    <string name="wallpaper_type_system">Home screen</string>
-    <string name="wallpaper_type_lock">Lock screen</string>
+    <string-array name="wallpaper_type_list">
+        <item>@string/wallpaper_type_both</item>
+        <item>@string/wallpaper_type_system</item>
+        <item>@string/wallpaper_type_lock</item>
+    </string-array>
 </resources>

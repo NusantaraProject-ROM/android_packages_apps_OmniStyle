@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--  Copyright (C) 2017 The OmniROM Project
+
+  This program is free software: you can redistribute it and/or modify
+  it under the terms of the GNU General Public License as published by
+  the Free Software Foundation, either version 2 of the License, or
+  (at your option) any later version.
+
+  This program is distributed in the hope that it will be useful,
+  but WITHOUT ANY WARRANTY; without even the implied warranty of
+  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+  GNU General Public License for more details.
+
+  You should have received a copy of the GNU General Public License
+  along with this program.  If not, see <http://www.gnu.org/licenses/>.
+ -->
+
+<wallpapers>
+    <wallpaper image="wall01" creator="PartimusPrime" />
+    <wallpaper image="wall02" />
+    <wallpaper image="wall04" />
+    <wallpaper image="wall05" />
+    <wallpaper image="wall06" />
+    <wallpaper image="wall07" creator="JP Kenji" />
+    <wallpaper image="wall08" creator="JP Kenji" />
+    <wallpaper image="wall09" creator="JP Kenji" />
+    <wallpaper image="wall10" creator="JP Kenji" />
+    <wallpaper image="wall12" creator="JP Kenji" />
+    <wallpaper image="wall13" creator="JP Kenji" />
+    <wallpaper image="wall14" creator="JP Kenji" />
+    <wallpaper image="wall15" creator="JP Kenji" />
+    <wallpaper image="wall16" creator="JP Kenji" />
+    <wallpaper image="wall17" creator="JP Kenji" />
+    <wallpaper image="wall18" creator="JP Kenji" />
+    <wallpaper image="wall20" creator="JP Kenji" />
+</wallpapers>

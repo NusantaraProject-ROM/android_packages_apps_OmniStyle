@@ -24,7 +24,8 @@ else
 support_library_root_dir := prebuilts/sdk/current/support
 endif
 
-LOCAL_STATIC_JAVA_LIBRARIES += android-support-v7-cardview
+LOCAL_STATIC_JAVA_LIBRARIES += android-support-v7-cardview \
+    lib-picasso
 
 LOCAL_RESOURCE_DIR := $(LOCAL_PATH)/res \
     $(support_library_root_dir)/v7/cardview/res
@@ -38,3 +39,8 @@ LOCAL_CERTIFICATE := platform
 LOCAL_PRIVILEGED_MODULE := true
 LOCAL_MODULE_TAGS := optional
 include $(BUILD_PACKAGE)
+
+include $(CLEAR_VARS)
+LOCAL_MODULE_TAGS := optional
+LOCAL_PREBUILT_STATIC_JAVA_LIBRARIES := lib-picasso:libs/picasso-2.5.2.jar
+include $(BUILD_MULTI_PREBUILT)
