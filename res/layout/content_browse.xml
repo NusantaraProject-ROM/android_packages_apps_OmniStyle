@@ -34,6 +34,14 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
             android:layout_width="match_parent"
             android:layout_height="wrap_content"/>
 
+        <TextView
+            android:id="@+id/meta_creator"
+            android:layout_width="match_parent"
+            android:layout_height="44dp"
+            android:layout_marginStart="10dp"
+            android:visibility="gone"
+            android:gravity="center_vertical" />
+
         <ListView
             android:id="@+id/package_images"
             android:layout_width="match_parent"
