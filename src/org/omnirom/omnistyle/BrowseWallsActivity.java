@@ -99,8 +99,11 @@ public class BrowseWallsActivity extends Activity {
             WallpaperInfo wi = mWallpaperList.get(position);
             int resId = mRes.getIdentifier(wi.mImage, "drawable", mPackageName);
 
-            Picasso.with(BrowseWallsActivity.this)
-                .load(resId).into(holder.mWallpaperImage);
+            if (resId != 0) {
+                Picasso.with(BrowseWallsActivity.this).load(resId).into(holder.mWallpaperImage);
+            } else {
+                holder.mWallpaperImage.setImageDrawable(null);
+            }
 
             holder.mWallpaperName.setText(wi.mImage);
             holder.mWallpaperCreator.setVisibility(TextUtils.isEmpty(wi.mCreator) ? View.GONE : View.VISIBLE);
@@ -153,16 +156,29 @@ public class BrowseWallsActivity extends Activity {
             mWallpaperView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
                 @Override
                 public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
+                    if (!checkCropActivity()) {
+                        AlertDialog.Builder noCropActivityDialog = new AlertDialog.Builder(BrowseWallsActivity.this);
+                        noCropActivityDialog.setMessage(getResources().getString(R.string.no_crop_activity_dialog_text));
+                        noCropActivityDialog.setTitle(getResources().getString(R.string.no_crop_activity_dialog_title));
+                        noCropActivityDialog.setCancelable(false);
+                        noCropActivityDialog.setPositiveButton(android.R.string.ok, null);
+                        AlertDialog d = noCropActivityDialog.create();
+                        d.show();
+                        return;
+                    }
                     WallpaperInfo wi = mWallpaperList.get(i);
                     WallpaperManager wpm = WallpaperManager.getInstance(getApplicationContext());
                     int resId = mRes.getIdentifier(wi.mImage, "drawable", mPackageName);
+                    if (resId == 0) {
+                        return;
+                    }
                     Drawable image = mRes.getDrawable(resId, null);
 
                     int wpWidth = wpm.getDesiredMinimumWidth();
                     int wpHeight = wpm.getDesiredMinimumHeight();
                     Display disp = getWindowManager().getDefaultDisplay();
                     Point dispSize = new Point();
-                    disp.getSize(dispSize);
+                    disp.getRealSize(dispSize);
 
                     // if that image ratio is close to the display size ratio
                     // assume this wall is meant to be fullscreen without scrolling
@@ -178,9 +194,7 @@ public class BrowseWallsActivity extends Activity {
 
                     Uri imageUri = Uri.parse("android.resource://" + mPackageName + "/" + resId);
 
-                    Intent cropAndSetWallpaperIntent = new Intent();
-                    cropAndSetWallpaperIntent.setComponent(new ComponentName("com.android.gallery3d",
-                            "com.android.gallery3d.filtershow.crop.CropActivity"))
+                    final Intent cropAndSetWallpaperIntent = getCropActivity()
                         .setDataAndType(imageUri, IMAGE_TYPE)
                         .putExtra(CropExtras.KEY_OUTPUT_X, wpWidth)
                         .putExtra(CropExtras.KEY_OUTPUT_Y, wpHeight)
@@ -278,5 +292,17 @@ public class BrowseWallsActivity extends Activity {
             }
         } while ((eventType = parser.next()) != XmlPullParser.END_DOCUMENT);
         if (DEBUG) Log.i(TAG, "loaded size = " + mWallpaperList.size());
+    }
+
+    private Intent getCropActivity() {
+        final Intent cropAndSetWallpaperIntent = new Intent();
+        cropAndSetWallpaperIntent.setComponent(new ComponentName("com.android.gallery3d",
+                "com.android.gallery3d.filtershow.crop.CropActivity"));
+        return cropAndSetWallpaperIntent;
+    }
+
+    private boolean checkCropActivity() {
+        final Intent cropAndSetWallpaperIntent = getCropActivity();
+        return cropAndSetWallpaperIntent.resolveActivityInfo(getPackageManager(), 0) != null;
     }
 }

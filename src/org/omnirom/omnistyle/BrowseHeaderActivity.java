@@ -97,7 +97,12 @@ public class BrowseHeaderActivity extends Activity {
             HeaderImageHolder holder = HeaderImageHolder.createOrRecycle(mInflater, convertView);
             convertView = holder.rootView;
             DaylightHeaderInfo di = mHeadersList.get(position);
-            holder.mHeaderImage.setImageDrawable(mRes.getDrawable(mRes.getIdentifier(di.mImage, "drawable", mPackageName), null));
+            int resId = mRes.getIdentifier(di.mImage, "drawable", mPackageName);
+            if (resId != 0) {
+                holder.mHeaderImage.setImageDrawable(mRes.getDrawable(resId, null));
+            } else {
+                holder.mHeaderImage.setImageDrawable(null);
+            }
             holder.mHeaderName.setText(di.mImage);
             return convertView;
         }
