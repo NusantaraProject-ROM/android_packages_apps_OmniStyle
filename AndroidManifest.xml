@@ -50,7 +50,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
         </activity>
         <activity-alias
             android:name=".WallpaperActivity"
-            android:label="@string/browse_walls"
+            android:label="@string/omni_walls"
             android:theme="@android:style/Theme.Material.Settings"
             android:targetActivity="org.omnirom.omnistyle.BrowseWallsActivity" >
             <intent-filter>
