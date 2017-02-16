@@ -27,6 +27,11 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
         android:layout_height="match_parent"
         android:orientation="vertical">
 
+        <Spinner
+            android:id="@+id/location_select"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"/>
+
         <GridView
             android:id="@+id/wallpaper_images"
             android:layout_width="match_parent"
@@ -36,6 +41,14 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
             android:stretchMode="spacingWidthUniform"
             android:numColumns="auto_fit" />
 
+        <TextView
+            android:id="@+id/no_network_message"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:visibility="gone"
+            android:text="@string/no_network_message"
+            android:gravity="center"
+            android:textAppearance="?android:attr/textAppearanceMedium"/>
     </LinearLayout>
 
     <ProgressBar
