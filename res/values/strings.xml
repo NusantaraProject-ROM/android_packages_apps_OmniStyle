@@ -34,5 +34,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
     <string name="wallpaper_location_local">Local</string>
     <string name="wallpaper_location_remote">Online</string>
     <string name="download_wallpaper_notice">Downloading wallpaper</string>
+    <string name="download_wallpaper_failed_notice">Downloading wallpaper failed</string>
     <string name="no_network_message">No network connectivity</string>
+    <string name="download_wallpaper_list_failed_notice">Loading wallpaper directory failed</string>
 </resources>
