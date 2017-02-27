@@ -129,23 +129,26 @@ public class BrowseWallsActivity extends Activity {
         public View getView(int position, View convertView, ViewGroup parent) {
             WallpaperImageHolder holder = WallpaperImageHolder.createOrRecycle(mInflater, convertView);
             convertView = holder.rootView;
-            WallpaperInfo wi = mWallpaperList.get(position);
-            int resId = mRes.getIdentifier(wi.mImage, "drawable", mPackageName);
+            try {
+                WallpaperInfo wi = mWallpaperList.get(position);
+                int resId = mRes.getIdentifier(wi.mImage, "drawable", mPackageName);
 
-            if (resId != 0) {
-                Picasso.with(BrowseWallsActivity.this)
+                if (resId != 0) {
+                    Picasso.with(BrowseWallsActivity.this)
                         .load(resId)
                         .resize(mWallpaperPreviewSize, mWallpaperPreviewSize)
                         .centerCrop()
                         .into(holder.mWallpaperImage);
-            } else {
+                } else {
+                    holder.mWallpaperImage.setImageDrawable(null);
+                }
+
+                holder.mWallpaperName.setText(TextUtils.isEmpty(wi.mDisplayName) ? mWallpaperDisplayDefault + " " + (position + 1) : wi.mDisplayName);
+                holder.mWallpaperCreator.setVisibility(TextUtils.isEmpty(wi.mCreator) ? View.GONE : View.VISIBLE);
+                holder.mWallpaperCreator.setText(wi.mCreator);
+            } catch (Exception e) {
                 holder.mWallpaperImage.setImageDrawable(null);
             }
-
-            holder.mWallpaperName.setText(TextUtils.isEmpty(wi.mDisplayName) ? mWallpaperDisplayDefault + " " + (position + 1) : wi.mDisplayName);
-            holder.mWallpaperCreator.setVisibility(TextUtils.isEmpty(wi.mCreator) ? View.GONE : View.VISIBLE);
-            holder.mWallpaperCreator.setText(wi.mCreator);
-
             return convertView;
         }
     }
@@ -162,13 +165,17 @@ public class BrowseWallsActivity extends Activity {
         public View getView(int position, View convertView, ViewGroup parent) {
             WallpaperImageHolder holder = WallpaperImageHolder.createOrRecycle(mInflater, convertView);
             convertView = holder.rootView;
-            RemoteWallpaperInfo wi = mWallpaperUrlList.get(position);
+            try {
+                RemoteWallpaperInfo wi = mWallpaperUrlList.get(position);
 
-            Picasso.with(BrowseWallsActivity.this).load(wi.mThumbUri).into(holder.mWallpaperImage);
+                Picasso.with(BrowseWallsActivity.this).load(wi.mThumbUri).into(holder.mWallpaperImage);
 
-            holder.mWallpaperName.setText(TextUtils.isEmpty(wi.mDisplayName) ? mWallpaperDisplayDefault + " " + (position + 1) : wi.mDisplayName);
-            holder.mWallpaperCreator.setVisibility(TextUtils.isEmpty(wi.mCreator) ? View.GONE : View.VISIBLE);
-            holder.mWallpaperCreator.setText(wi.mCreator);
+                holder.mWallpaperName.setText(TextUtils.isEmpty(wi.mDisplayName) ? mWallpaperDisplayDefault + " " + (position + 1) : wi.mDisplayName);
+                holder.mWallpaperCreator.setVisibility(TextUtils.isEmpty(wi.mCreator) ? View.GONE : View.VISIBLE);
+                holder.mWallpaperCreator.setText(wi.mCreator);
+            } catch (Exception e) {
+                holder.mWallpaperImage.setImageDrawable(null);
+            }
             return convertView;
         }
     }
