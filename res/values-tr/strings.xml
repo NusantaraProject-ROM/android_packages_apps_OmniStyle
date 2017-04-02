@@ -25,6 +25,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
   <string name="wallpaper_type_both">Ana ekran ve Kilit ekranı</string>
   <string name="wallpaper_type_system">Ana ekran</string>
   <string name="wallpaper_type_lock">Kilit ekranı</string>
+  <string name="header_creator_label">Oluşturuluyor\u003a </string>
   <string name="no_crop_activity_dialog_text">Omni Galeri uygulama duvar kağıdı ayarlamak için gerekli</string>
   <string name="no_crop_activity_dialog_title">Galeri kayıp</string>
   <string name="scrolling_wall_dialog_text">Duvar kağıdını ekran boyutuna göre kırpmak ister misiniz\u003f</string>
@@ -37,4 +38,5 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
   <string name="download_wallpaper_failed_notice">Duvar kağıdı indirme başarısız oldu</string>
   <string name="no_network_message">Ağ bağlantısı yok</string>
   <string name="download_wallpaper_list_failed_notice">Duvar kağıdı dizini yüklenemedi</string>
+  <string name="wallpaper_default_name">Duvar kağıdı</string>
 </resources>

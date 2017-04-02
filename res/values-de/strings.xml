@@ -28,7 +28,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
   <string name="header_creator_label">Creator\u003a </string>
   <string name="no_crop_activity_dialog_text">Omni-Galerie-App ist erforderlich, um das Hintergrundbild festzulegen</string>
   <string name="no_crop_activity_dialog_title">Galerie fehlt</string>
-  <string name="scrolling_wall_dialog_text">Möchten Sie das Hintergrundbild auf die Display-Größe\u003f zuschneiden</string>
+  <string name="scrolling_wall_dialog_text">Möchten Sie das Hintergrundbild auf die Display-Größe zuschneiden\u003f</string>
   <string name="scrolling_wall_dialog_title">Hintergrundbild zuschneiden</string>
   <string name="scrolling_wall_yes">Nein</string>
   <string name="scrolling_wall_no">Ja</string>
