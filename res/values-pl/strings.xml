@@ -16,4 +16,19 @@ GNU General Public License for more details.
 You should have received a copy of the GNU General Public License
 along with this program.  If not, see <http://www.gnu.org/licenses/>.
 -->
-<resources></resources>
+<resources>
+  <string name="browse_header">Nagłówki</string>
+  <string name="custom_header_image_notice">Pakiet obrazów nagłówka</string>
+  <string name="browse_walls">Tapety</string>
+  <string name="omni_walls">Omni</string>
+  <string name="wallpaper_type_dialog_title">Ustaw tapetę</string>
+  <string name="wallpaper_type_both">Ekran główny i ekran blokady</string>
+  <string name="wallpaper_type_system">Ekran główny</string>
+  <string name="wallpaper_type_lock">Ekran blokady</string>
+  <string name="header_creator_label">Twórca\u003a </string>
+  <string name="no_crop_activity_dialog_text">Aplikacja galerii Omni jest wymagana, aby ustawić tapetę</string>
+  <string name="no_crop_activity_dialog_title">Brak galerii</string>
+  <string name="scrolling_wall_dialog_text">Czy chcesz przyciąć tapetę do rozmiaru wyświetlacza\u003f</string>
+  <string name="scrolling_wall_dialog_title">Przytnij tapetę</string>
+  <string name="scrolling_wall_yes">Nie</string>
+</resources>

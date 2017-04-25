@@ -16,4 +16,27 @@ GNU General Public License for more details.
 You should have received a copy of the GNU General Public License
 along with this program.  If not, see <http://www.gnu.org/licenses/>.
 -->
-<resources></resources>
+<resources>
+  <string name="browse_header">Intestazioni</string>
+  <string name="custom_header_image_notice">Immagine dell\'intestazione impostata</string>
+  <string name="browse_walls">Sfondi</string>
+  <string name="omni_walls">Omni</string>
+  <string name="wallpaper_type_dialog_title">Imposta sfondo</string>
+  <string name="wallpaper_type_both">Schermata iniziale e schermata di blocco</string>
+  <string name="wallpaper_type_system">Schermata iniziale</string>
+  <string name="wallpaper_type_lock">Schermata di blocco</string>
+  <string name="header_creator_label">Creatore\u003a </string>
+  <string name="no_crop_activity_dialog_text">Per impostare uno sfondo è richiesta l\'app Omni Gallery</string>
+  <string name="no_crop_activity_dialog_title">Galleria mancante</string>
+  <string name="scrolling_wall_dialog_text">Desideri ritagliare lo sfondo ai margini dello schermo\u003f</string>
+  <string name="scrolling_wall_dialog_title">Ritaglia sfondo</string>
+  <string name="scrolling_wall_yes">No</string>
+  <string name="scrolling_wall_no">Si</string>
+  <string name="wallpaper_location_local">Locale</string>
+  <string name="wallpaper_location_remote">Online</string>
+  <string name="download_wallpaper_notice">Scarico lo sfondo</string>
+  <string name="download_wallpaper_failed_notice">Errore durante il download dello sfondo</string>
+  <string name="no_network_message">Nessuna connessione di rete</string>
+  <string name="download_wallpaper_list_failed_notice">Errore nel caricamento della directory dello sfondo</string>
+  <string name="wallpaper_default_name">Sfondo</string>
+</resources>

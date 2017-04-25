@@ -16,4 +16,19 @@ GNU General Public License for more details.
 You should have received a copy of the GNU General Public License
 along with this program.  If not, see <http://www.gnu.org/licenses/>.
 -->
-<resources></resources>
+<resources>
+  <string name="browse_header">Заголовки</string>
+  <string name="custom_header_image_notice">Зображення заголовку встановлено</string>
+  <string name="browse_walls">Фонові малюнки</string>
+  <string name="omni_walls">Omni</string>
+  <string name="wallpaper_type_dialog_title">Установити фон</string>
+  <string name="wallpaper_type_both">Домашній екран та екран блокування</string>
+  <string name="wallpaper_type_system">Домашній екран</string>
+  <string name="wallpaper_type_lock">Екран блокування</string>
+  <string name="header_creator_label">Автор\u003a </string>
+  <string name="scrolling_wall_yes">Ні</string>
+  <string name="scrolling_wall_no">Так</string>
+  <string name="wallpaper_location_local">На пристрої</string>
+  <string name="wallpaper_location_remote">Онлайн</string>
+  <string name="no_network_message">Немає підключення до мережі</string>
+</resources>

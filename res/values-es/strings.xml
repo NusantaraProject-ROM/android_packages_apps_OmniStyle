@@ -16,4 +16,27 @@ GNU General Public License for more details.
 You should have received a copy of the GNU General Public License
 along with this program.  If not, see <http://www.gnu.org/licenses/>.
 -->
-<resources></resources>
+<resources>
+  <string name="browse_header">Cabeceras</string>
+  <string name="custom_header_image_notice">Paquete de imágenes de cabecera</string>
+  <string name="browse_walls">Fondos de pantalla</string>
+  <string name="omni_walls">Omni</string>
+  <string name="wallpaper_type_dialog_title">Establecer fondo</string>
+  <string name="wallpaper_type_both">Pantalla principal y pantalla de bloqueo</string>
+  <string name="wallpaper_type_system">Pantalla De Inicio</string>
+  <string name="wallpaper_type_lock">Pantalla de bloqueo</string>
+  <string name="header_creator_label">Creador\u003a </string>
+  <string name="no_crop_activity_dialog_text">La aplicación Galería Omni es necesaria para establecer fondos</string>
+  <string name="no_crop_activity_dialog_title">Falta la galeria</string>
+  <string name="scrolling_wall_dialog_text">¿Quiere recortar el fondo de pantalla para el tamaño de la pantalla\u003f</string>
+  <string name="scrolling_wall_dialog_title">Recortar fondo de pantalla</string>
+  <string name="scrolling_wall_yes">No 	</string>
+  <string name="scrolling_wall_no">Sí</string>
+  <string name="wallpaper_location_local">Local</string>
+  <string name="wallpaper_location_remote">En línea</string>
+  <string name="download_wallpaper_notice">Descargando fondos de pantalla</string>
+  <string name="download_wallpaper_failed_notice">Error al descargar fondo de pantalla</string>
+  <string name="no_network_message">Sin conexión de red</string>
+  <string name="download_wallpaper_list_failed_notice">Error al cargar fondo de pantalla desde el directorio</string>
+  <string name="wallpaper_default_name">Fondo de pantalla</string>
+</resources>
