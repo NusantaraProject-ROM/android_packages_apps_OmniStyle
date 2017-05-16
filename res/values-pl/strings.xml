@@ -31,4 +31,12 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
   <string name="scrolling_wall_dialog_text">Czy chcesz przyciąć tapetę do rozmiaru wyświetlacza\u003f</string>
   <string name="scrolling_wall_dialog_title">Przytnij tapetę</string>
   <string name="scrolling_wall_yes">Nie</string>
+  <string name="scrolling_wall_no">Tak</string>
+  <string name="wallpaper_location_local">Lokalne</string>
+  <string name="wallpaper_location_remote">Online</string>
+  <string name="download_wallpaper_notice">Pobieranie tapety</string>
+  <string name="download_wallpaper_failed_notice">Pobieranie tapety nie powiodło się</string>
+  <string name="no_network_message">Brak połączenia sieciowego</string>
+  <string name="download_wallpaper_list_failed_notice">Ładowanie katalogu tapet nie powiodło się</string>
+  <string name="wallpaper_default_name">Tapeta</string>
 </resources>

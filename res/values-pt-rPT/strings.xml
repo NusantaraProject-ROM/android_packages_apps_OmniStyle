@@ -16,4 +16,27 @@ GNU General Public License for more details.
 You should have received a copy of the GNU General Public License
 along with this program.  If not, see <http://www.gnu.org/licenses/>.
 -->
-<resources></resources>
+<resources>
+  <string name="browse_header">Cabeçalhos</string>
+  <string name="custom_header_image_notice">Pacote de imagens de cabeçalho</string>
+  <string name="browse_walls">Papeis de parede</string>
+  <string name="omni_walls">Omni</string>
+  <string name="wallpaper_type_dialog_title">Definir papel de parede</string>
+  <string name="wallpaper_type_both">Ecrã principal e ecrã de bloqueio</string>
+  <string name="wallpaper_type_system">Ecrão principal</string>
+  <string name="wallpaper_type_lock">Ecrão de bloqueio</string>
+  <string name="header_creator_label">Criador\u003a </string>
+  <string name="no_crop_activity_dialog_text">A galeria Omni é necessária para definir o papel de parede</string>
+  <string name="no_crop_activity_dialog_title">Galeria em falta</string>
+  <string name="scrolling_wall_dialog_text">Deseja recortar o papel de parede para o tamanho do ecrã\u003f</string>
+  <string name="scrolling_wall_dialog_title">Recortar o papel de parede</string>
+  <string name="scrolling_wall_yes">Não</string>
+  <string name="scrolling_wall_no">Sim</string>
+  <string name="wallpaper_location_local">Local</string>
+  <string name="wallpaper_location_remote">Online</string>
+  <string name="download_wallpaper_notice">A descarregar o papel de parede pretendido</string>
+  <string name="download_wallpaper_failed_notice">O download do papel de parede falhou</string>
+  <string name="no_network_message">Sem rede</string>
+  <string name="download_wallpaper_list_failed_notice">Erro ao carregar o papel de parede do pasta</string>
+  <string name="wallpaper_default_name">Papel de parede</string>
+</resources>

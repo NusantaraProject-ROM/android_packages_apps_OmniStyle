@@ -38,4 +38,5 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
   <string name="download_wallpaper_failed_notice">下载壁纸失败</string>
   <string name="no_network_message">无网络连接</string>
   <string name="download_wallpaper_list_failed_notice">加载壁纸目录失败</string>
+  <string name="wallpaper_default_name">壁纸</string>
 </resources>

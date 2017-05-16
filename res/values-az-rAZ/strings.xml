@@ -16,4 +16,27 @@ GNU General Public License for more details.
 You should have received a copy of the GNU General Public License
 along with this program.  If not, see <http://www.gnu.org/licenses/>.
 -->
-<resources></resources>
+<resources>
+  <string name="browse_header">Mövzular</string>
+  <string name="custom_header_image_notice">Mövzü şəkli təyin et</string>
+  <string name="browse_walls">Divar kağızları</string>
+  <string name="omni_walls">Omni</string>
+  <string name="wallpaper_type_dialog_title">Divarkağızı seç</string>
+  <string name="wallpaper_type_both">Əsas ekran və kilid ekranı</string>
+  <string name="wallpaper_type_system">Əsas ekran</string>
+  <string name="wallpaper_type_lock">Kilid ekranı</string>
+  <string name="header_creator_label">Yaradıcı\u003a </string>
+  <string name="no_crop_activity_dialog_text">Divar kağızı təyin etmək üçün Omni Qaleriya tətbiqi lazımdır</string>
+  <string name="no_crop_activity_dialog_title">Qaleriya yoxdur</string>
+  <string name="scrolling_wall_dialog_text">Divar kağızını ekranın ölçüsünə görə kəsmək istəyirsinizmi?\u003f</string>
+  <string name="scrolling_wall_dialog_title">Divar kağızını qırp</string>
+  <string name="scrolling_wall_yes">Xeyr</string>
+  <string name="scrolling_wall_no">Bəli</string>
+  <string name="wallpaper_location_local">Məkan</string>
+  <string name="wallpaper_location_remote">Onlayn</string>
+  <string name="download_wallpaper_notice">Divar kağızı yüklənir</string>
+  <string name="download_wallpaper_failed_notice">Divar kağızı yüklənərkən xəta baş verdi</string>
+  <string name="no_network_message">Şəbəkə bağlantısı yoxdur</string>
+  <string name="download_wallpaper_list_failed_notice">Divar kağızı direktivini yükləmək alınmadı</string>
+  <string name="wallpaper_default_name">Divar kağızı</string>
+</resources>
