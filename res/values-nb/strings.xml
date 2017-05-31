@@ -17,15 +17,18 @@ You should have received a copy of the GNU General Public License
 along with this program.  If not, see <http://www.gnu.org/licenses/>.
 -->
 <resources>
-  <string name="browse_header">Overskrifter</string>
+  <string name="browse_header">Topplinjer</string>
+  <string name="custom_header_image_notice">Topplinje bildesamling</string>
   <string name="browse_walls">Bakgrunn</string>
   <string name="omni_walls">Omni</string>
   <string name="wallpaper_type_dialog_title">Angi bakgrunn</string>
   <string name="wallpaper_type_both">Startside og låseskjerm</string>
   <string name="wallpaper_type_system">Startside</string>
   <string name="wallpaper_type_lock">Låseskjerm</string>
+  <string name="header_creator_label">Skaper\u003a </string>
   <string name="no_crop_activity_dialog_text">Omni Galleri app er nødvendig å sette bakgrunnsbilde</string>
   <string name="no_crop_activity_dialog_title">Galleri mangler</string>
+  <string name="scrolling_wall_dialog_text">Hvis du vil beskjære bakgrunnsbildet til skjermstørrelsen\u003f</string>
   <string name="scrolling_wall_dialog_title">Beskjær bakgrunnen</string>
   <string name="scrolling_wall_yes">Nei</string>
   <string name="scrolling_wall_no">Ja</string>
@@ -34,5 +37,6 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
   <string name="download_wallpaper_notice">Laster ned bakgrunnsbilder</string>
   <string name="download_wallpaper_failed_notice">Nedlastning av bakgrunnsbilde mislyktes</string>
   <string name="no_network_message">Ingen nettverkstilkobling</string>
+  <string name="download_wallpaper_list_failed_notice">Lasting av bakgrunnsbildekatalog mislyktes</string>
   <string name="wallpaper_default_name">Bakgrunn</string>
 </resources>

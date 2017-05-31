@@ -18,7 +18,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 -->
 <resources>
   <string name="browse_header">Nagłówki</string>
-  <string name="custom_header_image_notice">Pakiet obrazów nagłówka</string>
+  <string name="custom_header_image_notice">Nagłówek ustawiony</string>
   <string name="browse_walls">Tapety</string>
   <string name="omni_walls">Omni</string>
   <string name="wallpaper_type_dialog_title">Ustaw tapetę</string>
