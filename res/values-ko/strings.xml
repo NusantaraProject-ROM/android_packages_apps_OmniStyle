@@ -16,4 +16,17 @@ GNU General Public License for more details.
 You should have received a copy of the GNU General Public License
 along with this program.  If not, see <http://www.gnu.org/licenses/>.
 -->
-<resources></resources>
+<resources>
+  <string name="browse_header">헤더</string>
+  <string name="browse_walls">배경화면</string>
+  <string name="omni_walls">Omni</string>
+  <string name="wallpaper_type_dialog_title">배경화면 설정</string>
+  <string name="header_creator_label">제작자\u003a </string>
+  <string name="no_crop_activity_dialog_text">배경화면을 설정하려면 Omni 갤러리 앱이 필요합니다.</string>
+  <string name="no_crop_activity_dialog_title">갤러리 앱 없음</string>
+  <string name="scrolling_wall_dialog_text">화면 사이즈에 맞게 배경화면을 잘라내시겠습니까\u003f</string>
+  <string name="scrolling_wall_dialog_title">배경화면 잘라내기</string>
+  <string name="scrolling_wall_yes">아니오</string>
+  <string name="scrolling_wall_no">예</string>
+  <string name="wallpaper_default_name">배경화면</string>
+</resources>

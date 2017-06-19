@@ -18,25 +18,25 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 -->
 <resources>
   <string name="browse_header">Başlıklar</string>
-  <string name="custom_header_image_notice">Başlık görüntüsü ayarlandı</string>
-  <string name="browse_walls">Duvar Kağıtları</string>
+  <string name="custom_header_image_notice">Başlık resmi ayarlandı</string>
+  <string name="browse_walls">Duvar kâğıtları</string>
   <string name="omni_walls">Omni</string>
-  <string name="wallpaper_type_dialog_title">Duvar kağıdını ayarla</string>
-  <string name="wallpaper_type_both">Ana ekran ve Kilit ekranı</string>
+  <string name="wallpaper_type_dialog_title">Duvar kâğıdını ayarla</string>
+  <string name="wallpaper_type_both">Ana ekran ve kilit ekranı</string>
   <string name="wallpaper_type_system">Ana ekran</string>
   <string name="wallpaper_type_lock">Kilit ekranı</string>
   <string name="header_creator_label">Yapan\u003a </string>
-  <string name="no_crop_activity_dialog_text">Omni Galeri uygulaması duvar kağıdını ayarlamak için gereklidir</string>
+  <string name="no_crop_activity_dialog_text">Omni Galeri uygulaması duvar kâğıdını ayarlamak için gereklidir</string>
   <string name="no_crop_activity_dialog_title">Galeri noksan</string>
-  <string name="scrolling_wall_dialog_text">Duvar kağıdını ekran boyutuna göre kırpmak ister misiniz\u003f</string>
-  <string name="scrolling_wall_dialog_title">Duvar kağıdını kırp</string>
+  <string name="scrolling_wall_dialog_text">Duvar kâğıdını ekran boyutuna göre kırpmak ister misiniz\u003f</string>
+  <string name="scrolling_wall_dialog_title">Duvar kâğıdını kırp</string>
   <string name="scrolling_wall_yes">Hayır</string>
   <string name="scrolling_wall_no">Evet</string>
   <string name="wallpaper_location_local">Yerel</string>
   <string name="wallpaper_location_remote">Çevrimiçi</string>
-  <string name="download_wallpaper_notice">Duvar kağıdı indiriliyor</string>
-  <string name="download_wallpaper_failed_notice">Duvar kağıdı indirme başarısız oldu</string>
+  <string name="download_wallpaper_notice">Duvar kâğıdı indiriliyor</string>
+  <string name="download_wallpaper_failed_notice">Duvar kâğıdı indirmesi başarısız oldu</string>
   <string name="no_network_message">Ağ bağlantısı yok</string>
-  <string name="download_wallpaper_list_failed_notice">Duvar kağıdı dizini yüklenemedi</string>
-  <string name="wallpaper_default_name">Duvar kağıdı</string>
+  <string name="download_wallpaper_list_failed_notice">Duvar kâğıdı dizinini yükleme başarısız oldu</string>
+  <string name="wallpaper_default_name">Duvar kâğıdı</string>
 </resources>
