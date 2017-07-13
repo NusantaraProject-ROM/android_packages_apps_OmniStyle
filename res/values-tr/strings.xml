@@ -35,8 +35,8 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
   <string name="wallpaper_location_local">Yerel</string>
   <string name="wallpaper_location_remote">Çevrimiçi</string>
   <string name="download_wallpaper_notice">Duvar kâğıdı indiriliyor</string>
-  <string name="download_wallpaper_failed_notice">Duvar kâğıdı indirmesi başarısız oldu</string>
+  <string name="download_wallpaper_failed_notice">Duvar kâğıdı indirilemedi</string>
   <string name="no_network_message">Ağ bağlantısı yok</string>
-  <string name="download_wallpaper_list_failed_notice">Duvar kâğıdı dizinini yükleme başarısız oldu</string>
+  <string name="download_wallpaper_list_failed_notice">Duvar kâğıdı dizini yüklenemedi</string>
   <string name="wallpaper_default_name">Duvar kâğıdı</string>
 </resources>

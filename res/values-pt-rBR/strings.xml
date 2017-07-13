@@ -25,7 +25,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
   <string name="wallpaper_type_both">Tela inicial e tela de bloqueio</string>
   <string name="wallpaper_type_system">Tela inicial</string>
   <string name="wallpaper_type_lock">Tela de bloqueio</string>
-  <string name="header_creator_label">Autor\u003a </string>
+  <string name="header_creator_label">Criador\u003a </string>
   <string name="no_crop_activity_dialog_text">O aplicativo Omni Gallery é necessário para definir o papel de parede</string>
   <string name="no_crop_activity_dialog_title">Galeria em falta</string>
   <string name="scrolling_wall_dialog_text">Deseja recortar o papel de parede para o tamanho de exibição\u003f</string>

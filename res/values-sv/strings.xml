@@ -16,4 +16,19 @@ GNU General Public License for more details.
 You should have received a copy of the GNU General Public License
 along with this program.  If not, see <http://www.gnu.org/licenses/>.
 -->
-<resources></resources>
+<resources>
+  <string name="browse_walls">Bakgrundsbilder</string>
+  <string name="omni_walls">Omni</string>
+  <string name="wallpaper_type_dialog_title">Ange bakgrundsbild</string>
+  <string name="wallpaper_type_system">Hemskärm</string>
+  <string name="wallpaper_type_lock">Låsskärm</string>
+  <string name="header_creator_label">Skapare\u003a </string>
+  <string name="scrolling_wall_dialog_title">Beskär bakgrundsbild</string>
+  <string name="scrolling_wall_yes">Nej</string>
+  <string name="scrolling_wall_no">Ja</string>
+  <string name="wallpaper_location_local">Lokal</string>
+  <string name="wallpaper_location_remote">Online</string>
+  <string name="no_network_message">Ingen nätverksanslutning</string>
+  <string name="download_wallpaper_list_failed_notice">Misslyckades med laddning av bakgrundsbildsmapp</string>
+  <string name="wallpaper_default_name">Bakgrundsbild</string>
+</resources>
