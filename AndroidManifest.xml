@@ -46,7 +46,8 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
         <activity
             android:name=".BrowseWallsActivity"
             android:label="@string/browse_walls"
-            android:theme="@android:style/Theme.Material.Settings" >
+            android:theme="@android:style/Theme.Material.Settings"
+            android:configChanges="orientation|screenSize">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
                 <category android:name="android.intent.category.DEFAULT" />

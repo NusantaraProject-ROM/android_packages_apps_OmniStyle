@@ -22,11 +22,12 @@ import android.app.ActionBar;
 import android.app.Activity;
 import android.app.AlertDialog;
 import android.app.WallpaperManager;
-import android.content.DialogInterface;
-import android.content.Context;
 import android.content.ComponentName;
+import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.pm.PackageManager;
+import android.content.res.Configuration;
 import android.content.res.Resources;
 import android.content.res.XmlResourceParser;
 import android.graphics.Bitmap;
@@ -38,22 +39,26 @@ import android.net.NetworkInfo;
 import android.net.Uri;
 import android.os.AsyncTask;
 import android.os.Bundle;
+import android.support.v7.widget.GridLayoutManager;
+import android.support.v7.widget.RecyclerView;
 import android.text.TextUtils;
 import android.util.Log;
 import android.view.Display;
-import android.view.LayoutInflater;
-import android.view.View;
 import android.view.MenuItem;
+import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
-import android.widget.GridView;
 import android.widget.ImageView;
 import android.widget.ProgressBar;
 import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.squareup.picasso.Picasso;
+
+import org.json.JSONArray;
+import org.json.JSONObject;
 import org.xmlpull.v1.XmlPullParser;
 import org.xmlpull.v1.XmlPullParserException;
 import org.xmlpull.v1.XmlPullParserFactory;
@@ -70,11 +75,6 @@ import java.util.List;
 
 import javax.net.ssl.HttpsURLConnection;
 
-import org.json.JSONArray;
-import org.json.JSONObject;
-
-import com.squareup.picasso.Picasso;
-
 public class BrowseWallsActivity extends Activity {
     private static final String TAG = "BrowseWallsActivity";
     private static final String IMAGE_TYPE = "image/*";
@@ -87,7 +87,7 @@ public class BrowseWallsActivity extends Activity {
     private List<WallpaperInfo> mWallpaperList;
     private List<RemoteWallpaperInfo> mWallpaperUrlList;
     private Resources mRes;
-    private GridView mWallpaperView;
+    private RecyclerView mWallpaperView;
     private String mPackageName;
     private WallpaperListAdapter mAdapter;
     private WallpaperRemoteListAdapter mAdapterRemote;
@@ -117,18 +117,53 @@ public class BrowseWallsActivity extends Activity {
         public String mDisplayName;
     }
 
-    public class WallpaperListAdapter extends ArrayAdapter<WallpaperInfo> {
-        private final LayoutInflater mInflater;
+    class ImageHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
+        public View rootView;
+        public ImageView mWallpaperImage;
+        public TextView mWallpaperName;
+        public TextView mWallpaperCreator;
 
-        public WallpaperListAdapter(Context context) {
-            super(context, R.layout.wallpaper_image, mWallpaperList);
-            mInflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+        ImageHolder(View itemView) {
+            super(itemView);
+            rootView = itemView;
+            mWallpaperImage = (ImageView) itemView.findViewById(R.id.wallpaper_image);
+            mWallpaperName = (TextView) itemView.findViewById(R.id.wallpaper_name);
+            mWallpaperCreator = (TextView) itemView.findViewById(R.id.wallpaper_creator);
+            rootView.setOnClickListener(this);
+        }
+        @Override
+        public void onClick(View view) {
+            int position = getAdapterPosition();
+            if (!checkCropActivity()) {
+                AlertDialog.Builder noCropActivityDialog = new AlertDialog.Builder(BrowseWallsActivity.this);
+                noCropActivityDialog.setMessage(getResources().getString(R.string.no_crop_activity_dialog_text));
+                noCropActivityDialog.setTitle(getResources().getString(R.string.no_crop_activity_dialog_title));
+                noCropActivityDialog.setCancelable(false);
+                noCropActivityDialog.setPositiveButton(android.R.string.ok, null);
+                AlertDialog d = noCropActivityDialog.create();
+                d.show();
+                return;
+            }
+            if (mCurrentLocation == 0) {
+                doSetLocalWallpaper(position);
+            } else {
+                doSetRemoteWallpaper(position);
+            }
+        }
+    }
+
+    public class WallpaperListAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
+
+        @Override
+        public RecyclerView.ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
+            View view = getLayoutInflater().inflate(R.layout.wallpaper_image, parent, false);
+            return new ImageHolder(view);
         }
 
         @Override
-        public View getView(int position, View convertView, ViewGroup parent) {
-            WallpaperImageHolder holder = WallpaperImageHolder.createOrRecycle(mInflater, convertView);
-            convertView = holder.rootView;
+        public void onBindViewHolder(RecyclerView.ViewHolder h, int position) {
+            final ImageHolder holder = (ImageHolder) h;
+
             try {
                 WallpaperInfo wi = mWallpaperList.get(position);
                 int resId = mRes.getIdentifier(wi.mImage, "drawable", mPackageName);
@@ -149,25 +184,29 @@ public class BrowseWallsActivity extends Activity {
             } catch (Exception e) {
                 holder.mWallpaperImage.setImageDrawable(null);
             }
-            return convertView;
-        }
-    }
-
-    public class WallpaperRemoteListAdapter extends ArrayAdapter<RemoteWallpaperInfo> {
-        private final LayoutInflater mInflater;
-
-        public WallpaperRemoteListAdapter(Context context) {
-            super(context, R.layout.wallpaper_image, mWallpaperUrlList);
-            mInflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
         }
 
         @Override
-        public View getView(int position, View convertView, ViewGroup parent) {
-            WallpaperImageHolder holder = WallpaperImageHolder.createOrRecycle(mInflater, convertView);
-            convertView = holder.rootView;
+        public int getItemCount() {
+            return mWallpaperList.size();
+        }
+    }
+
+
+    public class WallpaperRemoteListAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
+
+        @Override
+        public RecyclerView.ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
+            View view = getLayoutInflater().inflate(R.layout.wallpaper_image, parent, false);
+            return new ImageHolder(view);
+        }
+
+        @Override
+        public void onBindViewHolder(RecyclerView.ViewHolder h, int position) {
+            final ImageHolder holder = (ImageHolder) h;
+
             try {
                 RemoteWallpaperInfo wi = mWallpaperUrlList.get(position);
-
                 Picasso.with(BrowseWallsActivity.this).load(wi.mThumbUri).into(holder.mWallpaperImage);
 
                 holder.mWallpaperName.setText(TextUtils.isEmpty(wi.mDisplayName) ? mWallpaperDisplayDefault + " " + (position + 1) : wi.mDisplayName);
@@ -176,31 +215,11 @@ public class BrowseWallsActivity extends Activity {
             } catch (Exception e) {
                 holder.mWallpaperImage.setImageDrawable(null);
             }
-            return convertView;
         }
-    }
 
-    public static class WallpaperImageHolder {
-        public View rootView;
-        public ImageView mWallpaperImage;
-        public TextView mWallpaperName;
-        public TextView mWallpaperCreator;
-
-        public static WallpaperImageHolder createOrRecycle(LayoutInflater inflater, View convertView) {
-            if (convertView == null) {
-                convertView = inflater.inflate(R.layout.wallpaper_image, null);
-                WallpaperImageHolder holder = new WallpaperImageHolder();
-                holder.rootView = convertView;
-                holder.mWallpaperImage = (ImageView) convertView.findViewById(R.id.wallpaper_image);
-                holder.mWallpaperName = (TextView) convertView.findViewById(R.id.wallpaper_name);
-                holder.mWallpaperCreator = (TextView) convertView.findViewById(R.id.wallpaper_creator);
-                convertView.setTag(holder);
-                return holder;
-            } else {
-                // Get the ViewHolder back to get fast access to the TextView
-                // and the ImageView.
-                return (WallpaperImageHolder) convertView.getTag();
-            }
+        @Override
+        public int getItemCount() {
+            return mWallpaperUrlList.size();
         }
     }
 
@@ -254,29 +273,12 @@ public class BrowseWallsActivity extends Activity {
             mRes = packageManager.getResourcesForApplication(mPackageName);
             getAvailableWallpapers();
 
-            mWallpaperView = (GridView) findViewById(R.id.wallpaper_images);
-            mWallpaperView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-                @Override
-                public void onItemClick(AdapterView<?> adapterView, View view, final int i, long l) {
-                    if (!checkCropActivity()) {
-                        AlertDialog.Builder noCropActivityDialog = new AlertDialog.Builder(BrowseWallsActivity.this);
-                        noCropActivityDialog.setMessage(getResources().getString(R.string.no_crop_activity_dialog_text));
-                        noCropActivityDialog.setTitle(getResources().getString(R.string.no_crop_activity_dialog_title));
-                        noCropActivityDialog.setCancelable(false);
-                        noCropActivityDialog.setPositiveButton(android.R.string.ok, null);
-                        AlertDialog d = noCropActivityDialog.create();
-                        d.show();
-                        return;
-                    }
-                    if (mCurrentLocation == 0) {
-                        doSetLocalWallpaper(i);
-                    } else {
-                        doSetRemoteWallpaper(i);
-                    }
-                }
-            });
-            mAdapter = new WallpaperListAdapter(this);
-            mAdapterRemote = new WallpaperRemoteListAdapter(this);
+            mWallpaperView = (RecyclerView) findViewById(R.id.wallpaper_images);
+            mWallpaperView.setLayoutManager(new GridLayoutManager(this, 2));
+            mWallpaperView.setHasFixedSize(false);
+
+            mAdapter = new WallpaperListAdapter();
+            mAdapterRemote = new WallpaperRemoteListAdapter();
 
             mWallpaperView.setAdapter(mAdapter);
             mAdapter.notifyDataSetChanged();
@@ -722,6 +724,15 @@ public class BrowseWallsActivity extends Activity {
         } else {
             return false;
         }
+    }
+
+    @Override
+    public void onConfigurationChanged(Configuration newConfig) {
+        super.onConfigurationChanged(newConfig);
+        int spanCount = getResources().getInteger(R.integer.wallpapers_column_count);
+        GridLayoutManager manager = (GridLayoutManager) mWallpaperView.getLayoutManager();
+        manager.setSpanCount(spanCount);
+        manager.requestLayout();
     }
 }
 

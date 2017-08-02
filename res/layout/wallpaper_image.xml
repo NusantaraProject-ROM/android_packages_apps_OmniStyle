@@ -18,6 +18,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:card_view="http://schemas.android.com/apk/res-auto"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="wrap_content"
     android:layout_height="wrap_content"
     android:background="?android:attr/selectableItemBackground" >
@@ -34,11 +35,13 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
             android:layout_height="wrap_content"
             android:orientation="vertical">
 
-            <ImageView
+            <org.omnirom.omnistyle.WallpaperImageView
                 android:id="@+id/wallpaper_image"
-                android:layout_width="180dp"
-                android:layout_height="180dp"
-                android:scaleType="centerCrop" />
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:scaleType="centerCrop"
+                app:heightRatio="@integer/height_ratio"
+                app:widthRatio="@integer/width_ratio"/>
 
             <TextView
                 android:id="@+id/wallpaper_name"
