@@ -28,12 +28,9 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.content.res.Configuration;
-import android.content.res.Resources;
-import android.content.res.XmlResourceParser;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.Point;
-import android.graphics.drawable.Drawable;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 import android.net.Uri;
@@ -47,11 +44,8 @@ import android.view.Display;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.AdapterView;
-import android.widget.ArrayAdapter;
 import android.widget.ImageView;
 import android.widget.ProgressBar;
-import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -59,14 +53,10 @@ import com.squareup.picasso.Picasso;
 
 import org.json.JSONArray;
 import org.json.JSONObject;
-import org.xmlpull.v1.XmlPullParser;
-import org.xmlpull.v1.XmlPullParserException;
-import org.xmlpull.v1.XmlPullParserFactory;
 
 import java.io.ByteArrayOutputStream;
 import java.io.File;
 import java.io.FileOutputStream;
-import java.io.IOException;
 import java.io.InputStream;
 import java.net.URL;
 import java.nio.charset.StandardCharsets;
@@ -75,7 +65,7 @@ import java.util.List;
 
 import javax.net.ssl.HttpsURLConnection;
 
-public class BrowseWallsActivity extends Activity {
+public class BrowseWallsFilterActivity extends Activity {
     private static final String TAG = "BrowseWallsActivity";
     private static final String IMAGE_TYPE = "image/*";
     private static final int IMAGE_CROP_AND_SET = 1;
@@ -84,30 +74,18 @@ public class BrowseWallsActivity extends Activity {
     private static final String WALLPAPER_FULL_URI = "https://dl.omnirom.org/images/wallpapers/";
 
     private static final boolean DEBUG = false;
-    private List<WallpaperInfo> mWallpaperList;
     private List<RemoteWallpaperInfo> mWallpaperUrlList;
-    private Resources mRes;
     private RecyclerView mWallpaperView;
-    private String mPackageName;
-    private WallpaperListAdapter mAdapter;
     private WallpaperRemoteListAdapter mAdapterRemote;
-    private int mWallpaperPreviewSize;
     private Runnable mDoAfter;
-    private Spinner mLocationSelect;
-    private int mCurrentLocation;
     private TextView mNoNetworkMessage;
     private ProgressBar mProgressBar;
     private String mWallpaperDisplayDefault;
+    private String mFilterTag;
 
     private static final int HTTP_READ_TIMEOUT = 30000;
     private static final int HTTP_CONNECTION_TIMEOUT = 30000;
     private static final int PERMISSIONS_REQUEST_READ_EXTERNAL_STORAGE = 0;
-
-    private class WallpaperInfo {
-        public String mImage;
-        public String mCreator;
-        public String mDisplayName;
-    }
 
     private class RemoteWallpaperInfo {
         public String mImage;
@@ -131,11 +109,12 @@ public class BrowseWallsActivity extends Activity {
             mWallpaperCreator = (TextView) itemView.findViewById(R.id.wallpaper_creator);
             rootView.setOnClickListener(this);
         }
+
         @Override
         public void onClick(View view) {
             int position = getAdapterPosition();
             if (!checkCropActivity()) {
-                AlertDialog.Builder noCropActivityDialog = new AlertDialog.Builder(BrowseWallsActivity.this);
+                AlertDialog.Builder noCropActivityDialog = new AlertDialog.Builder(BrowseWallsFilterActivity.this);
                 noCropActivityDialog.setMessage(getResources().getString(R.string.no_crop_activity_dialog_text));
                 noCropActivityDialog.setTitle(getResources().getString(R.string.no_crop_activity_dialog_title));
                 noCropActivityDialog.setCancelable(false);
@@ -144,54 +123,9 @@ public class BrowseWallsActivity extends Activity {
                 d.show();
                 return;
             }
-            if (mCurrentLocation == 0) {
-                doSetLocalWallpaper(position);
-            } else {
-                doSetRemoteWallpaper(position);
-            }
+            doSetRemoteWallpaper(position);
         }
     }
-
-    public class WallpaperListAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
-
-        @Override
-        public RecyclerView.ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
-            View view = getLayoutInflater().inflate(R.layout.wallpaper_image, parent, false);
-            return new ImageHolder(view);
-        }
-
-        @Override
-        public void onBindViewHolder(RecyclerView.ViewHolder h, int position) {
-            final ImageHolder holder = (ImageHolder) h;
-
-            try {
-                WallpaperInfo wi = mWallpaperList.get(position);
-                int resId = mRes.getIdentifier(wi.mImage, "drawable", mPackageName);
-
-                if (resId != 0) {
-                    Picasso.with(BrowseWallsActivity.this)
-                        .load(resId)
-                        .resize(mWallpaperPreviewSize, mWallpaperPreviewSize)
-                        .centerCrop()
-                        .into(holder.mWallpaperImage);
-                } else {
-                    holder.mWallpaperImage.setImageDrawable(null);
-                }
-
-                holder.mWallpaperName.setText(TextUtils.isEmpty(wi.mDisplayName) ? mWallpaperDisplayDefault + " " + (position + 1) : wi.mDisplayName);
-                holder.mWallpaperCreator.setVisibility(TextUtils.isEmpty(wi.mCreator) ? View.GONE : View.VISIBLE);
-                holder.mWallpaperCreator.setText(wi.mCreator);
-            } catch (Exception e) {
-                holder.mWallpaperImage.setImageDrawable(null);
-            }
-        }
-
-        @Override
-        public int getItemCount() {
-            return mWallpaperList.size();
-        }
-    }
-
 
     public class WallpaperRemoteListAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
 
@@ -207,7 +141,7 @@ public class BrowseWallsActivity extends Activity {
 
             try {
                 RemoteWallpaperInfo wi = mWallpaperUrlList.get(position);
-                Picasso.with(BrowseWallsActivity.this).load(wi.mThumbUri).into(holder.mWallpaperImage);
+                Picasso.with(BrowseWallsFilterActivity.this).load(wi.mThumbUri).into(holder.mWallpaperImage);
 
                 holder.mWallpaperName.setText(TextUtils.isEmpty(wi.mDisplayName) ? mWallpaperDisplayDefault + " " + (position + 1) : wi.mDisplayName);
                 holder.mWallpaperCreator.setVisibility(TextUtils.isEmpty(wi.mCreator) ? View.GONE : View.VISIBLE);
@@ -226,62 +160,38 @@ public class BrowseWallsActivity extends Activity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.content_wallpapers);
+
+        Intent intent = getIntent();
+        mFilterTag = "theme";
+        if (intent.hasExtra("filter")) {
+            mFilterTag = intent.getStringExtra("filter");
+        }
+        setContentView(R.layout.content_wallpapers_filter);
         mWallpaperDisplayDefault = getResources().getString(R.string.wallpaper_default_name);
-        mPackageName = getClass().getPackage().getName();
         getActionBar().setDisplayOptions(ActionBar.DISPLAY_HOME_AS_UP | ActionBar.DISPLAY_SHOW_TITLE);
 
-        mWallpaperList = new ArrayList<WallpaperInfo>();
         mWallpaperUrlList = new ArrayList<RemoteWallpaperInfo>();
-        mWallpaperPreviewSize = 300; // in pixel
-        mLocationSelect = (Spinner) findViewById(R.id.location_select);
         mNoNetworkMessage = (TextView) findViewById(R.id.no_network_message);
         mProgressBar = (ProgressBar) findViewById(R.id.browse_progress);
 
-        String[] locationList = getResources().getStringArray(R.array.wallpaper_location_list);
-        ArrayAdapter<CharSequence> adapter = new ArrayAdapter(this,
-                R.layout.spinner_item, locationList);
-        mLocationSelect.setAdapter(adapter);
-
-        mLocationSelect.setOnItemSelectedListener(new Spinner.OnItemSelectedListener() {
-            @Override
-            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-                mCurrentLocation = position;
-                if (position == 0) {
-                    mWallpaperView.setAdapter(mAdapter);
-                    mNoNetworkMessage.setVisibility(View.GONE);
-                    mProgressBar.setVisibility(View.GONE);
-                } else {
-                    if (isNetworkAvailable()) {
-                        mNoNetworkMessage.setVisibility(View.GONE);
-                        mWallpaperView.setAdapter(mAdapterRemote);
-                        mProgressBar.setVisibility(View.VISIBLE);
-                        FetchWallpaperListTask fetch = new FetchWallpaperListTask();
-                        fetch.execute();
-                    } else {
-                        mNoNetworkMessage.setVisibility(View.VISIBLE);
-                    }
-                }
-            }
-
-            @Override
-            public void onNothingSelected(AdapterView<?> arg0) {
-            }
-        });
-        PackageManager packageManager = getPackageManager();
         try {
-            mRes = packageManager.getResourcesForApplication(mPackageName);
-            getAvailableWallpapers();
-
             mWallpaperView = (RecyclerView) findViewById(R.id.wallpaper_images);
             mWallpaperView.setLayoutManager(new GridLayoutManager(this, 2));
             mWallpaperView.setHasFixedSize(false);
 
-            mAdapter = new WallpaperListAdapter();
             mAdapterRemote = new WallpaperRemoteListAdapter();
 
-            mWallpaperView.setAdapter(mAdapter);
-            mAdapter.notifyDataSetChanged();
+            if (isNetworkAvailable()) {
+                mNoNetworkMessage.setVisibility(View.GONE);
+                mWallpaperView.setAdapter(mAdapterRemote);
+                mProgressBar.setVisibility(View.VISIBLE);
+                FetchWallpaperListTask fetch = new FetchWallpaperListTask();
+                fetch.execute();
+            } else {
+                mNoNetworkMessage.setVisibility(View.VISIBLE);
+            }
+
+            mAdapterRemote.notifyDataSetChanged();
         } catch (Exception e) {
             Log.e(TAG, "init failed", e);
         }
@@ -300,56 +210,6 @@ public class BrowseWallsActivity extends Activity {
             finish();
         }
         return true;
-    }
-
-    private void getAvailableWallpapers() throws XmlPullParserException, IOException {
-        mWallpaperList.clear();
-        InputStream in = null;
-        XmlPullParser parser = null;
-
-        try {
-            in = mRes.getAssets().open("wallpapers.xml");
-            XmlPullParserFactory factory = XmlPullParserFactory.newInstance();
-            parser = factory.newPullParser();
-            parser.setInput(in, "UTF-8");
-            loadResourcesFromXmlParser(parser);
-        } finally {
-            // Cleanup resources
-            if (parser instanceof XmlResourceParser) {
-                ((XmlResourceParser) parser).close();
-            }
-            if (in != null) {
-                try {
-                    in.close();
-                } catch (IOException e) {
-                }
-            }
-        }
-    }
-
-    private void loadResourcesFromXmlParser(XmlPullParser parser) throws XmlPullParserException, IOException {
-        int eventType = parser.getEventType();
-        do {
-            if (eventType != XmlPullParser.START_TAG) {
-                continue;
-            }
-            String name = parser.getName();
-            if (name.equalsIgnoreCase("wallpaper")) {
-                String image = parser.getAttributeValue(null, "image");
-                if (image != null) {
-                    String creator = parser.getAttributeValue(null, "creator");
-                    String displayName = parser.getAttributeValue(null, "name");
-                    WallpaperInfo wi = new WallpaperInfo();
-                    wi.mImage = image;
-                    wi.mCreator = creator;
-                    wi.mDisplayName = displayName;
-                    if (DEBUG)
-                        Log.i(TAG, "add wallpaper " + image + " " + mRes.getIdentifier(image, "drawable", mPackageName));
-                    mWallpaperList.add(wi);
-                }
-            }
-        } while ((eventType = parser.next()) != XmlPullParser.END_DOCUMENT);
-        if (DEBUG) Log.i(TAG, "loaded size = " + mWallpaperList.size());
     }
 
     private Intent getCropActivity() {
@@ -379,7 +239,7 @@ public class BrowseWallsActivity extends Activity {
                 .putExtra(CropExtras.KEY_SCALE, true)
                 .putExtra(CropExtras.KEY_SCALE_UP_IF_NEEDED, true);
 
-        AlertDialog.Builder wallpaperTypeDialog = new AlertDialog.Builder(BrowseWallsActivity.this);
+        AlertDialog.Builder wallpaperTypeDialog = new AlertDialog.Builder(BrowseWallsFilterActivity.this);
         wallpaperTypeDialog.setTitle(getResources().getString(R.string.wallpaper_type_dialog_title));
         wallpaperTypeDialog.setItems(R.array.wallpaper_type_list, new DialogInterface.OnClickListener() {
             public void onClick(DialogInterface dialog, int item) {
@@ -477,6 +337,15 @@ public class BrowseWallsActivity extends Activity {
                 if (build.has("name")) {
                     displayName = build.getString("name");
                 }
+                String tag = null;
+                if (build.has("tag")) {
+                    tag = build.getString("tag");
+                }
+                if (!TextUtils.isEmpty(mFilterTag)) {
+                    if (TextUtils.isEmpty(tag) || !tag.equals(mFilterTag)) {
+                        continue;
+                    }
+                }
                 if (fileName.lastIndexOf(".") != -1) {
                     String ext = fileName.substring(fileName.lastIndexOf("."));
                     if (ext.equals(".png") || ext.equals(".jpg")) {
@@ -559,7 +428,7 @@ public class BrowseWallsActivity extends Activity {
         protected void onPostExecute(Void feed) {
             mProgressBar.setVisibility(View.GONE);
             if (mError) {
-                Toast.makeText(BrowseWallsActivity.this, R.string.download_wallpaper_list_failed_notice, Toast.LENGTH_LONG).show();
+                Toast.makeText(BrowseWallsFilterActivity.this, R.string.download_wallpaper_list_failed_notice, Toast.LENGTH_LONG).show();
             }
             mAdapterRemote.notifyDataSetChanged();
         }
@@ -622,7 +491,7 @@ public class BrowseWallsActivity extends Activity {
                 RemoteWallpaperInfo ri = mWallpaperUrlList.get(position);
                 File localWallpaperFile = new File(getExternalCacheDir(), fileName);
                 mProgressBar.setVisibility(View.VISIBLE);
-                Toast.makeText(BrowseWallsActivity.this, R.string.download_wallpaper_notice, Toast.LENGTH_SHORT).show();
+                Toast.makeText(BrowseWallsFilterActivity.this, R.string.download_wallpaper_notice, Toast.LENGTH_SHORT).show();
                 FetchWallpaperTask fetch = new FetchWallpaperTask();
                 fetch.execute(ri.mUri, localWallpaperFile.getAbsolutePath());
             }
@@ -631,7 +500,7 @@ public class BrowseWallsActivity extends Activity {
 
     private void doSetRemoteWallpaperPost(String wallpaperFile) {
         if (!new File(wallpaperFile).exists()) {
-            Toast.makeText(BrowseWallsActivity.this, R.string.download_wallpaper_failed_notice, Toast.LENGTH_LONG).show();
+            Toast.makeText(BrowseWallsFilterActivity.this, R.string.download_wallpaper_failed_notice, Toast.LENGTH_LONG).show();
             return;
         }
         WallpaperManager wpm = WallpaperManager.getInstance(getApplicationContext());
@@ -643,7 +512,7 @@ public class BrowseWallsActivity extends Activity {
 
         Bitmap image = BitmapFactory.decodeFile(wallpaperFile);
         if (image == null) {
-            Toast.makeText(BrowseWallsActivity.this, R.string.download_wallpaper_failed_notice, Toast.LENGTH_LONG).show();
+            Toast.makeText(BrowseWallsFilterActivity.this, R.string.download_wallpaper_failed_notice, Toast.LENGTH_LONG).show();
             return;
         }
         final Uri uri = Uri.fromFile(new File(wallpaperFile));
@@ -656,55 +525,7 @@ public class BrowseWallsActivity extends Activity {
         if (displayRatio != imageRatio) {
             // ask if scrolling wallpaper should be used original size
             // or if it should be cropped to image size
-            AlertDialog.Builder scrollingWallDialog = new AlertDialog.Builder(BrowseWallsActivity.this);
-            scrollingWallDialog.setMessage(getResources().getString(R.string.scrolling_wall_dialog_text));
-            scrollingWallDialog.setTitle(getResources().getString(R.string.scrolling_wall_dialog_title));
-            scrollingWallDialog.setCancelable(false);
-            scrollingWallDialog.setPositiveButton(R.string.scrolling_wall_yes, new DialogInterface.OnClickListener() {
-                @Override
-                public void onClick(DialogInterface dialog, int which) {
-                    doCallCropActivity(uri, dispSize, wpWidth, wpHeight);
-                }
-            });
-            scrollingWallDialog.setNegativeButton(R.string.scrolling_wall_no, new DialogInterface.OnClickListener() {
-                @Override
-                public void onClick(DialogInterface dialog, int which) {
-                    doCallCropActivity(uri, dispSize, dispSize.x, dispSize.y);
-                }
-            });
-            AlertDialog d = scrollingWallDialog.create();
-            d.show();
-        } else {
-            doCallCropActivity(uri, dispSize, dispSize.x, dispSize.y);
-        }
-    }
-
-    private void doSetLocalWallpaper(final int position) {
-        WallpaperManager wpm = WallpaperManager.getInstance(getApplicationContext());
-        final int wpWidth = wpm.getDesiredMinimumWidth();
-        final int wpHeight = wpm.getDesiredMinimumHeight();
-        Display disp = getWindowManager().getDefaultDisplay();
-        final Point dispSize = new Point();
-        disp.getRealSize(dispSize);
-
-        WallpaperInfo wi = mWallpaperList.get(position);
-        final int resId = mRes.getIdentifier(wi.mImage, "drawable", mPackageName);
-        if (resId == 0) {
-            Log.e(TAG, "Wallpaper resource undefined for position = " + position);
-            return;
-        }
-        final Uri uri = Uri.parse("android.resource://" + mPackageName + "/" + resId);
-        Drawable image = mRes.getDrawable(resId, null);
-        if (DEBUG) Log.d(TAG, "crop uri = " + uri);
-
-        // if that image ratio is close to the display size ratio
-        // assume this wall is meant to be fullscreen without scrolling
-        float displayRatio = (float) Math.round(((float) dispSize.x / dispSize.y) * 10) / 10;
-        float imageRatio = (float) Math.round(((float) image.getIntrinsicWidth() / image.getIntrinsicHeight()) * 10) / 10;
-        if (displayRatio != imageRatio) {
-            // ask if scrolling wallpaper should be used original size
-            // or if it should be cropped to image size
-            AlertDialog.Builder scrollingWallDialog = new AlertDialog.Builder(BrowseWallsActivity.this);
+            AlertDialog.Builder scrollingWallDialog = new AlertDialog.Builder(BrowseWallsFilterActivity.this);
             scrollingWallDialog.setMessage(getResources().getString(R.string.scrolling_wall_dialog_text));
             scrollingWallDialog.setTitle(getResources().getString(R.string.scrolling_wall_dialog_title));
             scrollingWallDialog.setCancelable(false);

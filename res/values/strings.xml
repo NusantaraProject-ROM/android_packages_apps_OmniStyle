@@ -38,4 +38,5 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
     <string name="no_network_message">No network connectivity</string>
     <string name="download_wallpaper_list_failed_notice">Loading wallpaper directory failed</string>
     <string name="wallpaper_default_name">Wallpaper</string>
+    <string name="browse_theme_walls">Theme wallpapers</string>
 </resources>
