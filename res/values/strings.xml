@@ -39,4 +39,6 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
     <string name="download_wallpaper_list_failed_notice">Loading wallpaper directory failed</string>
     <string name="wallpaper_default_name">Wallpaper</string>
     <string name="browse_theme_walls">Theme wallpapers</string>
+    <string name="browse_theme_header">Theme headers</string>
+    <string name="pick_header">Select headers</string>
 </resources>

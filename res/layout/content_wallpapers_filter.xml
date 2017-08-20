@@ -18,8 +18,6 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:paddingLeft="@dimen/activity_horizontal_margin"
-    android:paddingRight="@dimen/activity_horizontal_margin"
     android:orientation="vertical">
 
     <LinearLayout
@@ -33,6 +31,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
             android:layout_height="0dp"
             android:layout_weight="1"
             android:clipToPadding="false"
+            android:padding="@dimen/activity_horizontal_margin"
             android:scrollbars="vertical" />
 
         <TextView
@@ -41,8 +40,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
             android:layout_height="match_parent"
             android:visibility="gone"
             android:text="@string/no_network_message"
-            android:gravity="center"
-            android:textAppearance="?android:attr/textAppearanceMedium"/>
+            android:gravity="center"/>
     </LinearLayout>
 
     <ProgressBar
