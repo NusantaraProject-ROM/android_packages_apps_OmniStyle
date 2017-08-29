@@ -26,5 +26,5 @@
           android:textAppearance="@android:style/TextAppearance.Material.Subhead"
           android:textColor="@color/system_activity_header_text"
           android:textSize="16sp"
-          android:background="?android:attr/colorPrimary" >
+          android:background="@drawable/switchbar_background" >
 </TextView>
