@@ -51,7 +51,6 @@ import java.util.Map;
 
 public class BrowseHeaderActivity extends Activity {
     private static final String TAG = "BrowseHeaderActivity";
-    private static final String DEFAULT_HEADER_PACKAGE = "com.android.systemui";
     private static final String STATUS_BAR_CUSTOM_HEADER_IMAGE = "status_bar_custom_header_image";
     private static final String STATUS_BAR_CUSTOM_HEADER_PROVIDER = "status_bar_custom_header_provider";
 
@@ -179,7 +178,6 @@ public class BrowseHeaderActivity extends Activity {
     }
 
     private void getAvailableHeaderPacks(Map<String, String> headerMap) {
-        String defaultLabel = null;
         Intent i = new Intent();
         PackageManager packageManager = getPackageManager();
         i.setAction("org.omnirom.DaylightHeaderPack");
@@ -189,11 +187,7 @@ public class BrowseHeaderActivity extends Activity {
             if (label == null) {
                 label = r.activityInfo.packageName;
             }
-            if (packageName.equals(DEFAULT_HEADER_PACKAGE)) {
-                defaultLabel = label;
-            } else {
-                headerMap.put(label, packageName);
-            }
+            headerMap.put(label, packageName);
         }
         i.setAction("org.omnirom.DaylightHeaderPack1");
         for (ResolveInfo r : packageManager.queryIntentActivities(i, 0)) {
@@ -206,10 +200,6 @@ public class BrowseHeaderActivity extends Activity {
         }
         mLabelList.addAll(headerMap.keySet());
         Collections.sort(mLabelList);
-        if (defaultLabel != null) {
-            mLabelList.add(0, defaultLabel);
-            headerMap.put(defaultLabel, DEFAULT_HEADER_PACKAGE);
-        }
     }
 
     private void loadHeaderPackage(String label) {
