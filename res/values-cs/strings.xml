@@ -39,4 +39,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
   <string name="no_network_message">Žádné připojení k síti</string>
   <string name="download_wallpaper_list_failed_notice">Načítání adresáře tapety se nezdařilo</string>
   <string name="wallpaper_default_name">Tapeta</string>
+  <string name="browse_theme_walls">Témata tapet</string>
+  <string name="browse_theme_header">Téma hlaviček</string>
+  <string name="pick_header">Vyberte hlavičky</string>
 </resources>

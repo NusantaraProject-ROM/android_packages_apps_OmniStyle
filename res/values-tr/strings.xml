@@ -27,7 +27,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
   <string name="wallpaper_type_lock">Kilit ekranı</string>
   <string name="header_creator_label">Yapan\u003a </string>
   <string name="no_crop_activity_dialog_text">Omni Galeri uygulaması duvar kâğıdını ayarlamak için gereklidir</string>
-  <string name="no_crop_activity_dialog_title">Galeri noksan</string>
+  <string name="no_crop_activity_dialog_title">Galeri yok</string>
   <string name="scrolling_wall_dialog_text">Duvar kâğıdını ekran boyutuna göre kırpmak ister misiniz\u003f</string>
   <string name="scrolling_wall_dialog_title">Duvar kâğıdını kırp</string>
   <string name="scrolling_wall_yes">Hayır</string>
@@ -39,4 +39,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
   <string name="no_network_message">Ağ bağlantısı yok</string>
   <string name="download_wallpaper_list_failed_notice">Duvar kâğıdı dizini yüklenemedi</string>
   <string name="wallpaper_default_name">Duvar kâğıdı</string>
+  <string name="browse_theme_walls">Tema duvar kâğıtları</string>
+  <string name="browse_theme_header">Tema başlıkları</string>
+  <string name="pick_header">Başlıkları seçin</string>
 </resources>

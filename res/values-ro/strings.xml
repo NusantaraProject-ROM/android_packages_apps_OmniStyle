@@ -16,4 +16,30 @@ GNU General Public License for more details.
 You should have received a copy of the GNU General Public License
 along with this program.  If not, see <http://www.gnu.org/licenses/>.
 -->
-<resources></resources>
+<resources>
+  <string name="browse_header">Antete</string>
+  <string name="custom_header_image_notice">Pachet de imagini antet</string>
+  <string name="browse_walls">Imagini de fundal</string>
+  <string name="omni_walls">Omni</string>
+  <string name="wallpaper_type_dialog_title">Setați imaginea de fundal</string>
+  <string name="wallpaper_type_both">Ecranul de pornire şi blocarea ecranului</string>
+  <string name="wallpaper_type_system">Ecranul de pornire</string>
+  <string name="wallpaper_type_lock">Ecranul de deblocare</string>
+  <string name="header_creator_label">Creator\u003a </string>
+  <string name="no_crop_activity_dialog_text">Aplicația Galerie Omni este necesară pentru a seta imaginea de fundal</string>
+  <string name="no_crop_activity_dialog_title">Galerie lipsă</string>
+  <string name="scrolling_wall_dialog_text">Doriți să decupați imaginea de fundal la dimensiunea ecranului\u003f</string>
+  <string name="scrolling_wall_dialog_title">Decupare imagine de fundal</string>
+  <string name="scrolling_wall_yes">Nu</string>
+  <string name="scrolling_wall_no">Da</string>
+  <string name="wallpaper_location_local">Local</string>
+  <string name="wallpaper_location_remote">Online</string>
+  <string name="download_wallpaper_notice">Descărcare imagine de fundal</string>
+  <string name="download_wallpaper_failed_notice">Descărcare eșuată a imaginii de fundal</string>
+  <string name="no_network_message">Fără conexiune la reţea</string>
+  <string name="download_wallpaper_list_failed_notice">Încărcarea dosarului imaginilor de fundal nu a reușit</string>
+  <string name="wallpaper_default_name">Imagine de fundal</string>
+  <string name="browse_theme_walls">Teme imagini de fundal</string>
+  <string name="browse_theme_header">Teme anteturi</string>
+  <string name="pick_header">Selectare anteturi</string>
+</resources>

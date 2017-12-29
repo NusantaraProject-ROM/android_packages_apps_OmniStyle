@@ -39,4 +39,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
   <string name="no_network_message">Нет подключения к сети</string>
   <string name="download_wallpaper_list_failed_notice">Загрузка каталога обоев не удалась</string>
   <string name="wallpaper_default_name">Обои</string>
+  <string name="browse_theme_walls">Обои темы</string>
+  <string name="browse_theme_header">Заголовки темы</string>
+  <string name="pick_header">Выберите заголовки</string>
 </resources>

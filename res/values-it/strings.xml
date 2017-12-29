@@ -39,4 +39,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
   <string name="no_network_message">Nessuna connessione di rete</string>
   <string name="download_wallpaper_list_failed_notice">Errore nel caricamento della directory dello sfondo</string>
   <string name="wallpaper_default_name">Sfondo</string>
+  <string name="browse_theme_walls">Sfondi a tema</string>
+  <string name="browse_theme_header">Intestazioni a tema</string>
+  <string name="pick_header">Seleziona intestazioni</string>
 </resources>
