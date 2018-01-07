@@ -39,4 +39,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
   <string name="no_network_message">Nincs hálózati kapcsolat</string>
   <string name="download_wallpaper_list_failed_notice">Háttérkép könyvtár betöltése sikertleen</string>
   <string name="wallpaper_default_name">Háttérkép</string>
+  <string name="browse_theme_walls">Téma háttérképek</string>
+  <string name="browse_theme_header">Téma fejlécek</string>
+  <string name="pick_header">Fejlécek kiválasztása</string>
 </resources>

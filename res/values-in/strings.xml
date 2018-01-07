@@ -17,14 +17,19 @@ You should have received a copy of the GNU General Public License
 along with this program.  If not, see <http://www.gnu.org/licenses/>.
 -->
 <resources>
-  <string name="browse_header">Header</string>
+  <string name="browse_header">Judul</string>
+  <string name="custom_header_image_notice">Set gambar kepala</string>
   <string name="browse_walls">Wallpaper</string>
   <string name="omni_walls">Omni</string>
-  <string name="wallpaper_type_dialog_title">Setel wallpaper</string>
+  <string name="wallpaper_type_dialog_title">Memasang wallpaper</string>
   <string name="wallpaper_type_both">Layar utama dan kunci layar</string>
   <string name="wallpaper_type_system">Layar utama</string>
   <string name="wallpaper_type_lock">Kunci layar</string>
+  <string name="header_creator_label">Pencipta\u003a </string>
+  <string name="no_crop_activity_dialog_text">Aplikasi Omni Gallery diperlukan untuk mengatur wallpaper</string>
   <string name="no_crop_activity_dialog_title">Galeri hilang</string>
+  <string name="scrolling_wall_dialog_text">Apakah Anda ingin memotong wallpaper ke ukuran layar\u003f</string>
+  <string name="scrolling_wall_dialog_title">Potong wallpaper</string>
   <string name="scrolling_wall_yes">Tidak</string>
   <string name="scrolling_wall_no">Ya</string>
   <string name="wallpaper_location_local">Lokal</string>
@@ -34,4 +39,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
   <string name="no_network_message">Tidak ada konektivitas jaringan</string>
   <string name="download_wallpaper_list_failed_notice">Gagal memuat direktori wallpaper</string>
   <string name="wallpaper_default_name">Wallpaper</string>
+  <string name="browse_theme_walls">Wallpaper tema</string>
+  <string name="browse_theme_header">Judul tema</string>
+  <string name="pick_header">Pilih tajuk</string>
 </resources>

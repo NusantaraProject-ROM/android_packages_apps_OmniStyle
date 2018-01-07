@@ -39,4 +39,5 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
   <string name="no_network_message">Keine Netzwerkverbindung</string>
   <string name="download_wallpaper_list_failed_notice">Hintergrundbild-Verzeichnis konnte nicht geladen werden</string>
   <string name="wallpaper_default_name">Hintergrundbild</string>
+  <string name="browse_theme_walls">Design Hintergrundbilder</string>
 </resources>
