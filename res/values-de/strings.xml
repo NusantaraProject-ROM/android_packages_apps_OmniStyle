@@ -40,4 +40,6 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
   <string name="download_wallpaper_list_failed_notice">Hintergrundbild-Verzeichnis konnte nicht geladen werden</string>
   <string name="wallpaper_default_name">Hintergrundbild</string>
   <string name="browse_theme_walls">Design Hintergrundbilder</string>
+  <string name="browse_theme_header">Kopfzeilen-Thema</string>
+  <string name="pick_header">Kopfzeilen wählen</string>
 </resources>
