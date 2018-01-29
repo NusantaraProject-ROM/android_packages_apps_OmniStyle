@@ -21,7 +21,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
   <string name="custom_header_image_notice">Başlık resmi ayarlandı</string>
   <string name="browse_walls">Duvar kâğıtları</string>
   <string name="omni_walls">Omni</string>
-  <string name="wallpaper_type_dialog_title">Duvar kâğıdını ayarla</string>
+  <string name="wallpaper_type_dialog_title">Duvar kâğıdı olarak ayarla</string>
   <string name="wallpaper_type_both">Ana ekran ve kilit ekranı</string>
   <string name="wallpaper_type_system">Ana ekran</string>
   <string name="wallpaper_type_lock">Kilit ekranı</string>
