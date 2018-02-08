@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!--
-Copyright (C) 2017 The OmniROM Project
+Copyright (C) 2018 The OmniROM Project
 
 This program is free software: you can redistribute it and/or modify
 it under the terms of the GNU General Public License as published by
@@ -36,7 +36,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
             android:orientation="vertical">
 
             <org.omnirom.omnistyle.GridImageView
-                android:id="@+id/wallpaper_image"
+                android:id="@+id/theme_image"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:scaleType="centerCrop"
@@ -44,25 +44,10 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
                 app:widthRatio="@integer/width_ratio"/>
 
             <TextView
-                android:id="@+id/wallpaper_name"
+                android:id="@+id/theme_name"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_alignTop="@+id/wallpaper_image"
-                android:layout_alignParentStart="true"
-                android:layout_marginTop="10dp"
-                android:layout_marginStart="10dp"
-                android:textStyle="bold"
-                android:textColor="@android:color/white"
-                android:shadowColor="@android:color/black"
-                android:shadowDx="1"
-                android:shadowDy="1"
-                android:shadowRadius="6" />
-
-            <TextView
-                android:id="@+id/wallpaper_creator"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_alignBottom="@+id/wallpaper_image"
+                android:layout_alignBottom="@+id/theme_image"
                 android:layout_alignParentStart="true"
                 android:layout_marginBottom="10dp"
                 android:layout_marginStart="10dp"
@@ -71,8 +56,8 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
                 android:shadowColor="@android:color/black"
                 android:shadowDx="1"
                 android:shadowDy="1"
-                android:shadowRadius="8"
-                android:visibility="gone" />
+                android:shadowRadius="6" />
+
             </RelativeLayout>
     </android.support.v7.widget.CardView>
 </LinearLayout>

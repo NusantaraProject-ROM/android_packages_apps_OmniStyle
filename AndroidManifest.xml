@@ -24,10 +24,11 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
     <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+    <uses-permission android:name="android.permission.CHANGE_OVERLAY_PACKAGES" />
 
     <uses-sdk
-        android:minSdkVersion="24"
-        android:targetSdkVersion="24" />
+        android:minSdkVersion="27"
+        android:targetSdkVersion="27" />
 
     <application
         android:allowBackup="false"
@@ -89,6 +90,15 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
                 <category android:name="android.intent.category.DEFAULT" />
             </intent-filter>
         </activity-alias>
+        <activity
+            android:name="org.omnirom.omnistyle.BrowseThemesActivity"
+            android:label="@string/pick_theme"
+            android:configChanges="orientation|screenSize">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+                <category android:name="android.intent.category.DEFAULT" />
+            </intent-filter>
+        </activity>
 
         <activity
             android:name=".weather"

@@ -1,6 +1,5 @@
-package org.omnirom.omnistyle;
 /*
- *  Copyright (C) 2017 The OmniROM Project
+ *  Copyright (C) 2018 The OmniROM Project
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -17,23 +16,25 @@ package org.omnirom.omnistyle;
  *
  */
 
+package org.omnirom.omnistyle;
+
 import android.content.Context;
 import android.content.res.TypedArray;
 import android.util.AttributeSet;
 import android.widget.ImageView;
 
-public class WallpaperImageView extends ImageView {
+public class GridImageView extends ImageView {
 
     private int mWidthRatio;
     private int mHeightRatio;
 
-    public WallpaperImageView(Context context, AttributeSet attrs) {
+    public GridImageView(Context context, AttributeSet attrs) {
         super(context, attrs);
-        TypedArray typedArray = context.obtainStyledAttributes(attrs, R.styleable.WallpaperImageView);
+        TypedArray typedArray = context.obtainStyledAttributes(attrs, R.styleable.GridImageView);
 
         try {
-            mWidthRatio = typedArray.getInteger(R.styleable.WallpaperImageView_widthRatio, 10);
-            mHeightRatio = typedArray.getInteger(R.styleable.WallpaperImageView_heightRatio, 10);
+            mWidthRatio = typedArray.getInteger(R.styleable.GridImageView_widthRatio, 10);
+            mHeightRatio = typedArray.getInteger(R.styleable.GridImageView_heightRatio, 10);
         } finally {
             typedArray.recycle();
         }
