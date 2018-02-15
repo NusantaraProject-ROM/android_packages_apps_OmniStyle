@@ -44,6 +44,7 @@ import android.support.v7.widget.RecyclerView;
 import android.text.TextUtils;
 import android.util.Log;
 import android.view.Display;
+import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
@@ -71,6 +72,7 @@ import java.io.InputStream;
 import java.net.URL;
 import java.nio.charset.StandardCharsets;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 import javax.net.ssl.HttpsURLConnection;
@@ -82,6 +84,11 @@ public class BrowseWallsActivity extends Activity {
     private static final String WALLPAPER_LIST_URI = "https://dl.omnirom.org/images/wallpapers/thumbs/json_wallpapers_xml.php";
     private static final String WALLPAPER_THUMB_URI = "https://dl.omnirom.org/images/wallpapers/thumbs/";
     private static final String WALLPAPER_FULL_URI = "https://dl.omnirom.org/images/wallpapers/";
+    private static final String EMPTY_CREATOR = "ZZZ";
+
+    private static final int SORT_BY_DEFAULT = 0;
+    private static final int SORT_BY_CREATOR = 1;
+    private static final int SORT_BY_TAG = 2;
 
     private static final boolean DEBUG = false;
     private List<WallpaperInfo> mWallpaperList;
@@ -97,24 +104,55 @@ public class BrowseWallsActivity extends Activity {
     private int mCurrentLocation;
     private TextView mNoNetworkMessage;
     private ProgressBar mProgressBar;
-    private String mWallpaperDisplayDefault;
+    private String mFilterTag;
+    private int mSortType = SORT_BY_DEFAULT;
 
     private static final int HTTP_READ_TIMEOUT = 30000;
     private static final int HTTP_CONNECTION_TIMEOUT = 30000;
     private static final int PERMISSIONS_REQUEST_READ_EXTERNAL_STORAGE = 0;
 
-    private class WallpaperInfo {
+    private class WallpaperInfo implements Comparable<WallpaperInfo> {
         public String mImage;
         public String mCreator;
         public String mDisplayName;
+        public String mTag;
+
+        @Override
+        public int compareTo(WallpaperInfo o) {
+            if (mSortType == SORT_BY_CREATOR && mCreator != null) {
+                return mCreator.compareToIgnoreCase(o.mCreator);
+            }
+            if (mSortType == SORT_BY_TAG && mTag != null) {
+                return mTag.compareToIgnoreCase(o.mTag);
+            }
+            if (mSortType == SORT_BY_DEFAULT && mDisplayName != null) {
+                return mDisplayName.compareToIgnoreCase(o.mDisplayName);
+            }
+            return 0;
+        }
     }
 
-    private class RemoteWallpaperInfo {
+    private class RemoteWallpaperInfo implements Comparable<RemoteWallpaperInfo> {
         public String mImage;
         public String mUri;
         public String mThumbUri;
         public String mCreator;
         public String mDisplayName;
+        public String mTag;
+
+        @Override
+        public int compareTo(RemoteWallpaperInfo o) {
+            if (mSortType == SORT_BY_CREATOR && mCreator != null) {
+                return mCreator.compareToIgnoreCase(o.mCreator);
+            }
+            if (mSortType == SORT_BY_TAG && mTag != null) {
+                return mTag.compareToIgnoreCase(o.mTag);
+            }
+            if (mSortType == SORT_BY_DEFAULT && mDisplayName != null) {
+                return mDisplayName.compareToIgnoreCase(o.mDisplayName);
+            }
+            return 0;
+        }
     }
 
     class ImageHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
@@ -178,8 +216,9 @@ public class BrowseWallsActivity extends Activity {
                     holder.mWallpaperImage.setImageDrawable(null);
                 }
 
-                holder.mWallpaperName.setText(TextUtils.isEmpty(wi.mDisplayName) ? mWallpaperDisplayDefault + " " + (position + 1) : wi.mDisplayName);
-                holder.mWallpaperCreator.setVisibility(TextUtils.isEmpty(wi.mCreator) ? View.GONE : View.VISIBLE);
+                holder.mWallpaperName.setVisibility(TextUtils.isEmpty(wi.mDisplayName) ? View.GONE : View.VISIBLE);
+                holder.mWallpaperName.setText(wi.mDisplayName);
+                holder.mWallpaperCreator.setVisibility(TextUtils.isEmpty(wi.mCreator) ||  wi.mCreator.equals(EMPTY_CREATOR)? View.GONE : View.VISIBLE);
                 holder.mWallpaperCreator.setText(wi.mCreator);
             } catch (Exception e) {
                 holder.mWallpaperImage.setImageDrawable(null);
@@ -209,8 +248,9 @@ public class BrowseWallsActivity extends Activity {
                 RemoteWallpaperInfo wi = mWallpaperUrlList.get(position);
                 Picasso.with(BrowseWallsActivity.this).load(wi.mThumbUri).into(holder.mWallpaperImage);
 
-                holder.mWallpaperName.setText(TextUtils.isEmpty(wi.mDisplayName) ? mWallpaperDisplayDefault + " " + (position + 1) : wi.mDisplayName);
-                holder.mWallpaperCreator.setVisibility(TextUtils.isEmpty(wi.mCreator) ? View.GONE : View.VISIBLE);
+                holder.mWallpaperName.setVisibility(TextUtils.isEmpty(wi.mDisplayName) ? View.GONE : View.VISIBLE);
+                holder.mWallpaperName.setText(wi.mDisplayName);
+                holder.mWallpaperCreator.setVisibility(TextUtils.isEmpty(wi.mCreator) ||  wi.mCreator.equals(EMPTY_CREATOR)? View.GONE : View.VISIBLE);
                 holder.mWallpaperCreator.setText(wi.mCreator);
             } catch (Exception e) {
                 holder.mWallpaperImage.setImageDrawable(null);
@@ -226,8 +266,12 @@ public class BrowseWallsActivity extends Activity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        Intent intent = getIntent();
+        if (intent != null && intent.hasExtra("sortWallpapers")) {
+            mFilterTag = intent.getStringExtra("sortWallpapers");
+        }
+
         setContentView(R.layout.content_wallpapers);
-        mWallpaperDisplayDefault = getResources().getString(R.string.wallpaper_default_name);
         mPackageName = getClass().getPackage().getName();
         getActionBar().setDisplayOptions(ActionBar.DISPLAY_HOME_AS_UP | ActionBar.DISPLAY_SHOW_TITLE);
 
@@ -281,7 +325,7 @@ public class BrowseWallsActivity extends Activity {
             mAdapterRemote = new WallpaperRemoteListAdapter();
 
             mWallpaperView.setAdapter(mAdapter);
-            mAdapter.notifyDataSetChanged();
+            sortWallpapers();
         } catch (Exception e) {
             Log.e(TAG, "init failed", e);
         }
@@ -296,8 +340,20 @@ public class BrowseWallsActivity extends Activity {
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
-        if (item.getItemId() == android.R.id.home) {
-            finish();
+        switch (item.getItemId()) {
+            case android.R.id.home:
+                finish();
+                break;
+            case R.id.sort_by:
+                if (mSortType == SORT_BY_CREATOR) {
+                    mSortType = SORT_BY_DEFAULT;
+                    item.setTitle(getResources().getString(R.string.sort_by_creator_menu));
+                } else if (mSortType == SORT_BY_DEFAULT) {
+                    mSortType = SORT_BY_CREATOR;
+                    item.setTitle(getResources().getString(R.string.sort_by_default_menu));
+                }
+                sortWallpapers();
+                break;
         }
         return true;
     }
@@ -341,8 +397,9 @@ public class BrowseWallsActivity extends Activity {
                     String displayName = parser.getAttributeValue(null, "name");
                     WallpaperInfo wi = new WallpaperInfo();
                     wi.mImage = image;
-                    wi.mCreator = creator;
-                    wi.mDisplayName = displayName;
+                    wi.mCreator = TextUtils.isEmpty(creator) ? EMPTY_CREATOR : creator;
+                    wi.mDisplayName = TextUtils.isEmpty(displayName) ? "" : displayName;
+                    wi.mTag = "";
                     if (DEBUG)
                         Log.i(TAG, "add wallpaper " + image + " " + mRes.getIdentifier(image, "drawable", mPackageName));
                     mWallpaperList.add(wi);
@@ -477,6 +534,15 @@ public class BrowseWallsActivity extends Activity {
                 if (build.has("name")) {
                     displayName = build.getString("name");
                 }
+                String tag = null;
+                if (build.has("tag")) {
+                    tag = build.getString("tag");
+                }
+                if (!TextUtils.isEmpty(mFilterTag)) {
+                    if (TextUtils.isEmpty(tag) || !tag.equals(mFilterTag)) {
+                        continue;
+                    }
+                }
                 if (fileName.lastIndexOf(".") != -1) {
                     String ext = fileName.substring(fileName.lastIndexOf("."));
                     if (ext.equals(".png") || ext.equals(".jpg")) {
@@ -484,8 +550,9 @@ public class BrowseWallsActivity extends Activity {
                         wi.mImage = fileName;
                         wi.mThumbUri = WALLPAPER_THUMB_URI + fileName;
                         wi.mUri = WALLPAPER_FULL_URI + fileName;
-                        wi.mCreator = creator;
-                        wi.mDisplayName = displayName;
+                        wi.mCreator = TextUtils.isEmpty(creator) ? EMPTY_CREATOR : creator;
+                        wi.mDisplayName = TextUtils.isEmpty(displayName) ? "" : displayName;
+                        wi.mTag = TextUtils.isEmpty(tag) ? "" : tag;
                         urlList.add(wi);
                         if (DEBUG) Log.d(TAG, "add remote wallpaper = " + wi.mUri);
                     }
@@ -561,7 +628,7 @@ public class BrowseWallsActivity extends Activity {
             if (mError) {
                 Toast.makeText(BrowseWallsActivity.this, R.string.download_wallpaper_list_failed_notice, Toast.LENGTH_LONG).show();
             }
-            mAdapterRemote.notifyDataSetChanged();
+            sortWallpapers();
         }
     }
 
@@ -744,6 +811,20 @@ public class BrowseWallsActivity extends Activity {
         GridLayoutManager manager = (GridLayoutManager) mWallpaperView.getLayoutManager();
         manager.setSpanCount(spanCount);
         manager.requestLayout();
+    }
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        super.onCreateOptionsMenu(menu);
+        getMenuInflater().inflate(R.menu.sort_menu, menu);
+        return true;
+    }
+
+    private void sortWallpapers() {
+        Collections.sort(mWallpaperList);
+        mAdapter.notifyDataSetChanged();
+        Collections.sort(mWallpaperUrlList);
+        mAdapterRemote.notifyDataSetChanged();
     }
 }
 
