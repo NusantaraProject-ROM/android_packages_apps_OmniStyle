@@ -52,7 +52,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
                 android:textColor="?android:attr/textColorPrimary" />
         </LinearLayout>
 
-        <ListView
+        <android.support.v7.widget.RecyclerView
             android:id="@+id/package_images"
             android:layout_width="match_parent"
             android:layout_height="0dp"
@@ -60,7 +60,8 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
             android:padding="@dimen/activity_horizontal_margin"
             android:divider="@null"
             android:dividerHeight="0dip"
-            android:clipToPadding="false" />
+            android:clipToPadding="false"
+            android:layout_gravity="center_horizontal" />
 
     </LinearLayout>
 
