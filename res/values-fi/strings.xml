@@ -16,4 +16,14 @@ GNU General Public License for more details.
 You should have received a copy of the GNU General Public License
 along with this program.  If not, see <http://www.gnu.org/licenses/>.
 -->
-<resources></resources>
+<resources>
+  <string name="browse_walls">Taustakuvat</string>
+  <string name="omni_walls">Omni</string>
+  <string name="wallpaper_type_dialog_title">Aseta taustakuva</string>
+  <string name="wallpaper_type_lock">Lukitusnäyttö</string>
+  <string name="scrolling_wall_dialog_text">Haluatko rajata taustakuvan näytön kokoon\u003f</string>
+  <string name="scrolling_wall_dialog_title">Rajaa taustakuva</string>
+  <string name="scrolling_wall_yes">Ei</string>
+  <string name="scrolling_wall_no">Kyllä</string>
+  <string name="wallpaper_default_name">Taustakuva</string>
+</resources>

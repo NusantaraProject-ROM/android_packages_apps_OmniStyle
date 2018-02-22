@@ -39,4 +39,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
   <string name="no_network_message">无网络连接</string>
   <string name="download_wallpaper_list_failed_notice">加载壁纸目录失败</string>
   <string name="wallpaper_default_name">壁纸</string>
+  <string name="browse_theme_walls">主题壁纸</string>
+  <string name="browse_theme_header">顶部主题</string>
+  <string name="pick_header">选择顶部</string>
 </resources>

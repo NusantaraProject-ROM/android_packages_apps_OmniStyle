@@ -40,6 +40,6 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
   <string name="download_wallpaper_list_failed_notice">Échec du chargement du répertoire des fonds d\'écran</string>
   <string name="wallpaper_default_name">Fond d\'écran</string>
   <string name="browse_theme_walls">Thèmes de fond d\'écran</string>
-  <string name="browse_theme_header">En-têtes de thèmes</string>
+  <string name="browse_theme_header">Thème des en-têtes</string>
   <string name="pick_header">Choisir les en-têtes</string>
 </resources>
