@@ -32,8 +32,8 @@ public class NetworkUtils {
     private static final boolean DEBUG = false;
     private static final String TAG = "NetworkUtils";
 
-    private static final int HTTP_READ_TIMEOUT = 30000;
-    private static final int HTTP_CONNECTION_TIMEOUT = 30000;
+    private static final int HTTP_READ_TIMEOUT = 60000;
+    private static final int HTTP_CONNECTION_TIMEOUT = 60000;
 
     public static HttpsURLConnection setupHttpsRequest(String urlStr) {
         URL url;

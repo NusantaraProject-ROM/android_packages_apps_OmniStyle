@@ -30,7 +30,7 @@ import java.io.InputStream;
 import java.util.List;
 
 public class HeaderUtils {
-    private static final boolean DEBUG = true;
+    private static final boolean DEBUG = false;
     private static final String TAG = "BrowseHeaderActivity";
 
     public static class DaylightHeaderInfo {

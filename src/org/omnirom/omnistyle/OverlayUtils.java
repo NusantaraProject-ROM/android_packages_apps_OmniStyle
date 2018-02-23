@@ -37,7 +37,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class OverlayUtils {
-    private static final boolean DEBUG = true;
+    private static final boolean DEBUG = false;
     private static final String TAG = "OverlayUtils";
 
     private static final String OMNI_THEME_PREFIX = "org.omnirom.";
