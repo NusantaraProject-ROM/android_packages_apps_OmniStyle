@@ -46,6 +46,7 @@ LOCAL_PACKAGE_NAME := OmniStyle
 LOCAL_CERTIFICATE := platform
 LOCAL_PRIVILEGED_MODULE := true
 LOCAL_MODULE_TAGS := optional
+LOCAL_DEX_PREOPT := false
 include $(BUILD_PACKAGE)
 
 include $(CLEAR_VARS)

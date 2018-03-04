@@ -50,4 +50,14 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
     <string name="download_header_failed_notice">Downloading header failed</string>
     <string name="header_location_local">Local</string>
     <string name="header_location_online">Online</string>
+    <string name="compose_theme">Compose theme</string>
+    <string name="theme_accent">Accent</string>
+    <string name="theme_primary">Primary</string>
+    <string name="theme_notification">Notification</string>
+    <string name="theme_compose">Compose</string>
+    <string name="button_apply">Apply</string>
+    <string name="overlay_preview_text" translatable="false">Lorem ipsum dolor sit amet</string>
+    <string name="overlay_preview_switch" translatable="false">Stet clita kasd gubergren</string>
+    <string name="overlay_preview_button1" translatable="false" >Yaj</string>
+    <string name="overlay_preview_button2" translatable="false" >Nej</string>
 </resources>

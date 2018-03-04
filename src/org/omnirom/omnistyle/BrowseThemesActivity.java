@@ -19,19 +19,15 @@ package org.omnirom.omnistyle;
 
 import android.app.ActionBar;
 import android.app.Activity;
+import android.content.Intent;
 import android.content.res.Configuration;
 import android.content.res.TypedArray;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
-import android.graphics.BlurMaskFilter;
-import android.graphics.Canvas;
 import android.graphics.Color;
-import android.graphics.Paint;
-import android.graphics.PaintFlagsDrawFilter;
 import android.graphics.PorterDuff;
 import android.graphics.drawable.BitmapDrawable;
 import android.graphics.drawable.ColorDrawable;
-import android.graphics.drawable.Drawable;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.renderscript.Allocation;
@@ -40,7 +36,6 @@ import android.renderscript.RenderScript;
 import android.renderscript.ScriptIntrinsicBlur;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.RecyclerView;
-import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
@@ -51,6 +46,7 @@ import android.widget.TextView;
 import java.io.IOException;
 import java.io.InputStream;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 public class BrowseThemesActivity extends Activity {
@@ -58,31 +54,39 @@ public class BrowseThemesActivity extends Activity {
     private static final float BITMAP_SCALE = 0.5f;
     private static final float BLUR_RADIUS = 7.5f;
 
-    private List<ThemeInfo> mThemeList;
+    private List<ThemeInfo> mThemeList = new ArrayList();
     private RecyclerView mThemeView;
     private ThemeListAdapter mAdapter;
     private ProgressBar mProgressBar;
     private OverlayUtils mOverlayUtils;
     private String mCurrentTheme;
-    private int mAccentColor;
+    private int mDefaultColor;
 
-    private class ThemeInfo {
+    private class ThemeInfo implements Comparable<ThemeInfo> {
         public String mPackageName;
-        public CharSequence mName;
+        public String mName;
         public BitmapDrawable mThumbNail;
         public Bitmap mThumbNailBlur;
+        public boolean mComposePlaceholder;
+
+        @Override
+        public int compareTo(ThemeInfo o) {
+            return mName.compareTo(o.mName);
+        }
     }
 
     class ImageHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
         public View rootView;
         public ImageView mThemeImage;
         public TextView mThemeName;
+        public ImageView mThemeImageOverlay;
 
         ImageHolder(View itemView) {
             super(itemView);
             rootView = itemView;
             mThemeImage = (ImageView) itemView.findViewById(R.id.theme_image);
             mThemeName = (TextView) itemView.findViewById(R.id.theme_name);
+            mThemeImageOverlay = (ImageView) itemView.findViewById(R.id.theme_image_overlay);
             rootView.setOnClickListener(this);
         }
 
@@ -90,7 +94,16 @@ public class BrowseThemesActivity extends Activity {
         public void onClick(View view) {
             int position = getAdapterPosition();
             ThemeInfo wi = mThemeList.get(position);
-            mOverlayUtils.enableTheme(wi.mPackageName);
+            if (wi.mComposePlaceholder) {
+                if (mOverlayUtils.getCurrentTheme() != null) {
+                    // if full theme is currently active we must disable first
+                    mOverlayUtils.disableTheme();
+                }
+                Intent composeIntent = new Intent(BrowseThemesActivity.this, ComposeThemeActivity.class);
+                startActivity(composeIntent);
+            } else {
+                mOverlayUtils.enableTheme(wi.mPackageName);
+            }
         }
     }
 
@@ -106,8 +119,11 @@ public class BrowseThemesActivity extends Activity {
         public void onBindViewHolder(RecyclerView.ViewHolder h, int position) {
             final ImageHolder holder = (ImageHolder) h;
             ThemeInfo wi = mThemeList.get(position);
+            holder.mThemeImageOverlay.setVisibility(wi.mComposePlaceholder ? View.VISIBLE : View.GONE);
             if (wi.mThumbNail != null) {
-                if (!wi.mPackageName.equals(mCurrentTheme)) {
+                if (wi.mComposePlaceholder) {
+                    holder.mThemeImage.setImageDrawable(wi.mThumbNail);
+                } else if (wi.mThumbNailBlur != null && !wi.mPackageName.equals(mCurrentTheme)) {
                     holder.mThemeImage.setImageBitmap(wi.mThumbNailBlur);
                 } else {
                     holder.mThemeImage.setImageDrawable(wi.mThumbNail);
@@ -115,8 +131,12 @@ public class BrowseThemesActivity extends Activity {
             } else {
                 holder.mThemeImage.setImageDrawable(new ColorDrawable(Color.DKGRAY));
             }
-            if (wi.mPackageName.equals(mCurrentTheme)) {
-                holder.mThemeName.setTextColor(mAccentColor);
+            if (!wi.mComposePlaceholder) {
+                if (wi.mPackageName.equals(OverlayUtils.KEY_THEMES_DISABLED)) {
+                    holder.mThemeName.setTextColor(mDefaultColor);
+                } else {
+                    holder.mThemeName.setTextColor(mOverlayUtils.getThemeColor(wi.mPackageName, "omni_color5"));
+                }
             } else {
                 holder.mThemeName.setTextColor(Color.WHITE);
             }
@@ -143,14 +163,18 @@ public class BrowseThemesActivity extends Activity {
         mAdapter = new ThemeListAdapter();
         mThemeView.setAdapter(mAdapter);
 
-        mCurrentTheme = mOverlayUtils.getCurrentTheme();
+        mCurrentTheme = mOverlayUtils.getCurrentTheme(OverlayUtils.OMNI_THEME_PREFIX);
         if (mCurrentTheme == null) {
             mCurrentTheme = OverlayUtils.KEY_THEMES_DISABLED;
         }
-        mAccentColor = getColorAttr(android.R.attr.colorAccent);
+        mDefaultColor = getColor(R.color.system_default_accent);
+    }
 
-        mThemeList = reloadThemes();
-        mAdapter.notifyDataSetChanged();
+    @Override
+    public void onResume() {
+        super.onResume();
+        mProgressBar.setVisibility(View.VISIBLE);
+        new LoadThemesTask().execute();
     }
 
     @Override
@@ -188,30 +212,40 @@ public class BrowseThemesActivity extends Activity {
         return null;
     }
 
-    private List<ThemeInfo> reloadThemes() {
-        List<ThemeInfo> themeList = new ArrayList<ThemeInfo>();
+    private void reloadThemes() {
+        mThemeList.clear();
         String[] themes = mOverlayUtils.getAvailableThemes();
         for (String theme : themes) {
             CharSequence name = mOverlayUtils.getThemeLabel(theme);
             BitmapDrawable thumbnail = mOverlayUtils.getThemeThumbnail(theme);
             ThemeInfo wi = new ThemeInfo();
             wi.mPackageName = theme;
-            wi.mName = name;
+            wi.mName = name.toString();
             wi.mThumbNail = thumbnail;
             if (thumbnail != null) {
                 wi.mThumbNailBlur = blur(thumbnail.getBitmap());
             }
-            themeList.add(wi);
+            mThemeList.add(wi);
         }
-        ThemeInfo wi = new ThemeInfo();
-        wi.mPackageName = OverlayUtils.KEY_THEMES_DISABLED;
-        wi.mName = getResources().getString(R.string.theme_disable);
-        wi.mThumbNail = getDefaultThemeThumbnail();
-        if (wi.mThumbNail != null) {
-            wi.mThumbNailBlur = blur(wi.mThumbNail.getBitmap());
+        Collections.sort(mThemeList);
+        ThemeInfo defaultItem = new ThemeInfo();
+        defaultItem.mPackageName = OverlayUtils.KEY_THEMES_DISABLED;
+        defaultItem.mName = getResources().getString(R.string.theme_disable);
+        defaultItem.mThumbNail = getDefaultThemeThumbnail();
+        if (defaultItem.mThumbNail != null) {
+            defaultItem.mThumbNailBlur = blur(defaultItem.mThumbNail.getBitmap());
         }
-        themeList.add(0, wi);
-        return themeList;
+        mThemeList.add(0, defaultItem);
+
+        ThemeInfo composeItem = new ThemeInfo();
+        composeItem.mName = getResources().getString(R.string.theme_compose);
+        composeItem.mComposePlaceholder = true;
+        BitmapDrawable defaultThumbnail = getDefaultThemeThumbnail();
+        defaultThumbnail = new BitmapDrawable(getResources(), blur(defaultThumbnail.getBitmap()));
+        int shadow = Color.argb(128, 0, 0, 0);
+        defaultThumbnail.setColorFilter(shadow, PorterDuff.Mode.SRC_ATOP);
+        composeItem.mThumbNail = defaultThumbnail;
+        mThemeList.add(0, composeItem);
     }
 
     private Bitmap blur(Bitmap image) {
@@ -233,10 +267,18 @@ public class BrowseThemesActivity extends Activity {
         return outputBitmap;
     }
 
-    private int getColorAttr(int attr) {
-        TypedArray ta = this.obtainStyledAttributes(new int[]{attr});
-        int colorAccent = ta.getColor(0, 0);
-        ta.recycle();
-        return colorAccent;
+    private class LoadThemesTask extends AsyncTask<Void, Void, Void> {
+        @Override
+        protected Void doInBackground(Void... params) {
+            reloadThemes();
+            return null;
+        }
+
+        @Override
+        protected void onPostExecute(Void feed) {
+            mProgressBar.setVisibility(View.GONE);
+            mAdapter.notifyDataSetChanged();
+        }
     }
+
 }

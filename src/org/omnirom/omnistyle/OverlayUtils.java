@@ -30,6 +30,7 @@ import android.graphics.drawable.Drawable;
 import android.os.RemoteException;
 import android.os.UserHandle;
 import android.os.ServiceManager;
+import android.util.Log;
 
 import java.io.IOException;
 import java.io.InputStream;
@@ -37,10 +38,13 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class OverlayUtils {
-    private static final boolean DEBUG = false;
     private static final String TAG = "OverlayUtils";
+    private static final boolean DEBUG = true;
 
-    private static final String OMNI_THEME_PREFIX = "org.omnirom.";
+    public static final String OMNI_THEME_PREFIX = "org.omnirom.theme";
+    public static final String OMNI_ACCENT_THEME_PREFIX = "org.omnirom.theme.accent";
+    public static final String OMNI_PRIMARY_THEME_PREFIX = "org.omnirom.theme.primary";
+    public static final String OMNI_NOTIFICATION_THEME_PREFIX = "org.omnirom.theme.notification";
     public static final String KEY_THEMES_DISABLED = "default";
 
     private final OverlayManager mOverlayService;
@@ -91,13 +95,25 @@ public class OverlayUtils {
         return null;
     }
 
+    public int getThemeColor(String packageName, String colorResource)  {
+        if (packageName.startsWith(OMNI_THEME_PREFIX)) {
+            try {
+                Resources themeResources = mPackageManager.getResourcesForApplication(packageName);
+                int resId = themeResources.getIdentifier(colorResource, "color", packageName);
+                return themeResources.getColor(resId);
+            } catch (Exception e) {
+            }
+        }
+        return 0;
+    }
+
     public String getCurrentTheme() {
         try {
             List<OverlayInfo> infos = mOverlayService.getOverlayInfosForTarget("android",
                     UserHandle.myUserId());
             for (int i = 0, size = infos.size(); i < size; i++) {
                 if (infos.get(i).isEnabled() &&
-                        infos.get(i).packageName.startsWith(OMNI_THEME_PREFIX) &&
+                        isFullTheme(infos.get(i).packageName) &&
                         isChangeableOverlay(infos.get(i).packageName)) {
                     return infos.get(i).packageName;
                 }
@@ -107,12 +123,56 @@ public class OverlayUtils {
         return null;
     }
 
+    public String getCurrentTheme(String prefix) {
+        try {
+            List<OverlayInfo> infos = mOverlayService.getOverlayInfosForTarget("android",
+                    UserHandle.myUserId());
+            for (int i = 0, size = infos.size(); i < size; i++) {
+                if (infos.get(i).isEnabled() &&
+                        infos.get(i).packageName.startsWith(prefix) &&
+                        isChangeableOverlay(infos.get(i).packageName)) {
+                    return infos.get(i).packageName;
+                }
+            }
+        } catch (RemoteException e) {
+        }
+        return null;
+    }
+
+    public boolean isThemeEnabled(String packageName) {
+        try {
+            List<OverlayInfo> infos = mOverlayService.getOverlayInfosForTarget("android",
+                    UserHandle.myUserId());
+            for (int i = 0, size = infos.size(); i < size; i++) {
+                if (infos.get(i).packageName.equals(packageName)) {
+                    return infos.get(i).isEnabled();
+                }
+            }
+        } catch (RemoteException e) {
+        }
+        return false;
+    }
+
     public void enableTheme(String packageName) {
+        if (DEBUG) Log.d(TAG, "enableTheme " + packageName);
         try {
             if (packageName.equals(KEY_THEMES_DISABLED)) {
                 disableTheme();
             } else {
                 mOverlayService.setEnabledExclusive(packageName, true, UserHandle.myUserId());
+            }
+        } catch (RemoteException e) {
+        }
+    }
+
+    public void enableThemeList(List<String> packageNameList) {
+        if (DEBUG) Log.d(TAG, "enableThemeList " + packageNameList);
+        try {
+            disableTheme();
+            for (String packageName : packageNameList) {
+                if (!packageName.equals(KEY_THEMES_DISABLED)) {
+                    mOverlayService.setEnabled(packageName, true, UserHandle.myUserId());
+                }
             }
         } catch (RemoteException e) {
         }
@@ -133,13 +193,37 @@ public class OverlayUtils {
         }
     }
 
+    private boolean isFullTheme(String packageName) {
+        return packageName.startsWith(OMNI_THEME_PREFIX) &&
+                !packageName.startsWith(OMNI_ACCENT_THEME_PREFIX) &&
+                !packageName.startsWith(OMNI_PRIMARY_THEME_PREFIX) &&
+                !packageName.startsWith(OMNI_NOTIFICATION_THEME_PREFIX);
+    }
+
     public String[] getAvailableThemes() {
         try {
             List<OverlayInfo> infos = mOverlayService.getOverlayInfosForTarget("android",
                     UserHandle.myUserId());
             List<String> pkgs = new ArrayList(infos.size());
             for (int i = 0, size = infos.size(); i < size; i++) {
-                if (infos.get(i).packageName.startsWith(OMNI_THEME_PREFIX) &&
+                if (isFullTheme(infos.get(i).packageName) &&
+                        isChangeableOverlay(infos.get(i).packageName)) {
+                    pkgs.add(infos.get(i).packageName);
+                }
+            }
+            return pkgs.toArray(new String[pkgs.size()]);
+        } catch (RemoteException e) {
+        }
+        return new String[0];
+    }
+
+    public String[] getAvailableThemes(String prefix) {
+        try {
+            List<OverlayInfo> infos = mOverlayService.getOverlayInfosForTarget("android",
+                    UserHandle.myUserId());
+            List<String> pkgs = new ArrayList(infos.size());
+            for (int i = 0, size = infos.size(); i < size; i++) {
+                if (infos.get(i).packageName.startsWith(prefix) &&
                         isChangeableOverlay(infos.get(i).packageName)) {
                     pkgs.add(infos.get(i).packageName);
                 }
@@ -174,3 +258,4 @@ public class OverlayUtils {
         }
     }
 }
+
