@@ -60,4 +60,5 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
     <string name="overlay_preview_switch" translatable="false">Stet clita kasd gubergren</string>
     <string name="overlay_preview_button1" translatable="false" >Yaj</string>
     <string name="overlay_preview_button2" translatable="false" >Nej</string>
+    <string name="notification_overlay_info">Reboot is required after\nchanging notification overlay</string>
 </resources>

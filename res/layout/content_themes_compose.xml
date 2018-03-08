@@ -222,6 +222,18 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
             android:orientation="horizontal"
             android:padding="10dp">
 
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/ic_info_outline_24dp"/>
+            
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:paddingStart="10dp"
+                android:maxLines="2"
+                android:text="@string/notification_overlay_info"/>
+
             <Space
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
