@@ -23,6 +23,7 @@ import android.content.om.OverlayInfo;
 import android.content.pm.PackageInfo;
 import android.content.pm.PackageManager;
 import android.content.res.Resources;
+import android.content.res.XmlResourceParser;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.drawable.BitmapDrawable;
@@ -30,7 +31,12 @@ import android.graphics.drawable.Drawable;
 import android.os.RemoteException;
 import android.os.UserHandle;
 import android.os.ServiceManager;
+import android.text.TextUtils;
 import android.util.Log;
+
+import org.xmlpull.v1.XmlPullParser;
+import org.xmlpull.v1.XmlPullParserException;
+import org.xmlpull.v1.XmlPullParserFactory;
 
 import java.io.IOException;
 import java.io.InputStream;
@@ -39,9 +45,9 @@ import java.util.List;
 
 public class OverlayUtils {
     private static final String TAG = "OverlayUtils";
-    private static final boolean DEBUG = true;
+    private static final boolean DEBUG = false;
 
-    public static final String OMNI_THEME_PREFIX = "org.omnirom.theme";
+    private static final String OMNI_THEME_PREFIX = "org.omnirom.theme";
     public static final String OMNI_ACCENT_THEME_PREFIX = "org.omnirom.theme.accent";
     public static final String OMNI_PRIMARY_THEME_PREFIX = "org.omnirom.theme.primary";
     public static final String OMNI_NOTIFICATION_THEME_PREFIX = "org.omnirom.theme.notification";
@@ -50,11 +56,35 @@ public class OverlayUtils {
     private final OverlayManager mOverlayService;
     private final PackageManager mPackageManager;
     private final Context mContext;
+    private List<ThemeInfo> mThemeList = new ArrayList<>();
+
+    public static class ThemeInfo implements Comparable<ThemeInfo> {
+        String mName;
+        String mThumbNailFile;
+        String mAccent;
+        String mPrimary;
+        String mNotification;
+        BitmapDrawable mThumbNail;
+        Bitmap mThumbNailBlur;
+        boolean mComposePlaceholder;
+        boolean mDefaultPlaceholder;
+
+        @Override
+        public int compareTo(ThemeInfo o) {
+            return mName.compareTo(o.mName);
+        }
+    
+        @Override
+        public String toString() {
+            return mName + " " + mThumbNailFile + " " + mAccent + "," + mPrimary + "," + mNotification;
+        }
+    }
 
     public OverlayUtils(Context context) {
         mContext = context;
         mOverlayService = new OverlayManager();
         mPackageManager = context.getPackageManager();
+        loadThemesFromXml();
     }
 
     private boolean isChangeableOverlay(String packageName) {
@@ -76,13 +106,12 @@ public class OverlayUtils {
         return label;
     }
 
-    public BitmapDrawable getThemeThumbnail(String packageName)  {
+    public BitmapDrawable getThemeThumbnail(ThemeInfo ti)  {
         InputStream in = null;
         try {
-            Resources themeResources = mPackageManager.getResourcesForApplication(packageName);
-            in = themeResources.getAssets().open("thumbnail.png");
+            in = mContext.getAssets().open(ti.mThumbNailFile);
             Bitmap b = BitmapFactory.decodeStream(in);
-            return new BitmapDrawable(themeResources, b);
+            return new BitmapDrawable(mContext.getResources(), b);
         } catch(Exception e) {
         } finally {
             if (in != null) {
@@ -100,27 +129,11 @@ public class OverlayUtils {
             try {
                 Resources themeResources = mPackageManager.getResourcesForApplication(packageName);
                 int resId = themeResources.getIdentifier(colorResource, "color", packageName);
-                return themeResources.getColor(resId);
+                return themeResources.getColor(resId, null);
             } catch (Exception e) {
             }
         }
         return 0;
-    }
-
-    public String getCurrentTheme() {
-        try {
-            List<OverlayInfo> infos = mOverlayService.getOverlayInfosForTarget("android",
-                    UserHandle.myUserId());
-            for (int i = 0, size = infos.size(); i < size; i++) {
-                if (infos.get(i).isEnabled() &&
-                        isFullTheme(infos.get(i).packageName) &&
-                        isChangeableOverlay(infos.get(i).packageName)) {
-                    return infos.get(i).packageName;
-                }
-            }
-        } catch (RemoteException e) {
-        }
-        return null;
     }
 
     public String getCurrentTheme(String prefix) {
@@ -139,7 +152,7 @@ public class OverlayUtils {
         return null;
     }
 
-    public boolean isThemeEnabled(String packageName) {
+    private boolean isThemeEnabled(String packageName) {
         try {
             List<OverlayInfo> infos = mOverlayService.getOverlayInfosForTarget("android",
                     UserHandle.myUserId());
@@ -153,16 +166,9 @@ public class OverlayUtils {
         return false;
     }
 
-    public void enableTheme(String packageName) {
-        if (DEBUG) Log.d(TAG, "enableTheme " + packageName);
-        try {
-            if (packageName.equals(KEY_THEMES_DISABLED)) {
-                disableTheme();
-            } else {
-                mOverlayService.setEnabledExclusive(packageName, true, UserHandle.myUserId());
-            }
-        } catch (RemoteException e) {
-        }
+    public boolean isThemeEnabled(ThemeInfo themeInfo) {
+        return isThemeEnabled(themeInfo.mAccent) && isThemeEnabled(themeInfo.mPrimary)
+                    && isThemeEnabled(themeInfo.mNotification);
     }
 
     public void enableThemeList(List<String> packageNameList) {
@@ -193,30 +199,6 @@ public class OverlayUtils {
         }
     }
 
-    private boolean isFullTheme(String packageName) {
-        return packageName.startsWith(OMNI_THEME_PREFIX) &&
-                !packageName.startsWith(OMNI_ACCENT_THEME_PREFIX) &&
-                !packageName.startsWith(OMNI_PRIMARY_THEME_PREFIX) &&
-                !packageName.startsWith(OMNI_NOTIFICATION_THEME_PREFIX);
-    }
-
-    public String[] getAvailableThemes() {
-        try {
-            List<OverlayInfo> infos = mOverlayService.getOverlayInfosForTarget("android",
-                    UserHandle.myUserId());
-            List<String> pkgs = new ArrayList(infos.size());
-            for (int i = 0, size = infos.size(); i < size; i++) {
-                if (isFullTheme(infos.get(i).packageName) &&
-                        isChangeableOverlay(infos.get(i).packageName)) {
-                    pkgs.add(infos.get(i).packageName);
-                }
-            }
-            return pkgs.toArray(new String[pkgs.size()]);
-        } catch (RemoteException e) {
-        }
-        return new String[0];
-    }
-
     public String[] getAvailableThemes(String prefix) {
         try {
             List<OverlayInfo> infos = mOverlayService.getOverlayInfosForTarget("android",
@@ -234,17 +216,70 @@ public class OverlayUtils {
         return new String[0];
     }
 
+    public List<ThemeInfo> getThemeList() {
+        return mThemeList;
+    }
+
+    private void loadThemesFromXml() {
+        mThemeList.clear();
+        InputStream in = null;
+        XmlPullParser parser = null;
+
+        try {
+            in = mContext.getAssets().open("themes.xml");
+            XmlPullParserFactory factory = XmlPullParserFactory.newInstance();
+            parser = factory.newPullParser();
+            parser.setInput(in, "UTF-8");
+            loadThemesFromXmlParser(parser);
+        } catch (XmlPullParserException e) {
+        } catch (IOException e) {
+        } finally {
+            // Cleanup resources
+            if (parser instanceof XmlResourceParser) {
+                ((XmlResourceParser) parser).close();
+            }
+            if (in != null) {
+                try {
+                    in.close();
+                } catch (IOException e) {
+                }
+            }
+        }
+    }
+
+    private void loadThemesFromXmlParser(XmlPullParser parser) throws XmlPullParserException, IOException {
+        int eventType = parser.getEventType();
+        do {
+            if (eventType != XmlPullParser.START_TAG) {
+                continue;
+            }
+            String name = parser.getName();
+            if (name.equalsIgnoreCase("theme")) {
+                String themeName = parser.getAttributeValue(null, "name");
+                String thumbnail = parser.getAttributeValue(null, "thumbnail");
+                String accent = parser.getAttributeValue(null, "accent");
+                String primary = parser.getAttributeValue(null, "primary");
+                String notification = parser.getAttributeValue(null, "notification");
+                if (themeName != null && thumbnail != null && accent != null && primary != null && notification != null) {
+                    ThemeInfo ti = new ThemeInfo();
+                    ti.mName = themeName;
+                    ti.mThumbNailFile = thumbnail;
+                    ti.mAccent = accent;
+                    ti.mPrimary = primary;
+                    ti.mNotification = notification;
+                    mThemeList.add(ti);
+                }
+            }
+        } while ((eventType = parser.next()) != XmlPullParser.END_DOCUMENT);
+        if (DEBUG) Log.i(TAG, "loaded size = " + mThemeList.size());
+    }
+
     private static class OverlayManager {
         private final IOverlayManager mService;
 
         public OverlayManager() {
             mService = IOverlayManager.Stub.asInterface(
                     ServiceManager.getService(Context.OVERLAY_SERVICE));
-        }
-
-        public void setEnabledExclusive(String pkg, boolean enabled, int userId)
-                throws RemoteException {
-            mService.setEnabledExclusive(pkg, enabled, userId);
         }
 
         public void setEnabled(String pkg, boolean enabled, int userId)
@@ -258,4 +293,3 @@ public class OverlayUtils {
         }
     }
 }
-

@@ -46,7 +46,7 @@ import java.util.List;
 
 public class ComposeThemeActivity extends Activity {
     private static final String TAG = "ComposeThemeActivity";
-    private static final boolean DEBUG = true;
+    private static final boolean DEBUG = false;
     private Spinner mAccentSpinner;
     private Spinner mPrimarySpinner;
     private Spinner mNotificationSpinner;
@@ -204,7 +204,6 @@ public class ComposeThemeActivity extends Activity {
         }
         Collections.sort(mNotificationOverlays);
 
-        String currentFullTheme = mOverlayUtils.getCurrentTheme();
         String currentAccent = mOverlayUtils.getCurrentTheme(OverlayUtils.OMNI_ACCENT_THEME_PREFIX);
         if (currentAccent != null) {
             mOverlayCompose.set(0, currentAccent);

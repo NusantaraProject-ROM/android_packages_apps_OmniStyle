@@ -229,9 +229,12 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
             <Button
                 android:id="@+id/overlay_apply"
-                style="?android:attr/buttonBarPositiveButtonStyle"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:paddingStart="5dp"
+                android:paddingEnd="5dp"
+                android:background="?android:attr/colorAccent"
+                android:textColor="?android:attr/colorPrimary"
                 android:text="@string/button_apply"/>
         </LinearLayout>
     </LinearLayout>

@@ -52,7 +52,7 @@ public class BrowseThemeHeaderActivity extends Activity {
     private static final String STATUS_BAR_CUSTOM_HEADER_IMAGE = "status_bar_custom_header_image";
     private static final String STATUS_BAR_CUSTOM_HEADER_PROVIDER = "status_bar_custom_header_provider";
 
-    private static final boolean DEBUG = true;
+    private static final boolean DEBUG = false;
     private List<DaylightHeaderInfo> mHeadersList;
     private Resources mRes;
     private String mPackageName;
