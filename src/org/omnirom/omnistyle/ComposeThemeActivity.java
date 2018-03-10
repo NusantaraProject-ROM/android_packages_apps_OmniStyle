@@ -47,6 +47,8 @@ import java.util.List;
 public class ComposeThemeActivity extends Activity {
     private static final String TAG = "ComposeThemeActivity";
     private static final boolean DEBUG = false;
+    private static final String NOTIFICATION_OVERLAY_PRIMARY = "org.omnirom.theme.notification.primary";
+
     private Spinner mAccentSpinner;
     private Spinner mPrimarySpinner;
     private Spinner mNotificationSpinner;
@@ -55,6 +57,10 @@ public class ComposeThemeActivity extends Activity {
     private List<ThemeInfo> mNotificationOverlays;
     private OverlayUtils mOverlayUtils;
     private List<String> mOverlayCompose = new ArrayList<>();
+    private String mCurrentAccent;
+    private String mCurrentPrimary;
+    private String mCurrentNotification;
+    private boolean mHasDefaultNotification;
 
     private class ThemeInfo implements Comparable<ThemeInfo> {
         public String mPackageName;
@@ -71,18 +77,17 @@ public class ComposeThemeActivity extends Activity {
         private List<Integer> mOverlayColors;
         private boolean mWithColor;
         private String mColorResource;
-        private String mCurrentPrimary;
-        private boolean mColorCircle;
+        private boolean mWithDefault;
 
-        public OverlayAdapter(Context context, List<ThemeInfo> overlayList, boolean withColor, String colorResource,
-                              String currentPrimary) {
+        public OverlayAdapter(Context context, List<ThemeInfo> overlayList, boolean withDefault,
+                boolean withColor, String colorResource) {
             super(context, R.layout.color_spinner_item);
             mWithColor = withColor;
+            mWithDefault = withDefault;
             mColorResource = colorResource;
-            mCurrentPrimary = currentPrimary;
             int currentPrimaryColor = 0;
-            if (currentPrimary != null) {
-                currentPrimaryColor = mOverlayUtils.getThemeColor(currentPrimary, "omni_color2");
+            if (mCurrentPrimary != null) {
+                currentPrimaryColor = mOverlayUtils.getThemeColor(mCurrentPrimary, "omni_color2");
             }
 
             mOverlayNames = new ArrayList<>();
@@ -91,7 +96,7 @@ public class ComposeThemeActivity extends Activity {
             for (ThemeInfo overlay : overlayList){
                 mOverlayNames.add(overlay.mName);
                 if (mWithColor) {
-                    if (overlay.mPackageName.equals("org.omnirom.theme.notification.primary")) {
+                    if (overlay.mPackageName.equals(NOTIFICATION_OVERLAY_PRIMARY)) {
                         // hacky
                         mOverlayColors.add(currentPrimaryColor);
                     } else {
@@ -100,9 +105,11 @@ public class ComposeThemeActivity extends Activity {
                     }
                 }
             }
-            mOverlayNames.add(0, getResources().getString(R.string.theme_disable));
-            if (mWithColor) {
-                mOverlayColors.add(0, 0);
+            if (mWithDefault) {
+                mOverlayNames.add(0, getResources().getString(R.string.theme_disable));
+                if (mWithColor) {
+                    mOverlayColors.add(0, 0);
+                }
             }
             if (DEBUG) Log.d(TAG, "OverlayAdapter = " + mOverlayNames);
         }
@@ -214,21 +221,21 @@ public class ComposeThemeActivity extends Activity {
         }
         Collections.sort(mNotificationOverlays);
 
-        String currentAccent = mOverlayUtils.getCurrentTheme(OverlayUtils.OMNI_ACCENT_THEME_PREFIX);
-        if (currentAccent != null) {
-            mOverlayCompose.set(0, currentAccent);
+        mCurrentAccent = mOverlayUtils.getCurrentTheme(OverlayUtils.OMNI_ACCENT_THEME_PREFIX);
+        if (mCurrentAccent != null) {
+            mOverlayCompose.set(0, mCurrentAccent);
         }
-        String currentPrimary = mOverlayUtils.getCurrentTheme(OverlayUtils.OMNI_PRIMARY_THEME_PREFIX);
-        if (currentPrimary != null) {
-            mOverlayCompose.set(1, currentPrimary);
+        mCurrentPrimary = mOverlayUtils.getCurrentTheme(OverlayUtils.OMNI_PRIMARY_THEME_PREFIX);
+        if (mCurrentPrimary != null) {
+            mOverlayCompose.set(1, mCurrentPrimary);
         }
-        String currentNotification = mOverlayUtils.getCurrentTheme(OverlayUtils.OMNI_NOTIFICATION_THEME_PREFIX);
-        if (currentNotification != null) {
-            mOverlayCompose.set(2, currentNotification);
+        mCurrentNotification = mOverlayUtils.getCurrentTheme(OverlayUtils.OMNI_NOTIFICATION_THEME_PREFIX);
+        if (mCurrentNotification != null) {
+            mOverlayCompose.set(2, mCurrentNotification);
         }
-        mAccentSpinner.setAdapter(new OverlayAdapter(this, mAccentOverlays, true, "omni_color5", currentPrimary));
-        if (currentAccent != null) {
-            mAccentSpinner.setSelection(getOverlaySpinnerPosition(mAccentOverlays, currentAccent) + 1, false);
+        mAccentSpinner.setAdapter(new OverlayAdapter(this, mAccentOverlays, true, true, "omni_color5"));
+        if (mCurrentAccent != null) {
+            mAccentSpinner.setSelection(getOverlaySpinnerPosition(mAccentOverlays, mCurrentAccent) + 1, false);
         } else {
             mAccentSpinner.setSelection(0, false);
         }
@@ -238,6 +245,9 @@ public class ComposeThemeActivity extends Activity {
                 String packageName = OverlayUtils.KEY_THEMES_DISABLED;
                 if (position != 0) {
                     packageName = mAccentOverlays.get(position - 1).mPackageName;
+                    mCurrentAccent = packageName;
+                } else {
+                    mCurrentAccent = null;
                 }
                 mOverlayCompose.set(0, packageName);
                 updatePreview();
@@ -248,9 +258,9 @@ public class ComposeThemeActivity extends Activity {
             }
         });
 
-        mPrimarySpinner.setAdapter(new OverlayAdapter(this, mPrimaryOverlays, true, "omni_color2", currentPrimary));
-        if (currentPrimary != null) {
-            mPrimarySpinner.setSelection(getOverlaySpinnerPosition(mPrimaryOverlays, currentPrimary) + 1, false);
+        mPrimarySpinner.setAdapter(new OverlayAdapter(this, mPrimaryOverlays, true, true, "omni_color2"));
+        if (mCurrentPrimary != null) {
+            mPrimarySpinner.setSelection(getOverlaySpinnerPosition(mPrimaryOverlays, mCurrentPrimary) + 1, false);
         } else {
             mPrimarySpinner.setSelection(0, false);
         }
@@ -261,7 +271,11 @@ public class ComposeThemeActivity extends Activity {
                 String packageName = OverlayUtils.KEY_THEMES_DISABLED;
                 if (position != 0) {
                     packageName = mPrimaryOverlays.get(position - 1).mPackageName;
+                    mCurrentPrimary = packageName;
+                } else {
+                    mCurrentPrimary = null;
                 }
+                updateNotificationChoices();
                 mOverlayCompose.set(1, packageName);
                 updatePreview();
             }
@@ -271,20 +285,25 @@ public class ComposeThemeActivity extends Activity {
             }
         });
 
-        mNotificationSpinner.setAdapter(new OverlayAdapter(this, mNotificationOverlays, true, "omni_theme_color", currentPrimary));
-        if (currentNotification != null) {
-            mNotificationSpinner.setSelection(getOverlaySpinnerPosition(mNotificationOverlays, currentNotification) + 1, false);
-        } else {
-            mNotificationSpinner.setSelection(0, false);
-        }
+        updateNotificationChoices();
+
         mNotificationSpinner.setOnItemSelectedListener(new Spinner.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
                 String packageName = OverlayUtils.KEY_THEMES_DISABLED;
-                if (position != 0) {
-                    packageName = mNotificationOverlays.get(position - 1).mPackageName;
+                if (mHasDefaultNotification) {
+                    if (position != 0) {
+                        packageName = mNotificationOverlays.get(position - 1).mPackageName;
+                        mCurrentNotification = packageName;
+                    } else {
+                        mCurrentNotification = null;
+                    }
+                } else {
+                    packageName = mNotificationOverlays.get(position).mPackageName;
+                    mCurrentNotification = packageName;
                 }
                 mOverlayCompose.set(2, packageName);
+                updatePreview();
             }
 
             @Override
@@ -335,6 +354,27 @@ public class ComposeThemeActivity extends Activity {
 
     private int getSystemAccent() {
         return getColor(R.color.system_default_accent);
+    }
+
+    private void updateNotificationChoices() {
+        mHasDefaultNotification = mCurrentPrimary == null;
+        mNotificationSpinner.setAdapter(new OverlayAdapter(this, mNotificationOverlays,
+                mHasDefaultNotification ? true : false, true, "omni_theme_color"));
+        if (mCurrentNotification != null) {
+            mNotificationSpinner.setSelection(getOverlaySpinnerPosition(mNotificationOverlays, mCurrentNotification) +
+                    (mHasDefaultNotification ? 1 : 0), false);
+            mOverlayCompose.set(2, mCurrentNotification);
+        } else {
+            if (mCurrentPrimary == null) {
+                mNotificationSpinner.setSelection(0, false);
+                mOverlayCompose.set(2, OverlayUtils.KEY_THEMES_DISABLED);
+                mCurrentNotification = null;
+            } else {
+                mNotificationSpinner.setSelection(getOverlaySpinnerPosition(mNotificationOverlays, NOTIFICATION_OVERLAY_PRIMARY), false);
+                mOverlayCompose.set(2, NOTIFICATION_OVERLAY_PRIMARY);
+                mCurrentNotification = NOTIFICATION_OVERLAY_PRIMARY;
+            }
+        }
     }
 
     private void updatePreview() {
