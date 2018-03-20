@@ -39,4 +39,5 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
   <string name="no_network_message">Sin conexión de red</string>
   <string name="download_wallpaper_list_failed_notice">Error al cargar fondo de pantalla desde el directorio</string>
   <string name="wallpaper_default_name">Fondo de pantalla</string>
+  <string name="pick_header">Seleccionar encabezados</string>
 </resources>

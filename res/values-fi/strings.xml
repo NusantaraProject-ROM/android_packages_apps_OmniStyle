@@ -20,10 +20,18 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
   <string name="browse_walls">Taustakuvat</string>
   <string name="omni_walls">Omni</string>
   <string name="wallpaper_type_dialog_title">Aseta taustakuva</string>
+  <string name="wallpaper_type_both">Aloitusnäyttö ja lukitusnäyttö</string>
+  <string name="wallpaper_type_system">Aloitusnäyttö</string>
   <string name="wallpaper_type_lock">Lukitusnäyttö</string>
+  <string name="no_crop_activity_dialog_title">Galleria puuttuu</string>
   <string name="scrolling_wall_dialog_text">Haluatko rajata taustakuvan näytön kokoon\u003f</string>
   <string name="scrolling_wall_dialog_title">Rajaa taustakuva</string>
   <string name="scrolling_wall_yes">Ei</string>
   <string name="scrolling_wall_no">Kyllä</string>
+  <string name="wallpaper_location_local">Paikallinen</string>
+  <string name="download_wallpaper_notice">Ladataan taustakuvaa</string>
+  <string name="download_wallpaper_failed_notice">Taustakuvan lataus epäonnistui</string>
+  <string name="no_network_message">Ei verkkoyhteyttä</string>
   <string name="wallpaper_default_name">Taustakuva</string>
+  <string name="browse_theme_walls">Teeman taustakuvat</string>
 </resources>
