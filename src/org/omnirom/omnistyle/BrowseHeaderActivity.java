@@ -105,6 +105,7 @@ public class BrowseHeaderActivity extends Activity {
     private boolean mRemoteMode;
     private boolean mRemoteLoaded;
     private List<File> mCleanupTmpFiles = new ArrayList<>();
+    private MenuItem mMenuItem;
 
     private static final int PERMISSIONS_REQUEST_EXTERNAL_STORAGE = 0;
 
@@ -307,6 +308,7 @@ public class BrowseHeaderActivity extends Activity {
     public boolean onCreateOptionsMenu(Menu menu) {
         super.onCreateOptionsMenu(menu);
         getMenuInflater().inflate(R.menu.header_browse_menu, menu);
+        mMenuItem = menu.findItem(R.id.header_location);
         return true;
     }
 
@@ -316,14 +318,24 @@ public class BrowseHeaderActivity extends Activity {
             finish();
         } else if (item.getItemId() == R.id.header_location) {
             if (mRemoteMode) {
-                item.setTitle(getResources().getString(R.string.header_location_online));
                 showLocal();
             } else {
-                item.setTitle(getResources().getString(R.string.header_location_local));
                 showRemote();
             }
         }
         return true;
+    }
+
+    @Override
+    public boolean onPrepareOptionsMenu (Menu menu) {
+        if (mMenuItem != null) {
+            if (mRemoteMode) {
+                mMenuItem.setTitle(getResources().getString(R.string.header_location_local));
+            } else {
+                mMenuItem.setTitle(getResources().getString(R.string.header_location_online));
+            }
+        }
+        return super.onPrepareOptionsMenu(menu);
     }
 
     private void getAvailableHeaderPacks(Map<String, String> headerMap) {
