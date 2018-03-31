@@ -106,6 +106,7 @@ public class BrowseHeaderActivity extends Activity {
     private boolean mRemoteLoaded;
     private List<File> mCleanupTmpFiles = new ArrayList<>();
     private MenuItem mMenuItem;
+    private boolean mReloading;
 
     private static final int PERMISSIONS_REQUEST_EXTERNAL_STORAGE = 0;
 
@@ -168,6 +169,9 @@ public class BrowseHeaderActivity extends Activity {
 
         @Override
         public void onClick(View view) {
+            if (mReloading) {
+                return;
+            }
             int position = getAdapterPosition();
             if (mPickerMode) {
                 DaylightHeaderInfo di = mHeadersList.get(position);
@@ -223,6 +227,9 @@ public class BrowseHeaderActivity extends Activity {
 
         @Override
         public void onClick(View view) {
+            if (mReloading) {
+                return;
+            }
             if (mPickerMode) {
                 int position = getAdapterPosition();
                 doSetRemoteHeader(position);
@@ -320,7 +327,11 @@ public class BrowseHeaderActivity extends Activity {
             if (mRemoteMode) {
                 showLocal();
             } else {
-                showRemote();
+                if (isNetworkAvailable()) {
+                    showRemote();
+                } else {
+                    Toast.makeText(BrowseHeaderActivity.this, R.string.no_network_message, Toast.LENGTH_LONG).show();
+                }
             }
         }
         return true;
@@ -424,6 +435,7 @@ public class BrowseHeaderActivity extends Activity {
 
         @Override
         protected Void doInBackground(Void... params) {
+            mReloading = true;
             mRemoteHeadersList.clear();
             mFilterRemoteHeadersList.clear();
             mTagList.clear();
@@ -454,6 +466,7 @@ public class BrowseHeaderActivity extends Activity {
                 }
                 showRemote();
             }
+            mReloading = false;
         }
     }
 
@@ -627,20 +640,16 @@ public class BrowseHeaderActivity extends Activity {
     }
 
     private void showRemote(){
+        mHeaderListView.setAdapter(mRemoteHeaderListAdapter);
         if (!mRemoteLoaded) {
-            if (isNetworkAvailable()) {
-                mProgress.setVisibility(View.VISIBLE);
-                FetchHeaderListTask fetch = new FetchHeaderListTask();
-                fetch.execute();
-            } else {
-                return;
-            }
+            mProgress.setVisibility(View.VISIBLE);
+            FetchHeaderListTask fetch = new FetchHeaderListTask();
+            fetch.execute();
         } else {
             mRemoteMode = true;
             mSelectSpinnerAdapter.clear();
             mSelectSpinnerAdapter.addAll(mTagSortedList);
             filterRemoteWallpapers(FILTER_BY_TAG, mTagSortedList.get(0));
-            mHeaderListView.setAdapter(mRemoteHeaderListAdapter);
         }
     }
 

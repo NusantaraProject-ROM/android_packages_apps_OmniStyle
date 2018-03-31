@@ -63,6 +63,7 @@ public class BrowseThemesActivity extends Activity {
     private OverlayUtils mOverlayUtils;
     private OverlayUtils.ThemeInfo mCurrentTheme;
     private int mDefaultColor;
+    private boolean mReloading;
 
     class ImageHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
         public View rootView;
@@ -81,17 +82,24 @@ public class BrowseThemesActivity extends Activity {
 
         @Override
         public void onClick(View view) {
+            if (mReloading) {
+                return;
+            }
             int position = getAdapterPosition();
-            OverlayUtils.ThemeInfo wi = mThemeList.get(position);
-            if (wi.mComposePlaceholder) {
-                Intent composeIntent = new Intent(BrowseThemesActivity.this, ComposeThemeActivity.class);
-                startActivity(composeIntent);
-            } else {
-                List<String> overlayList = new ArrayList<>();
-                overlayList.add(wi.mAccent);
-                overlayList.add(wi.mPrimary);
-                overlayList.add(wi.mNotification);
-                mOverlayUtils.enableThemeList(overlayList);
+            try {
+                OverlayUtils.ThemeInfo wi = mThemeList.get(position);
+                if (wi.mComposePlaceholder) {
+                    Intent composeIntent = new Intent(BrowseThemesActivity.this, ComposeThemeActivity.class);
+                    startActivity(composeIntent);
+                } else {
+                    List<String> overlayList = new ArrayList<>();
+                    overlayList.add(wi.mAccent);
+                    overlayList.add(wi.mPrimary);
+                    overlayList.add(wi.mNotification);
+                    mOverlayUtils.enableThemeList(overlayList);
+                }
+            } catch (Exception e) {
+                // you shall not pass
             }
         }
     }
@@ -257,6 +265,7 @@ public class BrowseThemesActivity extends Activity {
     private class LoadThemesTask extends AsyncTask<Void, Void, Void> {
         @Override
         protected Void doInBackground(Void... params) {
+            mReloading = true;
             reloadThemes();
             return null;
         }
@@ -265,6 +274,7 @@ public class BrowseThemesActivity extends Activity {
         protected void onPostExecute(Void feed) {
             mProgressBar.setVisibility(View.GONE);
             mAdapter.notifyDataSetChanged();
+            mReloading = false;
         }
     }
 
