@@ -42,4 +42,20 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
   <string name="browse_theme_walls">Tema duvar kâğıtları</string>
   <string name="browse_theme_header">Tema başlıkları</string>
   <string name="pick_header">Başlıkları seçin</string>
+  <string name="pick_theme">Tema seçin</string>
+  <string name="theme_disable">Standart</string>
+  <string name="sort_by_creator_menu">Yapana göre sırala</string>
+  <string name="sort_by_tag_menu">Etikete göre sırala</string>
+  <string name="sort_by_default_menu">İsme göre sırala</string>
+  <string name="download_header_notice">Başlık indiriliyor</string>
+  <string name="download_header_failed_notice">Başlık indirilemedi</string>
+  <string name="header_location_local">Yerel</string>
+  <string name="header_location_online">Çevrimiçi</string>
+  <string name="compose_theme">Tema oluştur</string>
+  <string name="theme_accent">Ara</string>
+  <string name="theme_primary">Esas</string>
+  <string name="theme_notification">Bildirim</string>
+  <string name="theme_compose">Oluştur</string>
+  <string name="button_apply">Uygula</string>
+  <string name="notification_overlay_info">Bildirim yeri değiştirildikten sonra\ntekrar başlatmanız gerekir</string>
 </resources>

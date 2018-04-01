@@ -42,4 +42,20 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
   <string name="browse_theme_walls">Téma háttérképek</string>
   <string name="browse_theme_header">Téma fejlécek</string>
   <string name="pick_header">Fejlécek kiválasztása</string>
+  <string name="pick_theme">Válasszon témát</string>
+  <string name="theme_disable">Alapértelmezett</string>
+  <string name="sort_by_creator_menu">Rendezés készítő szerint</string>
+  <string name="sort_by_tag_menu">Rendezés címke szerint</string>
+  <string name="sort_by_default_menu">Rendezés név szerint</string>
+  <string name="download_header_notice">Fejléc letöltése</string>
+  <string name="download_header_failed_notice">Fejléc letöltése sikertelen</string>
+  <string name="header_location_local">Helyi</string>
+  <string name="header_location_online">Online</string>
+  <string name="compose_theme">Téma összeállítása</string>
+  <string name="theme_accent">Másodlagos</string>
+  <string name="theme_primary">Elsődleges</string>
+  <string name="theme_notification">Értesítés</string>
+  <string name="theme_compose">Összeállítás</string>
+  <string name="button_apply">Alkalmazás</string>
+  <string name="notification_overlay_info">Újraindítás szükséges az\nértesítési fedvény módosítása után</string>
 </resources>

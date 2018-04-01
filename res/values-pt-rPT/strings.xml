@@ -42,4 +42,20 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
   <string name="browse_theme_walls">Imagens de fundo do tema</string>
   <string name="browse_theme_header">Cabeçalhos do tema</string>
   <string name="pick_header">Selecionar cabeçalhos</string>
+  <string name="pick_theme">Selecione um tema</string>
+  <string name="theme_disable">Predefinição</string>
+  <string name="sort_by_creator_menu">Ordenar por criador</string>
+  <string name="sort_by_tag_menu">Ordenar por etiqueta</string>
+  <string name="sort_by_default_menu">Ordenar por nome</string>
+  <string name="download_header_notice">A transferir cabeçalho</string>
+  <string name="download_header_failed_notice">A transferência do cabeçalho falhou</string>
+  <string name="header_location_local">Local</string>
+  <string name="header_location_online">Online</string>
+  <string name="compose_theme">Compor tema</string>
+  <string name="theme_accent">Realce</string>
+  <string name="theme_primary">Principal</string>
+  <string name="theme_notification">Notificação</string>
+  <string name="theme_compose">Compor</string>
+  <string name="button_apply">Aplicar</string>
+  <string name="notification_overlay_info">É necessário reiniciar depois de\nalterar o tema das notificações</string>
 </resources>

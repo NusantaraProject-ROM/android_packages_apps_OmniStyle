@@ -42,4 +42,20 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
   <string name="browse_theme_walls">Témy tapiet</string>
   <string name="browse_theme_header">Témy záhlaví</string>
   <string name="pick_header">Vybrať záhlavie</string>
+  <string name="pick_theme">Výber témy</string>
+  <string name="theme_disable">Predvolená</string>
+  <string name="sort_by_creator_menu">Zoradiť podľa autora</string>
+  <string name="sort_by_tag_menu">Usporiadať podľa značiek</string>
+  <string name="sort_by_default_menu">Zoradiť podľa názvu</string>
+  <string name="download_header_notice">Preberá sa záhlavie</string>
+  <string name="download_header_failed_notice">Preberanie záhlavia zlyhalo</string>
+  <string name="header_location_local">Miestne</string>
+  <string name="header_location_online">Online</string>
+  <string name="compose_theme">Tvorba témy</string>
+  <string name="theme_accent">Vedľajšia farba</string>
+  <string name="theme_primary">Hlavná farba</string>
+  <string name="theme_notification">Upozornenie</string>
+  <string name="theme_compose">Vytvoriť</string>
+  <string name="button_apply">Použiť</string>
+  <string name="notification_overlay_info">Po zmene prekrytia upozornení je potrebný reštart</string>
 </resources>

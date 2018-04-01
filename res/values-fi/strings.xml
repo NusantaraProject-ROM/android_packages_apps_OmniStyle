@@ -34,4 +34,11 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
   <string name="no_network_message">Ei verkkoyhteyttä</string>
   <string name="wallpaper_default_name">Taustakuva</string>
   <string name="browse_theme_walls">Teeman taustakuvat</string>
+  <string name="pick_theme">Valitse teema</string>
+  <string name="theme_disable">Oletus</string>
+  <string name="compose_theme">Luo teema</string>
+  <string name="theme_accent">Aksentti</string>
+  <string name="theme_primary">Ensisijainen</string>
+  <string name="theme_notification">Ilmoitus</string>
+  <string name="theme_compose">Luo</string>
 </resources>

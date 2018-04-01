@@ -17,8 +17,8 @@ You should have received a copy of the GNU General Public License
 along with this program.  If not, see <http://www.gnu.org/licenses/>.
 -->
 <resources>
-  <string name="browse_header">Hlavičky</string>
-  <string name="custom_header_image_notice">Balíček pozadí stavové lišty</string>
+  <string name="browse_header">Záhlaví</string>
+  <string name="custom_header_image_notice">Sada obrázků záhlaví</string>
   <string name="browse_walls">Tapety</string>
   <string name="omni_walls">Omni</string>
   <string name="wallpaper_type_dialog_title">Nastavit tapetu</string>
@@ -42,4 +42,20 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
   <string name="browse_theme_walls">Témata tapet</string>
   <string name="browse_theme_header">Téma hlaviček</string>
   <string name="pick_header">Vyberte hlavičky</string>
+  <string name="pick_theme">Vybrat motiv</string>
+  <string name="theme_disable">Výchozí</string>
+  <string name="sort_by_creator_menu">Seřadit podle tvůrce</string>
+  <string name="sort_by_tag_menu">Seřadit podle štítku</string>
+  <string name="sort_by_default_menu">Seřadit podle názvu</string>
+  <string name="download_header_notice">Stahování záhlaví</string>
+  <string name="download_header_failed_notice">Stahování záhlaví se nezdařilo</string>
+  <string name="header_location_local">Místní</string>
+  <string name="header_location_online">Online</string>
+  <string name="compose_theme">Tvorba motivu</string>
+  <string name="theme_accent">Vedlejší barva</string>
+  <string name="theme_primary">Hlavní barva</string>
+  <string name="theme_notification">Upozornění </string>
+  <string name="theme_compose">Vytvořit</string>
+  <string name="button_apply">Použít</string>
+  <string name="notification_overlay_info">Restartování je nutné po změně překrytí upozornění</string>
 </resources>

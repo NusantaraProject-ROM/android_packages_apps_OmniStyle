@@ -42,4 +42,20 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
   <string name="browse_theme_walls">Teema taustapildid</string>
   <string name="browse_theme_header">Teema päised</string>
   <string name="pick_header">Vali päised</string>
+  <string name="pick_theme">Vali teema</string>
+  <string name="theme_disable">Vaikimisi</string>
+  <string name="sort_by_creator_menu">Sorteeri autori järgi</string>
+  <string name="sort_by_tag_menu">Sorteeri sildi järgi</string>
+  <string name="sort_by_default_menu">Sorteeri nime järgi</string>
+  <string name="download_header_notice">Laadin päist alla</string>
+  <string name="download_header_failed_notice">Päise allalaadimine ebaõnnestus</string>
+  <string name="header_location_local">Kohalik</string>
+  <string name="header_location_online">Võrgus</string>
+  <string name="compose_theme">Koosta teema</string>
+  <string name="theme_accent">Sekundaarne</string>
+  <string name="theme_primary">Primaarne</string>
+  <string name="theme_notification">Teade</string>
+  <string name="theme_compose">Koosta</string>
+  <string name="button_apply">Rakenda</string>
+  <string name="notification_overlay_info">Taaskäivitamine on vajalik\npeale teate ülekatte muutmist</string>
 </resources>
