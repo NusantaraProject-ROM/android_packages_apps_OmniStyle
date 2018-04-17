@@ -42,4 +42,8 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
   <string name="browse_theme_walls">Sfondi a tema</string>
   <string name="browse_theme_header">Intestazioni a tema</string>
   <string name="pick_header">Seleziona intestazioni</string>
+  <string name="pick_theme">Seleziona tema</string>
+  <string name="theme_disable">Predefinito</string>
+  <string name="sort_by_creator_menu">Ordina per autore</string>
+  <string name="sort_by_default_menu">Ordina per nome</string>
 </resources>

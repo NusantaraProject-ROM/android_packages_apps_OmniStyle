@@ -39,4 +39,10 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
   <string name="no_network_message">Sem conectividade à Rede</string>
   <string name="download_wallpaper_list_failed_notice">Falha ao carregar o diretório de papel de parede</string>
   <string name="wallpaper_default_name">Papel de parede</string>
+  <string name="theme_disable">Padrão</string>
+  <string name="sort_by_creator_menu">Ordenar por criador</string>
+  <string name="sort_by_default_menu">Ordenar por nome</string>
+  <string name="header_location_online">Online</string>
+  <string name="theme_notification">Notificação</string>
+  <string name="button_apply">Aplicar</string>
 </resources>

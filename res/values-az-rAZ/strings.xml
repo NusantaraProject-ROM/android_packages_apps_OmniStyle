@@ -39,4 +39,8 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
   <string name="no_network_message">Şəbəkə bağlantısı yoxdur</string>
   <string name="download_wallpaper_list_failed_notice">Divar kağızı direktivini yükləmək alınmadı</string>
   <string name="wallpaper_default_name">Divar kağızı</string>
+  <string name="theme_disable">Standart</string>
+  <string name="header_location_local">Məkan</string>
+  <string name="header_location_online">Onlayn</string>
+  <string name="theme_notification">Bildiriş</string>
 </resources>
