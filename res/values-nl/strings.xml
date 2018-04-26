@@ -16,4 +16,46 @@ GNU General Public License for more details.
 You should have received a copy of the GNU General Public License
 along with this program.  If not, see <http://www.gnu.org/licenses/>.
 -->
-<resources></resources>
+<resources>
+  <string name="browse_header">Headers</string>
+  <string name="custom_header_image_notice">Header afbeelding instellen</string>
+  <string name="browse_walls">Achtergronden</string>
+  <string name="omni_walls">Omni</string>
+  <string name="wallpaper_type_dialog_title">Achtergrond instellen</string>
+  <string name="wallpaper_type_both">Begin- en vergrendelscherm</string>
+  <string name="wallpaper_type_system">Beginscherm</string>
+  <string name="wallpaper_type_lock">Vergrendelscherm</string>
+  <string name="header_creator_label">Maker\u003a </string>
+  <string name="no_crop_activity_dialog_text">Omni Gallery app is vereist voor het instellen van achtergrond</string>
+  <string name="no_crop_activity_dialog_title">Galerij ontbreekt</string>
+  <string name="scrolling_wall_dialog_text">Wilt u de achtergrond bijsnijden tot scherm grootte\u003f</string>
+  <string name="scrolling_wall_dialog_title">Achtergrond bijsnijden</string>
+  <string name="scrolling_wall_yes">Nee</string>
+  <string name="scrolling_wall_no">Ja</string>
+  <string name="wallpaper_location_local">Lokaal</string>
+  <string name="wallpaper_location_remote">Online</string>
+  <string name="download_wallpaper_notice">Achtergrond downloaden</string>
+  <string name="download_wallpaper_failed_notice">Achtergrond downloaden mislukt</string>
+  <string name="no_network_message">Geen netwerkverbinding</string>
+  <string name="download_wallpaper_list_failed_notice">Achtergrond map laden is mislukt</string>
+  <string name="wallpaper_default_name">Achtergrond</string>
+  <string name="browse_theme_walls">Thema achtergronden</string>
+  <string name="browse_theme_header">Thema headers</string>
+  <string name="pick_header">Selecteer headers</string>
+  <string name="pick_theme">Selecteer thema</string>
+  <string name="theme_disable">Standaard</string>
+  <string name="sort_by_creator_menu">Sorteer op maker</string>
+  <string name="sort_by_tag_menu">Sorteren op labels</string>
+  <string name="sort_by_default_menu">Sorteer op naam</string>
+  <string name="download_header_notice">Header downloaden</string>
+  <string name="download_header_failed_notice">Header downloaden mislukt</string>
+  <string name="header_location_local">Lokaal</string>
+  <string name="header_location_online">Online</string>
+  <string name="compose_theme">Thema samenstellen</string>
+  <string name="theme_accent">Accent</string>
+  <string name="theme_primary">Primair</string>
+  <string name="theme_notification">Notificatie</string>
+  <string name="theme_compose">Samenstellen</string>
+  <string name="button_apply">Toepassen</string>
+  <string name="notification_overlay_info">Opnieuw opstarten is vereist na\nveranderen notificatie overlapping</string>
+</resources>
