@@ -39,4 +39,5 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
   <string name="no_network_message">Brak połączenia sieciowego</string>
   <string name="download_wallpaper_list_failed_notice">Ładowanie katalogu tapet nie powiodło się</string>
   <string name="wallpaper_default_name">Tapeta</string>
+  <string name="browse_theme_walls">Tapety motywu</string>
 </resources>
