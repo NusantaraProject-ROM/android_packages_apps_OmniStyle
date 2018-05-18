@@ -52,10 +52,10 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
   <string name="header_location_local">本地</string>
   <string name="header_location_online">在线</string>
   <string name="compose_theme">选择主题</string>
-  <string name="theme_accent">口音</string>
+  <string name="theme_accent">强调色</string>
   <string name="theme_primary">主要</string>
   <string name="theme_notification">通知</string>
-  <string name="theme_compose">撰写</string>
+  <string name="theme_compose">自定义</string>
   <string name="button_apply">应用</string>
   <string name="notification_overlay_info">\n更改通知覆盖后需要重新启动</string>
 </resources>

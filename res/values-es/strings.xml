@@ -39,6 +39,8 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
   <string name="no_network_message">Sin conexión de red</string>
   <string name="download_wallpaper_list_failed_notice">Error al cargar fondo de pantalla desde el directorio</string>
   <string name="wallpaper_default_name">Fondo de pantalla</string>
+  <string name="browse_theme_walls">Fondos de pantalla de tema</string>
+  <string name="browse_theme_header">Temas de cabecera</string>
   <string name="pick_header">Seleccionar encabezados</string>
   <string name="pick_theme">Selecciona un tema</string>
   <string name="theme_disable">Por defecto</string>
@@ -49,7 +51,10 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
   <string name="download_header_failed_notice">Error al descargar encabezado</string>
   <string name="header_location_local">Local</string>
   <string name="header_location_online">En línea</string>
+  <string name="compose_theme">Crear tema</string>
+  <string name="theme_accent">Acento</string>
   <string name="theme_primary">Primario</string>
   <string name="theme_notification">Notificación</string>
+  <string name="theme_compose">Crear</string>
   <string name="button_apply">Aplicar</string>
 </resources>
