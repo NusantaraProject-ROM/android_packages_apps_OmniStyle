@@ -35,7 +35,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
   <string name="wallpaper_location_local">Locale</string>
   <string name="wallpaper_location_remote">Online</string>
   <string name="download_wallpaper_notice">Scarico lo sfondo</string>
-  <string name="download_wallpaper_failed_notice">Errore durante il download dello sfondo</string>
+  <string name="download_wallpaper_failed_notice">Errore durante il download dell\'intestazione</string>
   <string name="no_network_message">Nessuna connessione di rete</string>
   <string name="download_wallpaper_list_failed_notice">Errore nel caricamento della directory dello sfondo</string>
   <string name="wallpaper_default_name">Sfondo</string>
@@ -45,5 +45,17 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
   <string name="pick_theme">Seleziona tema</string>
   <string name="theme_disable">Predefinito</string>
   <string name="sort_by_creator_menu">Ordina per autore</string>
+  <string name="sort_by_tag_menu">Ordina per tag</string>
   <string name="sort_by_default_menu">Ordina per nome</string>
+  <string name="download_header_notice">Scaricando lo sfondo</string>
+  <string name="download_header_failed_notice">Errore durante il download dell\'intestazione</string>
+  <string name="header_location_local">Locale</string>
+  <string name="header_location_online">Online</string>
+  <string name="compose_theme">Componi il tema</string>
+  <string name="theme_accent">Secondario</string>
+  <string name="theme_primary">Principale</string>
+  <string name="theme_notification">Notifiche</string>
+  <string name="theme_compose">Componi</string>
+  <string name="button_apply">Applica</string>
+  <string name="notification_overlay_info">Un riavvio è sempre richiesto dopo\naver cambiato l\'overlay delle notifiche</string>
 </resources>

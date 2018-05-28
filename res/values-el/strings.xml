@@ -25,6 +25,13 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
   <string name="wallpaper_type_both">Αρχική οθόνη και οθόνη κλειδώματος</string>
   <string name="wallpaper_type_system">Αρχική οθόνη</string>
   <string name="wallpaper_type_lock">Οθόνη κλειδώματος</string>
+  <string name="header_creator_label">Δημιουργός\u003a </string>
+  <string name="no_crop_activity_dialog_text">Η εφαρμογή \"Συλλογη Omni\" χρειάζεται για ορισμό ταπετσαρίας</string>
+  <string name="no_crop_activity_dialog_title">Δεν βρέθηκε εφαρμογή</string>
+  <string name="scrolling_wall_dialog_text">Θέλετε να κάνετε περικοπή της ταπετσαρίας στο μέγεθος της οθόνης\u003b</string>
+  <string name="scrolling_wall_dialog_title">Περικοπή ταπετσαρίας</string>
+  <string name="scrolling_wall_yes">Όχι</string>
+  <string name="scrolling_wall_no">Ναι</string>
   <string name="wallpaper_location_local">Τοπικά</string>
   <string name="wallpaper_location_remote">Σε σύνδεση</string>
   <string name="download_wallpaper_notice">Λήψη ταπετσαρίας</string>
@@ -32,4 +39,23 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
   <string name="no_network_message">Καμία σύνδεση δικτύου</string>
   <string name="download_wallpaper_list_failed_notice">Η φόρτωση κατάλογου της ταπετσαρίας απέτυχε</string>
   <string name="wallpaper_default_name">Ταπετσαρία</string>
+  <string name="browse_theme_walls">Θέμα ταπετσαρίας</string>
+  <string name="browse_theme_header">Θέμα επικεφαλίδας</string>
+  <string name="pick_header">Επιλογή επικεφαλίδας</string>
+  <string name="pick_theme">Επιλογή θέματος</string>
+  <string name="theme_disable">Προεπιλογή</string>
+  <string name="sort_by_creator_menu">Ταξινόμηση ανά δημιουργό</string>
+  <string name="sort_by_tag_menu">Ταξινόμηση με βάση Ετικέτα</string>
+  <string name="sort_by_default_menu">Ταξινόμηση κατά όνομα</string>
+  <string name="download_header_notice">Λήψη επικεφαλίδας</string>
+  <string name="download_header_failed_notice">Λήψη επικεφαλίδας απέτυχε</string>
+  <string name="header_location_local">Τοπικά</string>
+  <string name="header_location_online">Σε σύνδεση</string>
+  <string name="compose_theme">Σύνθεση θέματος</string>
+  <string name="theme_accent">Τόνος</string>
+  <string name="theme_primary">Κύρια</string>
+  <string name="theme_notification">Ειδοποίηση</string>
+  <string name="theme_compose">Σύνθεση</string>
+  <string name="button_apply">Εφαρμογή</string>
+  <string name="notification_overlay_info">Απαιτείται επανεκκίνηση μετα\nτην αλλαγή επικάλυψης ειδοποιήσεων</string>
 </resources>
