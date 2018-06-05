@@ -42,4 +42,17 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
   <string name="browse_theme_walls">Design Hintergrundbilder</string>
   <string name="browse_theme_header">Kopfzeilen-Thema</string>
   <string name="pick_header">Kopfzeilen wählen</string>
+  <string name="pick_theme">Design auswählen</string>
+  <string name="theme_disable">Standard</string>
+  <string name="sort_by_creator_menu">Nach Verfasser sortieren</string>
+  <string name="sort_by_tag_menu">Sortieren nach Schlagwörtern</string>
+  <string name="sort_by_default_menu">Nach Name sortieren</string>
+  <string name="header_location_local">Lokal</string>
+  <string name="header_location_online">Online</string>
+  <string name="compose_theme">Design zusammenstellen</string>
+  <string name="theme_accent">Akzent</string>
+  <string name="theme_primary">Primär</string>
+  <string name="theme_notification">Benachrichtigung</string>
+  <string name="theme_compose">Zusammenstellen</string>
+  <string name="button_apply">Anwenden</string>
 </resources>
