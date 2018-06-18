@@ -47,12 +47,15 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
   <string name="sort_by_creator_menu">Сортировать по имени автора</string>
   <string name="sort_by_tag_menu">Сортировать по тегу</string>
   <string name="sort_by_default_menu">Сортировать по имени</string>
+  <string name="download_header_notice">Загрузка заголовка</string>
+  <string name="download_header_failed_notice">Ошибка загрузки заголовка</string>
   <string name="header_location_local">Локальные</string>
   <string name="header_location_online">Онлайн</string>
   <string name="compose_theme">Создать тему</string>
   <string name="theme_accent">Вторичный</string>
   <string name="theme_primary">Основной</string>
   <string name="theme_notification">Уведомление</string>
+  <string name="theme_compose">Предпросмотр</string>
   <string name="button_apply">Применить</string>
   <string name="notification_overlay_info">Требуется перезагрузка устройства после\nизменения наложения уведомлений</string>
 </resources>

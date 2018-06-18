@@ -23,6 +23,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
   <string name="wallpaper_type_both">Aloitusnäyttö ja lukitusnäyttö</string>
   <string name="wallpaper_type_system">Aloitusnäyttö</string>
   <string name="wallpaper_type_lock">Lukitusnäyttö</string>
+  <string name="header_creator_label">Tekijä\u003a </string>
   <string name="no_crop_activity_dialog_title">Galleria puuttuu</string>
   <string name="scrolling_wall_dialog_text">Haluatko rajata taustakuvan näytön kokoon\u003f</string>
   <string name="scrolling_wall_dialog_title">Rajaa taustakuva</string>
@@ -36,9 +37,12 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
   <string name="browse_theme_walls">Teeman taustakuvat</string>
   <string name="pick_theme">Valitse teema</string>
   <string name="theme_disable">Oletus</string>
+  <string name="sort_by_creator_menu">Järjestä tekijän mukaan</string>
+  <string name="sort_by_default_menu">Järjestä nimen mukaan</string>
   <string name="compose_theme">Luo teema</string>
   <string name="theme_accent">Aksentti</string>
   <string name="theme_primary">Ensisijainen</string>
   <string name="theme_notification">Ilmoitus</string>
   <string name="theme_compose">Luo</string>
+  <string name="button_apply">Käytä</string>
 </resources>

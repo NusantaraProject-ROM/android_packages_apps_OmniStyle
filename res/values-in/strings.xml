@@ -42,4 +42,15 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
   <string name="browse_theme_walls">Wallpaper tema</string>
   <string name="browse_theme_header">Judul tema</string>
   <string name="pick_header">Pilih tajuk</string>
+  <string name="pick_theme">Pilih tema</string>
+  <string name="theme_disable">Standar</string>
+  <string name="sort_by_creator_menu">Urutkan berdasarkan pencipta</string>
+  <string name="sort_by_tag_menu">Urutkan berdasarkan label</string>
+  <string name="sort_by_default_menu">Urutkan berdasarkan Nama</string>
+  <string name="header_location_local">Lokal</string>
+  <string name="header_location_online">Online</string>
+  <string name="theme_accent">Aksen</string>
+  <string name="theme_primary">Utama</string>
+  <string name="theme_notification">Pemberitahuan</string>
+  <string name="button_apply">Terapkan</string>
 </resources>
