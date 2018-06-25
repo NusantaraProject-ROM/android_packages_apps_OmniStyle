@@ -16,4 +16,46 @@ GNU General Public License for more details.
 You should have received a copy of the GNU General Public License
 along with this program.  If not, see <http://www.gnu.org/licenses/>.
 -->
-<resources></resources>
+<resources>
+  <string name="browse_header">ヘッダー</string>
+  <string name="custom_header_image_notice">ヘッダー画像セット</string>
+  <string name="browse_walls">壁紙</string>
+  <string name="omni_walls">Omni</string>
+  <string name="wallpaper_type_dialog_title">壁紙を設定</string>
+  <string name="wallpaper_type_both">ホーム画面とロック画面</string>
+  <string name="wallpaper_type_system">ホーム画面</string>
+  <string name="wallpaper_type_lock">ロック画面</string>
+  <string name="header_creator_label">クリエイター\u003a</string>
+  <string name="no_crop_activity_dialog_text">Omni Galleryアプリは壁紙を設定する必要があります</string>
+  <string name="no_crop_activity_dialog_title">ギャラリーがありません</string>
+  <string name="scrolling_wall_dialog_text">画面サイズに壁紙を切り抜きますか\u003f</string>
+  <string name="scrolling_wall_dialog_title">壁紙のトリミング</string>
+  <string name="scrolling_wall_yes">いいえ</string>
+  <string name="scrolling_wall_no">はい</string>
+  <string name="wallpaper_location_local">ローカル</string>
+  <string name="wallpaper_location_remote">オンライン</string>
+  <string name="download_wallpaper_notice">壁紙をダウンロード</string>
+  <string name="download_wallpaper_failed_notice">壁紙のダウンロードに失敗しました</string>
+  <string name="no_network_message">ネットワーク接続がありません</string>
+  <string name="download_wallpaper_list_failed_notice">壁紙の読み込みに失敗しました</string>
+  <string name="wallpaper_default_name">壁紙</string>
+  <string name="browse_theme_walls">テーマの壁紙</string>
+  <string name="browse_theme_header">テーマのヘッダー</string>
+  <string name="pick_header">ヘッダーの選択</string>
+  <string name="pick_theme">テーマの選択</string>
+  <string name="theme_disable">既定</string>
+  <string name="sort_by_creator_menu">クリエイターでソート</string>
+  <string name="sort_by_tag_menu">タグでソート</string>
+  <string name="sort_by_default_menu">名前でソート</string>
+  <string name="download_header_notice">ヘッダーをダウンロード</string>
+  <string name="download_header_failed_notice">ヘッダーのダウンロードに失敗しました</string>
+  <string name="header_location_local">ローカル</string>
+  <string name="header_location_online">オンライン</string>
+  <string name="compose_theme">テーマの作成</string>
+  <string name="theme_accent">アクセント</string>
+  <string name="theme_primary">プライマリー</string>
+  <string name="theme_notification">通知</string>
+  <string name="theme_compose">作成</string>
+  <string name="button_apply">適用</string>
+  <string name="notification_overlay_info">通知オーバーレイを変更した後は\n再起動する必要があります</string>
+</resources>

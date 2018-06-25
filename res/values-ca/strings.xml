@@ -16,4 +16,46 @@ GNU General Public License for more details.
 You should have received a copy of the GNU General Public License
 along with this program.  If not, see <http://www.gnu.org/licenses/>.
 -->
-<resources></resources>
+<resources>
+  <string name="browse_header">Capçaleres</string>
+  <string name="custom_header_image_notice">Conjunt d\'imatges de capçalera</string>
+  <string name="browse_walls">Fons de pantalla</string>
+  <string name="omni_walls">Omni</string>
+  <string name="wallpaper_type_dialog_title">Estableix el fons de pantalla</string>
+  <string name="wallpaper_type_both">Pantalles d\'inici i de bloqueig</string>
+  <string name="wallpaper_type_system">Pàgina d\'inici</string>
+  <string name="wallpaper_type_lock">Pantalla de bloqueig</string>
+  <string name="header_creator_label">Creador\u003a </string>
+  <string name="no_crop_activity_dialog_text">Es requereix l\'app Galeria Omni per establir el fons de pantalla</string>
+  <string name="no_crop_activity_dialog_title">Falta la galeria</string>
+  <string name="scrolling_wall_dialog_text">Voleu retallar el fons de pantalla a la mida de visualització\u003f</string>
+  <string name="scrolling_wall_dialog_title">Retalla el fons de pantalla</string>
+  <string name="scrolling_wall_yes">No</string>
+  <string name="scrolling_wall_no">Sí</string>
+  <string name="wallpaper_location_local">Local</string>
+  <string name="wallpaper_location_remote">En línia</string>
+  <string name="download_wallpaper_notice">S\'està baixant el fons de pantalla</string>
+  <string name="download_wallpaper_failed_notice">Ha fallat la baixada del fons de pantalla</string>
+  <string name="no_network_message">Sense connexió de xarxa</string>
+  <string name="download_wallpaper_list_failed_notice">Ha fallat la càrrega de la carpeta dels fons de pantalla</string>
+  <string name="wallpaper_default_name">Fons de pantalla</string>
+  <string name="browse_theme_walls">Fons de pantalla del tema</string>
+  <string name="browse_theme_header">Capçaleres del tema</string>
+  <string name="pick_header">Selecció de les capçaleres</string>
+  <string name="pick_theme">Selecció del tema</string>
+  <string name="theme_disable">Per defecte</string>
+  <string name="sort_by_creator_menu">Ordena pel creador</string>
+  <string name="sort_by_tag_menu">Ordena per l\'etiqueta</string>
+  <string name="sort_by_default_menu">Ordena pel nom</string>
+  <string name="download_header_notice">S\'està baixant l\'encapçalament</string>
+  <string name="download_header_failed_notice">Ha fallat la baixada de l\'encapçalament</string>
+  <string name="header_location_local">Local</string>
+  <string name="header_location_online">En línia</string>
+  <string name="compose_theme">Compon un tema</string>
+  <string name="theme_accent">Èmfasi</string>
+  <string name="theme_primary">Primari</string>
+  <string name="theme_notification">Avís</string>
+  <string name="theme_compose">Composa</string>
+  <string name="button_apply">Aplica</string>
+  <string name="notification_overlay_info">Cal reiniciar després de\ncanviar la superposició dels avisos</string>
+</resources>
