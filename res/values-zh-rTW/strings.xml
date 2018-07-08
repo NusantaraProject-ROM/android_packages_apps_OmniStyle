@@ -16,4 +16,46 @@ GNU General Public License for more details.
 You should have received a copy of the GNU General Public License
 along with this program.  If not, see <http://www.gnu.org/licenses/>.
 -->
-<resources></resources>
+<resources>
+  <string name="browse_header">下滑選單</string>
+  <string name="custom_header_image_notice">下滑選單圖片設定</string>
+  <string name="browse_walls">桌布</string>
+  <string name="omni_walls">Omni</string>
+  <string name="wallpaper_type_dialog_title">設定桌布</string>
+  <string name="wallpaper_type_both">主螢幕與鎖定畫面</string>
+  <string name="wallpaper_type_system">主螢幕</string>
+  <string name="wallpaper_type_lock">鎖定畫面</string>
+  <string name="header_creator_label">創造者\u003a </string>
+  <string name="no_crop_activity_dialog_text">需要 Omni 圖庫來設定桌布</string>
+  <string name="no_crop_activity_dialog_title">無法找到圖庫</string>
+  <string name="scrolling_wall_dialog_text">您想要將桌布裁切為顯示大小嗎\u003f</string>
+  <string name="scrolling_wall_dialog_title">裁切桌布</string>
+  <string name="scrolling_wall_yes">否</string>
+  <string name="scrolling_wall_no">是</string>
+  <string name="wallpaper_location_local">本機</string>
+  <string name="wallpaper_location_remote">線上</string>
+  <string name="download_wallpaper_notice">桌布下載中</string>
+  <string name="download_wallpaper_failed_notice">桌布下載失敗</string>
+  <string name="no_network_message">沒有網路連線</string>
+  <string name="download_wallpaper_list_failed_notice">讀取桌布目錄失敗</string>
+  <string name="wallpaper_default_name">桌布</string>
+  <string name="browse_theme_walls">桌布主題</string>
+  <string name="browse_theme_header">下滑選單主題</string>
+  <string name="pick_header">選擇下滑選單</string>
+  <string name="pick_theme">選擇主題</string>
+  <string name="theme_disable">預設</string>
+  <string name="sort_by_creator_menu">以創造者排序</string>
+  <string name="sort_by_tag_menu">以類型排序</string>
+  <string name="sort_by_default_menu">以名稱排序</string>
+  <string name="download_header_notice">下滑選單下載中</string>
+  <string name="download_header_failed_notice">下滑選單下載失敗</string>
+  <string name="header_location_local">本機</string>
+  <string name="header_location_online">線上</string>
+  <string name="compose_theme">選擇主題</string>
+  <string name="theme_accent">強調色</string>
+  <string name="theme_primary">主要</string>
+  <string name="theme_notification">通知</string>
+  <string name="theme_compose">自定義</string>
+  <string name="button_apply">套用</string>
+  <string name="notification_overlay_info">修改通知欄後\n需重新啟動</string>
+</resources>
