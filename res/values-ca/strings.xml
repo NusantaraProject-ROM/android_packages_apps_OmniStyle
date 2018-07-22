@@ -55,7 +55,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
   <string name="theme_accent">Èmfasi</string>
   <string name="theme_primary">Primari</string>
   <string name="theme_notification">Avís</string>
-  <string name="theme_compose">Composa</string>
+  <string name="theme_compose">Crea</string>
   <string name="button_apply">Aplica</string>
   <string name="notification_overlay_info">Cal reiniciar després de\ncanviar la superposició dels avisos</string>
 </resources>

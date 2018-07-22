@@ -43,7 +43,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
   <string name="browse_theme_header">テーマのヘッダー</string>
   <string name="pick_header">ヘッダーの選択</string>
   <string name="pick_theme">テーマの選択</string>
-  <string name="theme_disable">既定</string>
+  <string name="theme_disable">デフォルト</string>
   <string name="sort_by_creator_menu">クリエイターでソート</string>
   <string name="sort_by_tag_menu">タグでソート</string>
   <string name="sort_by_default_menu">名前でソート</string>
