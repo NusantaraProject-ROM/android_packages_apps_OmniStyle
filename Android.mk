@@ -18,38 +18,43 @@ LOCAL_PATH := $(call my-dir)
 
 include $(CLEAR_VARS)
 
-ifeq ($(TARGET_BUILD_APPS),)
-support_library_root_dir := frameworks/support
-else
-support_library_root_dir := prebuilts/sdk/current/support
-endif
-
-LOCAL_STATIC_JAVA_LIBRARIES += android-support-v4 \
+LOCAL_STATIC_ANDROID_LIBRARIES := android-support-v4 \
     android-support-v7-cardview \
     android-support-v7-recyclerview \
     android-support-v7-gridlayout \
-    android-support-core-ui \
-    lib-picasso
+    android-support-core-ui
 
-LOCAL_RESOURCE_DIR := $(LOCAL_PATH)/res \
-    $(support_library_root_dir)/v7/cardview/res \
-    $(support_library_root_dir)/v7/gridlayout/res \
-    $(support_library_root_dir)/v7/recyclerview/res \
+LOCAL_STATIC_JAVA_LIBRARIES := lib-picasso-target
 
-LOCAL_AAPT_FLAGS := --auto-add-overlay \
-    --extra-packages android.support.v7.cardview \
-    --extra-packages android.support.v7.gridlayout \
-    --extra-packages android.support.v7.recyclerview
+LOCAL_RESOURCE_DIR := $(LOCAL_PATH)/res
+
+LOCAL_USE_AAPT2 := true
+
+LOCAL_AAPT_FLAGS := --auto-add-overlay
 
 LOCAL_SRC_FILES := $(call all-subdir-java-files)
 LOCAL_PACKAGE_NAME := OmniStyle
 LOCAL_CERTIFICATE := platform
 LOCAL_PRIVILEGED_MODULE := true
 LOCAL_MODULE_TAGS := optional
+LOCAL_PRIVATE_PLATFORM_APIS := true
 #LOCAL_DEX_PREOPT := false
+LOCAL_PROGUARD_FLAG_FILES := proguard.flags
+
 include $(BUILD_PACKAGE)
 
 include $(CLEAR_VARS)
 LOCAL_MODULE_TAGS := optional
 LOCAL_PREBUILT_STATIC_JAVA_LIBRARIES := lib-picasso:libs/picasso-2.5.2.jar
-include $(BUILD_MULTI_PREBUILT)
+include $(BUILD_HOST_PREBUILT)
+
+# Enumerate target prebuilts to avoid linker warnings
+include $(CLEAR_VARS)
+
+LOCAL_MODULE_CLASS := JAVA_LIBRARIES
+LOCAL_MODULE := lib-picasso-target
+LOCAL_SDK_VERSION := current
+LOCAL_SRC_FILES := libs/picasso-2.5.2.jar
+LOCAL_UNINSTALLABLE_MODULE := true
+
+include $(BUILD_PREBUILT)
