@@ -46,7 +46,7 @@ import java.util.List;
 
 public class ComposeThemeActivity extends Activity {
     private static final String TAG = "ComposeThemeActivity";
-    private static final boolean DEBUG = false;
+    private static final boolean DEBUG = true;
     private static final String NOTIFICATION_OVERLAY_PRIMARY = "org.omnirom.theme.notification.primary";
 
     private Spinner mAccentSpinner;
@@ -55,6 +55,7 @@ public class ComposeThemeActivity extends Activity {
     private List<ThemeInfo> mAccentOverlays;
     private List<ThemeInfo> mPrimaryOverlays;
     private List<ThemeInfo> mNotificationOverlays;
+    private List<String> mAppOverlays;
     private OverlayUtils mOverlayUtils;
     private List<String> mOverlayCompose = new ArrayList<>();
     private String mCurrentAccent;
@@ -192,7 +193,7 @@ public class ComposeThemeActivity extends Activity {
         for (String packageName : accentOverlays) {
             ThemeInfo ti = new ThemeInfo();
             ti.mPackageName = packageName;
-            ti.mName = mOverlayUtils.getThemeLabel(packageName).toString();
+            ti.mName = mOverlayUtils.getPackageLabel(packageName).toString();
             mAccentOverlays.add(ti);
         }
         Collections.sort(mAccentOverlays);
@@ -204,7 +205,7 @@ public class ComposeThemeActivity extends Activity {
         for (String packageName : primaryOverlays) {
             ThemeInfo ti = new ThemeInfo();
             ti.mPackageName = packageName;
-            ti.mName = mOverlayUtils.getThemeLabel(packageName).toString();
+            ti.mName = mOverlayUtils.getPackageLabel(packageName).toString();
             mPrimaryOverlays.add(ti);
         }
         Collections.sort(mPrimaryOverlays);
@@ -216,11 +217,22 @@ public class ComposeThemeActivity extends Activity {
         for (String packageName : notificationOverlays) {
             ThemeInfo ti = new ThemeInfo();
             ti.mPackageName = packageName;
-            ti.mName = mOverlayUtils.getThemeLabel(packageName).toString();
+            ti.mName = mOverlayUtils.getPackageLabel(packageName).toString();
             mNotificationOverlays.add(ti);
         }
         Collections.sort(mNotificationOverlays);
 
+        mAppOverlays = new ArrayList();
+        mAppOverlays.addAll(Arrays.asList(mOverlayUtils.getAvailableThemes(OverlayUtils.OMNI_APP_THEME_PREFIX)));
+        if (DEBUG) Log.d(TAG, "appOverlays = " + mAppOverlays);
+
+        final List<String> targetPackages = new ArrayList();
+        targetPackages.addAll(Arrays.asList(mOverlayUtils.getAvailableTargetPackages(
+                OverlayUtils.OMNI_APP_THEME_PREFIX, OverlayUtils.ANDROID_TARGET_PACKAGE)));
+        for (String targetPackage : targetPackages) {
+            if (DEBUG) Log.d(TAG, "targetPackage = " + mOverlayUtils.getPackageLabel(targetPackage));
+        }
+        
         mCurrentAccent = mOverlayUtils.getCurrentTheme(OverlayUtils.OMNI_ACCENT_THEME_PREFIX);
         if (mCurrentAccent != null) {
             mOverlayCompose.set(0, mCurrentAccent);
@@ -315,7 +327,14 @@ public class ComposeThemeActivity extends Activity {
         applyButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                mOverlayUtils.enableThemeList(mOverlayCompose);
+                List<String> allOverlays = new ArrayList<String>();
+                allOverlays.addAll(mOverlayCompose);
+                
+                if (!mOverlayCompose.get(0).equals(OverlayUtils.KEY_THEMES_DISABLED)
+                        || !mOverlayCompose.get(1).equals(OverlayUtils.KEY_THEMES_DISABLED)) {
+                    allOverlays.addAll(mAppOverlays);
+                }
+                mOverlayUtils.enableThemeList(allOverlays);
             }
         });
         updatePreview();

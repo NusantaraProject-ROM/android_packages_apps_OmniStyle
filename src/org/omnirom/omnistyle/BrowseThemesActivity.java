@@ -47,6 +47,7 @@ import android.widget.TextView;
 import java.io.IOException;
 import java.io.InputStream;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
 
@@ -96,6 +97,14 @@ public class BrowseThemesActivity extends Activity {
                     overlayList.add(wi.mAccent);
                     overlayList.add(wi.mPrimary);
                     overlayList.add(wi.mNotification);
+
+                    if (!wi.mAccent.equals(OverlayUtils.KEY_THEMES_DISABLED)
+                        || !wi.mPrimary.equals(OverlayUtils.KEY_THEMES_DISABLED)) {
+                        final List<String> appOverlays = new ArrayList();
+                        appOverlays.addAll(Arrays.asList(mOverlayUtils.getAvailableThemes(OverlayUtils.OMNI_APP_THEME_PREFIX)));
+                        overlayList.addAll(appOverlays);
+                    }
+        
                     mOverlayUtils.enableThemeList(overlayList);
                 }
             } catch (Exception e) {

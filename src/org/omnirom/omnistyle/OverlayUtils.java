@@ -41,17 +41,22 @@ import org.xmlpull.v1.XmlPullParserFactory;
 import java.io.IOException;
 import java.io.InputStream;
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Map;
+import java.util.Set;
 
 public class OverlayUtils {
     private static final String TAG = "OverlayUtils";
-    private static final boolean DEBUG = false;
+    private static final boolean DEBUG = true;
 
     private static final String OMNI_THEME_PREFIX = "org.omnirom.theme";
     public static final String OMNI_ACCENT_THEME_PREFIX = "org.omnirom.theme.accent";
     public static final String OMNI_PRIMARY_THEME_PREFIX = "org.omnirom.theme.primary";
     public static final String OMNI_NOTIFICATION_THEME_PREFIX = "org.omnirom.theme.notification";
     public static final String KEY_THEMES_DISABLED = "default";
+    public static final String OMNI_APP_THEME_PREFIX = "org.omnirom.theme.app";
+    public static final String ANDROID_TARGET_PACKAGE = "android";
 
     private final OverlayManager mOverlayService;
     private final PackageManager mPackageManager;
@@ -96,7 +101,7 @@ public class OverlayUtils {
         }
     }
 
-    public CharSequence getThemeLabel(String packageName)  {
+    public CharSequence getPackageLabel(String packageName)  {
         CharSequence label = null;
         try {
             label = mPackageManager.getApplicationInfo(packageName, 0).loadLabel(mPackageManager);
@@ -104,6 +109,15 @@ public class OverlayUtils {
             label = packageName;
         }
         return label;
+    }
+
+    public Drawable getPackageIcon(String packageName)  {
+        Drawable icon = null;
+        try {
+            icon = mPackageManager.getApplicationIcon(packageName);
+        } catch (PackageManager.NameNotFoundException e) {
+        }
+        return icon;
     }
 
     public BitmapDrawable getThemeThumbnail(ThemeInfo ti)  {
@@ -186,13 +200,16 @@ public class OverlayUtils {
 
     public void disableTheme() {
         try {
-            List<OverlayInfo> infos = mOverlayService.getOverlayInfosForTarget("android",
+            Map<String, List<OverlayInfo>> infos = mOverlayService.getAllOverlays(
                     UserHandle.myUserId());
-            for (int i = 0, size = infos.size(); i < size; i++) {
-                if (infos.get(i).isEnabled() &&
-                        infos.get(i).packageName.startsWith(OMNI_THEME_PREFIX) &&
-                        isChangeableOverlay(infos.get(i).packageName)) {
-                    mOverlayService.setEnabled(infos.get(i).packageName, false, UserHandle.myUserId());
+            List<String> pkgs = new ArrayList(infos.keySet().size());
+            for (String targetPkg : infos.keySet()) {
+                List<OverlayInfo> overlays = infos.get(targetPkg);
+                for (OverlayInfo oi : overlays) {
+                    String packageName = oi.packageName;
+                    if (packageName.startsWith(OMNI_THEME_PREFIX) && isChangeableOverlay(packageName)) {
+                        mOverlayService.setEnabled(packageName, false, UserHandle.myUserId());
+                    }
                 }
             }
         } catch (RemoteException e) {
@@ -201,13 +218,56 @@ public class OverlayUtils {
 
     public String[] getAvailableThemes(String prefix) {
         try {
-            List<OverlayInfo> infos = mOverlayService.getOverlayInfosForTarget("android",
+            Map<String, List<OverlayInfo>> infos = mOverlayService.getAllOverlays(
+                    UserHandle.myUserId());
+            List<String> pkgs = new ArrayList(infos.keySet().size());
+            for (String targetPkg : infos.keySet()) {
+                List<OverlayInfo> overlays = infos.get(targetPkg);
+                for (OverlayInfo oi : overlays) {
+                    String packageName = oi.packageName;
+                    if (packageName.startsWith(prefix) && isChangeableOverlay(packageName)) {
+                        pkgs.add(packageName);
+                    }
+                }
+            }
+            return pkgs.toArray(new String[pkgs.size()]);
+        } catch (RemoteException e) {
+        }
+        return new String[0];
+    }
+
+    public String[] getAvailableThemes(String prefix, String targetPackage) {
+        try {
+            List<OverlayInfo> infos = mOverlayService.getOverlayInfosForTarget(targetPackage,
                     UserHandle.myUserId());
             List<String> pkgs = new ArrayList(infos.size());
             for (int i = 0, size = infos.size(); i < size; i++) {
                 if (infos.get(i).packageName.startsWith(prefix) &&
                         isChangeableOverlay(infos.get(i).packageName)) {
                     pkgs.add(infos.get(i).packageName);
+                }
+            }
+            return pkgs.toArray(new String[pkgs.size()]);
+        } catch (RemoteException e) {
+        }
+        return new String[0];
+    }
+
+    public String[] getAvailableTargetPackages(String prefix, String excludePackage) {
+        try {
+            Map<String, List<OverlayInfo>> infos = mOverlayService.getAllOverlays(
+                    UserHandle.myUserId());
+            Set<String> pkgs = new HashSet(infos.keySet().size());
+            for (String targetPkg : infos.keySet()) {
+                if (excludePackage != null && targetPkg.equals(excludePackage)) {
+                    continue;
+                }
+                List<OverlayInfo> overlays = infos.get(targetPkg);
+                for (OverlayInfo oi : overlays) {
+                    String packageName = oi.packageName;
+                    if (packageName.startsWith(prefix) && isChangeableOverlay(packageName)) {
+                        pkgs.add(targetPkg);
+                    }
                 }
             }
             return pkgs.toArray(new String[pkgs.size()]);
@@ -290,6 +350,11 @@ public class OverlayUtils {
         public List<OverlayInfo> getOverlayInfosForTarget(String target, int userId)
                 throws RemoteException {
             return mService.getOverlayInfosForTarget(target, userId);
+        }
+
+        public Map<String, List<OverlayInfo>> getAllOverlays(int userId)
+                throws RemoteException {
+            return mService.getAllOverlays(userId);
         }
     }
 }
