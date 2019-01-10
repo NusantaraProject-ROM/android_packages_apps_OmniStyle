@@ -246,7 +246,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
                 android:paddingStart="5dp"
                 android:paddingEnd="5dp"
                 android:background="?android:attr/colorAccent"
-                android:textColor="?android:attr/colorPrimary"
+                android:textColor="@android:color/white"
                 android:text="@string/button_apply"/>
         </LinearLayout>
     </LinearLayout>
