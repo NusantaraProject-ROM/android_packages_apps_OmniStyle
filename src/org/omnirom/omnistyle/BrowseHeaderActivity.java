@@ -175,8 +175,8 @@ public class BrowseHeaderActivity extends Activity {
             int position = getAdapterPosition();
             if (mPickerMode) {
                 DaylightHeaderInfo di = mHeadersList.get(position);
-                //Settings.System.putString(getContentResolver(), Settings.System.STATUS_BAR_CUSTOM_HEADER_IMAGE, mPackageName + "/" + di.mImage);
-                //Settings.System.putString(getContentResolver(), Settings.System.STATUS_BAR_CUSTOM_HEADER_PROVIDER, "static");
+                Settings.System.putString(getContentResolver(), Settings.System.STATUS_BAR_CUSTOM_HEADER_IMAGE, mPackageName + "/" + di.mImage);
+                Settings.System.putString(getContentResolver(), Settings.System.STATUS_BAR_CUSTOM_HEADER_PROVIDER, "static");
                 Toast.makeText(BrowseHeaderActivity.this, R.string.custom_header_image_notice, Toast.LENGTH_LONG).show();
             }
         }
@@ -570,8 +570,8 @@ public class BrowseHeaderActivity extends Activity {
             return;
         }
         final Uri imageUri = Uri.fromFile(new File(headerFile));
-        //Settings.System.putString(getContentResolver(), Settings.System.STATUS_BAR_CUSTOM_HEADER_PROVIDER, "file");
-        //Settings.System.putString(getContentResolver(), Settings.System.STATUS_BAR_FILE_HEADER_IMAGE, imageUri.toString());
+        Settings.System.putString(getContentResolver(), Settings.System.STATUS_BAR_CUSTOM_HEADER_PROVIDER, "file");
+        Settings.System.putString(getContentResolver(), Settings.System.STATUS_BAR_FILE_HEADER_IMAGE, imageUri.toString());
         Toast.makeText(BrowseHeaderActivity.this, R.string.custom_header_image_notice, Toast.LENGTH_LONG).show();
     }
 
