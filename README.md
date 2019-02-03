@@ -69,4 +69,3 @@ the quickbar images will become hard to see.
 
 ## Contributors ##
 + Travis Hall
-+ Syed Sajid
