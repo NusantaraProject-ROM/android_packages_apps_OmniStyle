@@ -23,7 +23,7 @@
           android:minHeight="48dp"
           android:paddingEnd="8dp"
           android:paddingStart="8dp"
-	  android:textAppearance="?android:attr/textAppearanceListItem"
+          android:textAppearance="@android:style/TextAppearance.Material.Subhead"
           android:textColor="?android:attr/textColorPrimary"
           android:textSize="16sp"
           android:background="@drawable/switchbar_background" >

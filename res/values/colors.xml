@@ -1,7 +1,0 @@
-<?xml version="1.0" encoding="utf-8"?>
-<resources>
-    <color name="system_default_accent">#ff009688</color>
-    <color name="system_default_primary">#fff5f5f5</color>
-    <color name="system_default_primary_dark">#ffeeeeee</color>
-    <color name="system_default_text_color">#ff000000</color>
-</resources>

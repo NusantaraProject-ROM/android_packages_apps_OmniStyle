@@ -19,6 +19,4 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
     <dimen name="activity_horizontal_margin">5dp</dimen>
     <dimen name="activity_vertical_margin">5dp</dimen>
     <dimen name="header_notification_width_landscape">544dp</dimen>
-    <dimen name="color_swatch_size">24dp</dimen>
-    <dimen name="color_swatch_stroke_width">0.5dp</dimen>
 </resources>

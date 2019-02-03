@@ -18,31 +18,10 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 <resources>
     <string name="browse_header">Headers</string>
     <string name="custom_header_image_notice">Header image set</string>
-    <string name="browse_walls">Wallpapers</string>
-    <string name="omni_walls">Omni</string>
-    <string name="wallpaper_type_dialog_title">Set wallpaper</string>
-    <string name="wallpaper_type_both">Home screen and lock screen</string>
-    <string name="wallpaper_type_system">Home screen</string>
-    <string name="wallpaper_type_lock">Lock screen</string>
     <string name="header_creator_label">Creator\u003a </string>
-    <string name="no_crop_activity_dialog_text">Omni Gallery app is required to set wallpaper</string>
-    <string name="no_crop_activity_dialog_title">Gallery missing</string>
-    <string name="scrolling_wall_dialog_text">Do you want to crop the wallpaper to the display size\u003f</string>
-    <string name="scrolling_wall_dialog_title">Crop wallpaper</string>
-    <string name="scrolling_wall_yes">No</string>
-    <string name="scrolling_wall_no">Yes</string>
-    <string name="wallpaper_location_local">Local</string>
-    <string name="wallpaper_location_remote">Online</string>
-    <string name="download_wallpaper_notice">Downloading wallpaper</string>
-    <string name="download_wallpaper_failed_notice">Downloading wallpaper failed</string>
     <string name="no_network_message">No network connectivity</string>
     <string name="download_wallpaper_list_failed_notice">Loading wallpaper directory failed</string>
-    <string name="wallpaper_default_name">Wallpaper</string>
-    <string name="browse_theme_walls">Theme wallpapers</string>
-    <string name="browse_theme_header">Theme headers</string>
     <string name="pick_header">Select headers</string>
-    <string name="pick_theme">Select theme</string>
-    <string name="theme_disable">Default</string>
     <string name="sort_by_creator_menu">Sort by creator</string>
     <string name="sort_by_tag_menu">Sort by tag</string>
     <string name="sort_by_default_menu">Sort by name</string>
@@ -50,15 +29,4 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
     <string name="download_header_failed_notice">Downloading header failed</string>
     <string name="header_location_local">Local</string>
     <string name="header_location_online">Online</string>
-    <string name="compose_theme">Compose theme</string>
-    <string name="theme_accent">Accent</string>
-    <string name="theme_primary">Primary</string>
-    <string name="theme_notification">Notification</string>
-    <string name="theme_compose">Compose</string>
-    <string name="button_apply">Apply</string>
-    <string name="overlay_preview_text" translatable="false">Lorem ipsum dolor sit amet</string>
-    <string name="overlay_preview_switch" translatable="false">Stet clita kasd gubergren</string>
-    <string name="overlay_preview_button1" translatable="false" >Yaj</string>
-    <string name="overlay_preview_button2" translatable="false" >Nej</string>
-    <string name="notification_overlay_info">Reboot is required after\nchanging notification overlay</string>
 </resources>
