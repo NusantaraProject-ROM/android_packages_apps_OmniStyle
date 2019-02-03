@@ -28,7 +28,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
     <application
         android:allowBackup="false"
         android:label="OmniStyle"
-        android:icon="@drawable/omnirom_logo"
+        android:icon="@drawable/ic_launcher_settings"
         android:theme="@style/Theme.OmniStyle" >
         <activity
             android:name=".BrowseHeaderActivity"
