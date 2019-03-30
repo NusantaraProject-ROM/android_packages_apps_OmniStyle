@@ -1,0 +1,8 @@
+<layer-list xmlns:android="http://schemas.android.com/apk/res/android">
+<item android:drawable="@drawable/clt_whatliesbehindus_tintlayer1"
+        />
+    <item android:drawable="@drawable/clt_whatliesbehindus_tintlayer2"
+        />
+    <item android:drawable="@drawable/clt_whatliesbehindus_tintlayer2_extra"
+        />
+</layer-list>

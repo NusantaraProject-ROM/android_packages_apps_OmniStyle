@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--  Copyright (C) 2016 The OmniROM Project
+
+  This program is free software: you can redistribute it and/or modify
+  it under the terms of the GNU General Public License as published by
+  the Free Software Foundation, either version 2 of the License, or
+  (at your option) any later version.
+
+  This program is distributed in the hope that it will be useful,
+  but WITHOUT ANY WARRANTY; without even the implied warranty of
+  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+  GNU General Public License for more details.
+
+  You should have received a copy of the GNU General Public License
+  along with this program.  If not, see <http://www.gnu.org/licenses/>.
+ -->
+
+<!-- hour_header must be sorted based on hour
+entry can only be only one of hour or day/month type
+day_header entries have a higher priority then hour entries -->
+
+<daylight_headers>
+    <random_header image="idkf_cl0udy01" />
+    <random_header image="idkf_cl0udy02" />
+    <random_header image="idkf_cl0udy03" />
+    <random_header image="idkf_cl0udy04" />
+    <random_header image="idkf_cl0udy05" />
+    <random_header image="idkf_cl0udy06" />
+    <random_header image="idkf_cl0udy07" />
+    <random_header image="idkf_cl0udy08" />
+    <random_header image="idkf_cl0udy09" />
+    <random_header image="idkf_cl0udy10" />
+    <random_header image="idkf_cl0udy11" />
+    <random_header image="idkf_cl0udy12" />
+    <random_header image="idkf_cl0udy13" />
+    <random_header image="idkf_cl0udy14" />
+    <random_header image="idkf_cl0udy15" />
+    <random_header image="idkf_cl0udy16" />
+    <random_header image="idkf_cl0udy17" />
+    <random_header image="idkf_cl0udy18" />
+    <random_header image="idkf_cl0udy19" />
+    <random_header image="idkf_cl0udy20" />
+    <random_header image="idkf_cl0udy21" />
+    <random_header image="idkf_cl0udy22" />
+    <random_header image="idkf_cl0udy23" />
+    <random_header image="idkf_cl0udy24" />
+    <random_header image="idkf_cl0udy25" />
+    <random_header image="idkf_cl0udy26" />
+    <random_header image="idkf_cl0udy27" />
+</daylight_headers>

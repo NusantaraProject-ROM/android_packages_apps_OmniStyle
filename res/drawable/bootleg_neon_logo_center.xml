@@ -1,0 +1,9 @@
+<layer-list xmlns:android="http://schemas.android.com/apk/res/android">
+<item android:drawable="@drawable/bootleg_neon_bg"
+        />
+    <item>
+        <bitmap xmlns:android="http://schemas.android.com/apk/res/android"
+            android:src="@drawable/bootleg_neon_logo_center_tint"
+            android:tint="@color/header_system_accent"/>    
+    </item>
+</layer-list>

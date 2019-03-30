@@ -2,4 +2,12 @@
 <resources>
     <color name="grid_bg_color">@color/material_grey_200</color>
     <color name="material_grey_200">#ffeeeeee</color>
+    <color name="system_default_accent">#ff009688</color>
+    <color name="system_default_primary">#fff5f5f5</color>
+    <color name="system_default_primary_dark">#ffeeeeee</color>
+    <color name="system_default_text_color">#ff000000</color>
+    <color name="header_system_accent">@*android:color/accent_material_light</color>
+    <color name="header_system_followup">@*android:color/bootleg_accent_gradient_end_color</color>
+    <color name="header_fake_bg">#000</color>
+    <color name="system_dark_bg">@*android:color/background_material_dark</color>
 </resources>

@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--  Copyright (C) 2016 The OmniROM Project
+
+  This program is free software: you can redistribute it and/or modify
+  it under the terms of the GNU General Public License as published by
+  the Free Software Foundation, either version 2 of the License, or
+  (at your option) any later version.
+
+  This program is distributed in the hope that it will be useful,
+  but WITHOUT ANY WARRANTY; without even the implied warranty of
+  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+  GNU General Public License for more details.
+
+  You should have received a copy of the GNU General Public License
+  along with this program.  If not, see <http://www.gnu.org/licenses/>.
+ -->
+
+<!-- hour_header must be sorted based on hour
+entry can only be only one of hour or day/month type
+day_header entries have a higher priority then hour entries -->
+
+<daylight_headers>
+    <random_header image="cl_aesthetic_mix01" />
+    <random_header image="cl_aesthetic_mix02" />
+    <random_header image="cl_aesthetic_mix03" />
+    <random_header image="cl_aesthetic_mix04" />
+    <random_header image="cl_aesthetic_mix05" />
+    <random_header image="cl_aesthetic_mix06" />
+    <random_header image="cl_aesthetic_mix07" />
+    <random_header image="cl_aesthetic_mix08" />
+    <random_header image="cl_aesthetic_mix09" />
+    <random_header image="cl_aesthetic_mix10" />
+    <random_header image="cl_aesthetic_mix11" />
+    <random_header image="cl_aesthetic_mix12" />
+    <random_header image="cl_aesthetic_mix13" />
+    <random_header image="cl_aesthetic_mix14" />
+    <random_header image="cl_aesthetic_mix16" />
+    <random_header image="cl_aesthetic_mix17" />
+    <random_header image="cl_aesthetic_mix18" />
+    <random_header image="cl_aesthetic_mix19" />
+    <random_header image="cl_aesthetic_mix20" />
+    <random_header image="cl_aesthetic_mix21" />
+    <random_header image="cl_aesthetic_mix22" />
+    <random_header image="cl_aesthetic_mix23" />
+    <random_header image="cl_aesthetic_mix24" />
+    <random_header image="cl_aesthetic_mix25" />
+    <random_header image="cl_aesthetic_mix26" />
+    <random_header image="cl_aesthetic_mix27" />
+    <random_header image="cl_aesthetic_mix28" />
+    <random_header image="cl_aesthetic_mix29" />
+    <random_header image="cl_aesthetic_mix30" />
+    <random_header image="cl_aesthetic_mix31" />
+    <random_header image="cl_aesthetic_mix32" />
+    <random_header image="cl_aesthetic_mix33" />
+    <random_header image="cl_aesthetic_mix34" />
+    <random_header image="cl_aesthetic_mix35" />
+    <random_header image="cl_aesthetic_mix36" />
+    <random_header image="cl_aesthetic_mix37" />
+    <random_header image="cl_aesthetic_mix38" />
+    <random_header image="cl_aesthetic_mix39" />
+    <random_header image="cl_aesthetic_mix40" />
+    <random_header image="cl_aesthetic_mix41" />
+    <random_header image="cl_aesthetic_mix42" />
+    <random_header image="cl_aesthetic_mix43" />
+    <random_header image="cl_aesthetic_mix44" />
+    <random_header image="cl_aesthetic_mix45" />
+    <random_header image="cl_aesthetic_mix46" />
+    <random_header image="cl_aesthetic_mix47" />
+    <random_header image="cl_aesthetic_mix48" />
+    <random_header image="cl_aesthetic_mix49" />
+    <random_header image="cl_aesthetic_mix50" />
+    <random_header image="cl_aesthetic_mix51" />
+    <random_header image="cl_aesthetic_mix52" />
+    <random_header image="cl_aesthetic_mix53" />
+    <random_header image="cl_aesthetic_mix54" />
+    <random_header image="cl_aesthetic_mix55" />
+    <random_header image="cl_aesthetic_mix56" />
+    <random_header image="cl_aesthetic_mix57" />
+    <random_header image="cl_aesthetic_mix58" />
+    <random_header image="cl_aesthetic_mix59" />
+    <random_header image="cl_aesthetic_mix60" />
+    <random_header image="cl_aesthetic_mix61" />
+    <random_header image="cl_aesthetic_mix62" />
+    <random_header image="cl_aesthetic_mix63" />
+    <random_header image="cl_aesthetic_mix64" />
+</daylight_headers>
