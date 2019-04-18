@@ -293,6 +293,15 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
             </intent-filter>
         </activity>
         <activity
+            android:name=".derp_avengers"
+            android:label="DerpFest - Avengers" >
+            <intent-filter>
+                <action android:name="org.omnirom.DaylightHeaderPack1" />
+
+                <category android:name="android.intent.category.DEFAULT" />
+            </intent-filter>
+        </activity>
+        <activity
             android:name=".got"
             android:label="JayRod - Game of Thrones" >
             <intent-filter>
