@@ -32,7 +32,8 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
             android:paddingLeft="@dimen/activity_horizontal_margin"
             android:paddingRight="@dimen/activity_horizontal_margin"
             android:orientation="vertical"
-            android:background="@drawable/switchbar_background">
+            android:background="@drawable/switchbar_background"
+            android:elevation="4dp" >
 
             <Spinner
                 android:id="@+id/package_select"
@@ -61,7 +62,8 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
             android:divider="@null"
             android:dividerHeight="0dip"
             android:clipToPadding="false"
-            android:layout_gravity="center_horizontal" />
+            android:layout_gravity="center_horizontal"
+            android:background="@color/grid_bg_color" />
 
     </LinearLayout>
 

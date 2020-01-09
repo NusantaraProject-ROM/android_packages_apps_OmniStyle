@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="color_primary_dark">@*android:color/primary_dark_device_default_settings_light</color>
+    <color name="color_primary">@*android:color/primary_device_default_settings_light</color>
+    <color name="grid_bg_color">@color/material_grey_200</color>
+    <color name="material_grey_200">#ffeeeeee</color>
+</resources>
