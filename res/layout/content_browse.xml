@@ -36,6 +36,22 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
             android:elevation="4dp" >
 
             <Spinner
+                android:id="@+id/location_select"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:backgroundTint="?android:attr/textColorPrimary" />
+
+        </LinearLayout>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:paddingLeft="@dimen/activity_horizontal_margin"
+            android:paddingRight="@dimen/activity_horizontal_margin"
+            android:orientation="vertical"
+            android:background="@drawable/switchbar_background"
+            android:elevation="4dp" >
+
+            <Spinner
                 android:id="@+id/package_select"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
