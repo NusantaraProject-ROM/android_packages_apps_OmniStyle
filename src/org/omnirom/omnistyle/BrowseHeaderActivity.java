@@ -642,6 +642,7 @@ public class BrowseHeaderActivity extends Activity {
         mSelectSpinnerAdapter.clear();
         mSelectSpinnerAdapter.addAll(mLabelList);
         mHeaderListView.setAdapter(mHeaderListAdapter);
+        mHeaderSelect.setSelection(0);
     }
 
     private void showRemote(){
@@ -654,6 +655,7 @@ public class BrowseHeaderActivity extends Activity {
             mRemoteMode = true;
             mSelectSpinnerAdapter.clear();
             mSelectSpinnerAdapter.addAll(mTagDisplayList);
+            mHeaderSelect.setSelection(0);
             filterRemoteWallpapers(FILTER_BY_TAG, mTagSortedList.get(0));
         }
     }
