@@ -100,16 +100,6 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
                 <category android:name="android.intent.category.DEFAULT" />
             </intent-filter>
         </activity>
-
-        <activity
-            android:name=".alex_veneno"
-            android:label="Poison" >
-            <intent-filter>
-                <action android:name="org.omnirom.DaylightHeaderPack1" />
-                <category android:name="android.intent.category.DEFAULT" />
-            </intent-filter>
-        </activity>
-
         <activity
             android:name=".du_crot"
             android:label="Dirty Unicorns" >
@@ -124,14 +114,6 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
             <intent-filter>
                 <action android:name="org.omnirom.DaylightHeaderPack1" />
 
-                <category android:name="android.intent.category.DEFAULT" />
-            </intent-filter>
-        </activity>
-        <activity
-            android:name=".western"
-            android:label="Western" >
-            <intent-filter>
-                <action android:name="org.omnirom.DaylightHeaderPack1" />
                 <category android:name="android.intent.category.DEFAULT" />
             </intent-filter>
         </activity>
@@ -280,8 +262,8 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
             </intent-filter>
         </activity>
         <activity
-            android:name=".clo_nice"
-            android:label="the nicest header pack" >
+            android:name=".derp_art"
+            android:label="DerpFest - Art" >
             <intent-filter>
                 <action android:name="org.omnirom.DaylightHeaderPack1" />
 
