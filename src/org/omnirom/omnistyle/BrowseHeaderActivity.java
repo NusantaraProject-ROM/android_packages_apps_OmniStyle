@@ -648,6 +648,7 @@ public class BrowseHeaderActivity extends Activity {
     private void showRemote(){
         mHeaderListView.setAdapter(mRemoteHeaderListAdapter);
         if (!mRemoteLoaded) {
+            mSelectSpinnerAdapter.clear();
             mProgress.setVisibility(View.VISIBLE);
             FetchHeaderListTask fetch = new FetchHeaderListTask();
             fetch.execute();
