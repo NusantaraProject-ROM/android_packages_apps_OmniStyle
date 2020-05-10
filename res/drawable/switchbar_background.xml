@@ -16,6 +16,6 @@
 
 <ripple xmlns:android="http://schemas.android.com/apk/res/android"
     android:color="?android:attr/colorControlHighlight">
-    <item android:drawable="?android:attr/colorPrimary" />
+    <item android:drawable="@*android:color/notification_material_background_color" />
 </ripple>
 

@@ -2,10 +2,6 @@
 <resources xmlns:android="http://schemas.android.com/apk/res/android">
 
     <style name="Theme.OmniStyle" parent="@android:style/Theme.DeviceDefault.Settings" >
-        <item name="android:colorPrimary">@color/color_primary</item>
-        <item name="android:colorPrimaryDark">@color/color_primary</item>
-        <item name="android:statusBarColor">@color/color_primary</item>
-        <item name="android:navigationBarColor">@color/color_primary</item>
         <item name="android:navigationBarDividerColor">@android:color/transparent</item>
     </style>
 
