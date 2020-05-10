@@ -108,15 +108,6 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
         </activity>
         
         <activity
-            android:name=".GMLR"
-            android:label="GMLR Collection" >
-            <intent-filter>
-                <action android:name="org.omnirom.DaylightHeaderPack1" />
-                <category android:name="android.intent.category.DEFAULT" />
-            </intent-filter>
-        </activity>
-        
-        <activity
             android:name=".ig_fxckingmind"
             android:label="Fxckingdeathwish's mind" >
             <intent-filter>
@@ -128,24 +119,6 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
         <activity
             android:name=".idk_sumtim"
             android:label="ElDainosor.bmp summertime" >
-            <intent-filter>
-                <action android:name="org.omnirom.DaylightHeaderPack1" />
-                <category android:name="android.intent.category.DEFAULT" />
-            </intent-filter>
-        </activity>
-        
-        <activity
-            android:name=".nataliasolaange"
-            android:label="Nataliasolaange Collection" >
-            <intent-filter>
-                <action android:name="org.omnirom.DaylightHeaderPack1" />
-                <category android:name="android.intent.category.DEFAULT" />
-            </intent-filter>
-        </activity>
-        
-        <activity
-            android:name=".clo_llection"
-            android:label="Best of COLOURLovers.com" >
             <intent-filter>
                 <action android:name="org.omnirom.DaylightHeaderPack1" />
                 <category android:name="android.intent.category.DEFAULT" />
@@ -234,15 +207,6 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
         </activity>
         
         <activity
-            android:name=".clo_win98"
-            android:label="W98" >
-            <intent-filter>
-                <action android:name="org.omnirom.DaylightHeaderPack1" />
-                <category android:name="android.intent.category.DEFAULT" />
-            </intent-filter>
-        </activity>
-        
-        <activity
             android:name=".ig_agusfotos"
             android:label="Agus.laz4rte Repertoire" >
             <intent-filter>
@@ -294,24 +258,6 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
                 <action android:name="org.omnirom.DaylightHeaderPack1" />
                 <category android:name="android.intent.category.DEFAULT" />
 	        </intent-filter>
-        </activity>
-
-        <activity
-            android:name=".GMLRv2"
-            android:label="GMLRv2 Collection" >
-            <intent-filter>
-                <action android:name="org.omnirom.DaylightHeaderPack1" />
-                <category android:name="android.intent.category.DEFAULT" />
-            </intent-filter>
-        </activity>
-        
-        <activity
-            android:name=".anime_girl"
-            android:label="Anime Girls" >
-            <intent-filter>
-                <action android:name="org.omnirom.DaylightHeaderPack1" />
-                <category android:name="android.intent.category.DEFAULT" />
-            </intent-filter>
         </activity>
 
         <activity
