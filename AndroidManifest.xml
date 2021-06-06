@@ -45,51 +45,6 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
         </activity>
 
         <activity
-            android:name=".nature"
-            android:label="Nature" >
-            <intent-filter>
-                <action android:name="org.omnirom.DaylightHeaderPack1" />
-                <category android:name="android.intent.category.DEFAULT" />
-            </intent-filter>
-        </activity>
-
-        <activity
-            android:name=".poly"
-            android:label="Poly" >
-            <intent-filter>
-                <action android:name="org.omnirom.DaylightHeaderPack1" />
-                <category android:name="android.intent.category.DEFAULT" />
-            </intent-filter>
-        </activity>
-
-        <activity
-            android:name=".naturerandom"
-            android:label="Nature (random)" >
-            <intent-filter>
-                <action android:name="org.omnirom.DaylightHeaderPack1" />
-                <category android:name="android.intent.category.DEFAULT" />
-            </intent-filter>
-        </activity>
-
-        <activity
-            android:name=".wavvy"
-            android:label="Wavvy" >
-            <intent-filter>
-                <action android:name="org.omnirom.DaylightHeaderPack1" />
-                <category android:name="android.intent.category.DEFAULT" />
-            </intent-filter>
-        </activity>
-
-        <activity
-            android:name=".colorful"
-            android:label="Colorful" >
-            <intent-filter>
-                <action android:name="org.omnirom.DaylightHeaderPack1" />
-                <category android:name="android.intent.category.DEFAULT" />
-            </intent-filter>
-        </activity>
-
-        <activity
             android:name=".space_interval"
             android:label="Space" >
             <intent-filter>
@@ -110,24 +65,6 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
         <activity
             android:name=".ig_fxckingmind"
             android:label="Fxckingdeathwish's mind" >
-            <intent-filter>
-                <action android:name="org.omnirom.DaylightHeaderPack1" />
-                <category android:name="android.intent.category.DEFAULT" />
-            </intent-filter>
-        </activity>
-        
-        <activity
-            android:name=".idk_sumtim"
-            android:label="ElDainosor.bmp summertime" >
-            <intent-filter>
-                <action android:name="org.omnirom.DaylightHeaderPack1" />
-                <category android:name="android.intent.category.DEFAULT" />
-            </intent-filter>
-        </activity>
-        
-        <activity
-            android:name=".clo_tinted"
-            android:label="Best of COLOURLovers.com Tinted" >
             <intent-filter>
                 <action android:name="org.omnirom.DaylightHeaderPack1" />
                 <category android:name="android.intent.category.DEFAULT" />
@@ -162,51 +99,6 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
         </activity>
         
         <activity
-            android:name=".alex_veneno"
-            android:label="Itsaalex's Poison Headers" >
-            <intent-filter>
-                <action android:name="org.omnirom.DaylightHeaderPack1" />
-                <category android:name="android.intent.category.DEFAULT" />
-            </intent-filter>
-        </activity>
-        
-        <activity
-            android:name=".purplegorilla"
-            android:label="I don't believe we're been properly introduced" >
-            <intent-filter>
-                <action android:name="org.omnirom.DaylightHeaderPack1" />
-                <category android:name="android.intent.category.DEFAULT" />
-            </intent-filter>
-        </activity>
-        
-        <activity
-            android:name=".clo_niceheader"
-            android:label="Community nicest header submissions" >
-            <intent-filter>
-                <action android:name="org.omnirom.DaylightHeaderPack1" />
-                <category android:name="android.intent.category.DEFAULT" />
-            </intent-filter>
-        </activity>
-        
-        <activity
-            android:name=".clo_pizzshufied"
-            android:label="Pizzheaderz Shishufied" >
-            <intent-filter>
-                <action android:name="org.omnirom.DaylightHeaderPack1" />
-                <category android:name="android.intent.category.DEFAULT" />
-            </intent-filter>
-        </activity>
-        
-        <activity
-            android:name=".clo_procons"
-            android:label="Pizzheaderz Pros and cons" >
-            <intent-filter>
-                <action android:name="org.omnirom.DaylightHeaderPack1" />
-                <category android:name="android.intent.category.DEFAULT" />
-            </intent-filter>
-        </activity>
-        
-        <activity
             android:name=".ig_agusfotos"
             android:label="Agus.laz4rte Repertoire" >
             <intent-filter>
@@ -227,15 +119,6 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
         <activity
             android:name=".derp_avengers"
             android:label="Avengers" >
-            <intent-filter>
-                <action android:name="org.omnirom.DaylightHeaderPack1" />
-                <category android:name="android.intent.category.DEFAULT" />
-            </intent-filter>
-        </activity>
-        
-        <activity
-            android:name=".got"
-            android:label="JayRod - Game of Thrones" >
             <intent-filter>
                 <action android:name="org.omnirom.DaylightHeaderPack1" />
                 <category android:name="android.intent.category.DEFAULT" />
